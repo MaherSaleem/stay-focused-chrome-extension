@@ -3,13 +3,13 @@
         <button @click="resetList">Reset Data</button>
         <div v-for="(sitesGroup,groupIndex)  in sitesGroups">
             {{sitesGroup.groupName}}
-            <button>Delete Group</button>
+            <button @click="deleteGroup(groupIndex)">Delete Group</button>
 
             <ul>
                 <li v-for="(site, siteIndex) in sitesGroup.sitesList">
                     <input type="checkbox" v-model="site.enabled" @click="toggleSiteEnable(groupIndex, siteIndex)">
                     {{site.url}}
-                    <button>Delete Site</button>
+                    <button @click="deleteSite(groupIndex, siteIndex)">Delete Site</button>
                 </li>
             </ul>
             <div>
@@ -94,6 +94,13 @@
                     newSiteUrl: ""
                 });
                 this.storeList();
+            },
+            deleteGroup(groupIndex){
+                this.sitesGroups.splice(groupIndex, 1);
+            },
+            deleteSite(groupIndex, siteIndex){
+                let group = this.sitesGroups[groupIndex];
+                group.sitesList.splice(siteIndex, 1);
             },
             toggleSiteEnable(groupIndex, siteIndex) {
                 let group = this.sitesGroups[groupIndex];

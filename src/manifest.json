@@ -1,7 +1,7 @@
 {
   "name": "focus-time",
   "description": "focusing",
-  "version": null,
+  "version": "1.0.0",
   "manifest_version": 2,
   "icons": {
     "48": "icons/icon_48.png",
@@ -18,6 +18,8 @@
   },
   "options_page": "options/options.html",
   "permissions": [
-    "storage"
+    "storage",
+    "webNavigation",
+    "tabs"
   ]
 }

@@ -23,6 +23,16 @@
             <input type="text" v-model="newGroupName">
             <button @click="addNewGroup">Add New Group</button>
         </div>
+        <div>
+            <h3>Flat Enables Websites</h3>
+            <ul>
+                <li v-for="site in flatEnabledSites">
+                    <input type="checkbox" v-model="site.enabled" >
+                    {{site.url}}
+                </li>
+            </ul>
+
+        </div>
     </div>
 </template>
 
@@ -93,10 +103,12 @@
             },
             resetList() {
                 this.sitesGroups = this.defultList;
-                chrome.storage.local.set({"sitesGroups": this.defultList});
+                this.storeList();
             },
             storeList() {
                 chrome.storage.local.set({"sitesGroups": this.sitesGroups});
+                chrome.storage.local.set({"flatEnabledSites": this.flatEnabledSites});
+
             }
         }
     };

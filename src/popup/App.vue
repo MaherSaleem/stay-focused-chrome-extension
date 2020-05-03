@@ -9,6 +9,7 @@
     export default {
         mounted() {
             chrome.storage.local.get("active", item => this.active = item.active);
+            this.setIcon();
         },
         data() {
             return {
@@ -22,6 +23,11 @@
             toggleStatus() {
                 this.active = !this.active;
                 chrome.storage.local.set({"active": this.active});
+                this.setIcon();
+            },
+            setIcon() {
+                let iconPath = this.active ? "../icons/icon_48_active.png" : "../icons/icon_48_inactive.png";
+                chrome.browserAction.setIcon({"path": iconPath});
             }
         }
     }

@@ -1,12 +1,15 @@
 <template>
     <div>
+        <button @click="resetList">Reset Data</button>
         <div v-for="(sitesGroup,groupIndex)  in sitesGroups">
             {{sitesGroup.groupName}}
+            <button>Delete Group</button>
+
             <ul>
                 <li v-for="(site, siteIndex) in sitesGroup.sitesList">
                     <input type="checkbox" v-model="site.enabled" @click="toggleSiteEnable(groupIndex, siteIndex)">
                     {{site.url}}
-                    <button>Delete</button>
+                    <button>Delete Site</button>
                 </li>
             </ul>
             <div>
@@ -31,13 +34,14 @@
                 if (item.sitesGroups) {
                     this.sitesGroups = item.sitesGroups;
                 } else {
-                    this.storeList()//initial run for the app will get default data
+
+                    this.storeList();//initial run for the app will get default data
                 }
             });
         },
         data() {
             return {
-                sitesGroups: [
+                defultList: [
                     {
                         groupName: "Default Sites",
                         sitesList: [
@@ -46,14 +50,8 @@
                         ],
                         newSiteUrl: ""
                     },
-                    {
-                        groupName: "Custom Sites",
-                        sitesList: [
-                            {url: "ritaj.edu", enabled: true},
-                        ],
-                        newSiteUrl: ""
-                    }
                 ],
+                sitesGroups: [],
                 newGroupName: "",
             }
         },
@@ -92,6 +90,10 @@
                 let site = group.sitesList[siteIndex];
                 site.enabled = !site.enabled;
                 this.storeList();
+            },
+            resetList() {
+                this.sitesGroups = this.defultList;
+                chrome.storage.local.set({"sitesGroups": this.defultList});
             },
             storeList() {
                 chrome.storage.local.set({"sitesGroups": this.sitesGroups});

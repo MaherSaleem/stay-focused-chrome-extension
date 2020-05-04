@@ -1,22 +1,47 @@
 <template>
     <div>
         <button @click="resetList">Reset Data</button>
-        <div v-for="(sitesGroup,groupIndex)  in sitesGroups">
-            {{sitesGroup.groupName}}
-            <button @click="deleteGroup(groupIndex)">Delete Group</button>
+        <div>
+            <div class="md-layout">
+                <div class="md-layout-item" v-for="(sitesGroup,groupIndex)  in sitesGroups">
+                    <md-card>
+                        <md-ripple>
+                            <md-card-header>
+                                <div class="md-title">{{sitesGroup.groupName}}</div>
+                            </md-card-header>
+                            <md-card-content>
+                                <md-list class="md-dense">
+                                    <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
+                                        <md-switch v-model="site.enabled"
+                                                   @change="toggleSiteEnable">{{site.url}}
+                                        </md-switch>
 
-            <ul>
-                <li v-for="(site, siteIndex) in sitesGroup.sitesList">
-                    <input type="checkbox" v-model="site.enabled" @click="toggleSiteEnable(groupIndex, siteIndex)">
-                    {{site.url}}
-                    <button @click="deleteSite(groupIndex, siteIndex)">Delete Site</button>
-                </li>
-            </ul>
-            <div>
-                <input type="text" v-model="sitesGroup.newSiteUrl">
-                <button @click="addNewSite(groupIndex)">Add New Site</button>
+                                        <md-button class="md-icon-button md-accent">
+                                            <md-icon @click.native="deleteSite(groupIndex, siteIndex)">delete</md-icon>
+                                        </md-button>
+                                    </md-list-item>
+                                    <md-divider></md-divider>
+                                    <md-list-item>
+                                        <md-field>
+                                            <label>Type your new website</label>
+                                            <md-input v-model="sitesGroup.newSiteUrl"></md-input>
+                                        </md-field>
+                                        <md-button @click.native="addNewSite(groupIndex)">Add</md-button>
+
+                                    </md-list-item>
+                                </md-list>
+                            </md-card-content>
+
+                            <md-card-actions>
+                                <md-button @click.native="deleteGroup(groupIndex)" class="md-raised md-accent">Delete
+                                    Group
+                                </md-button>
+                            </md-card-actions>
+                        </md-ripple>
+                    </md-card>
+                </div>
+
             </div>
-            <hr>
 
         </div>
         <div>
@@ -24,12 +49,9 @@
             <button @click="addNewGroup">Add New Group</button>
         </div>
         <div>
-            <h3>Flat Enables Websites</h3>
+            <h3>Struture</h3>
             <ul>
-                <li v-for="site in flatEnabledSites">
-                    <input type="checkbox" v-model="site.enabled" >
-                    {{site.url}}
-                </li>
+                {{sitesGroups}}
             </ul>
 
         </div>
@@ -53,10 +75,12 @@
             return {
                 defultList: [
                     {
-                        groupName: "Default Sites",
+                        groupName: "Socail Media",
                         sitesList: [
                             {url: "facebook.com", enabled: true},
-                            {url: "twitter.com", enabled: true}
+                            {url: "twitter.com", enabled: true},
+                            {url: "instagram.com", enabled: true},
+                            {url: "linkedin.com", enabled: true}
                         ],
                         newSiteUrl: ""
                     },
@@ -95,17 +119,16 @@
                 });
                 this.storeList();
             },
-            deleteGroup(groupIndex){
+            deleteGroup(groupIndex) {
                 this.sitesGroups.splice(groupIndex, 1);
+                this.storeList();
             },
-            deleteSite(groupIndex, siteIndex){
+            deleteSite(groupIndex, siteIndex) {
                 let group = this.sitesGroups[groupIndex];
                 group.sitesList.splice(siteIndex, 1);
+                this.storeList();
             },
-            toggleSiteEnable(groupIndex, siteIndex) {
-                let group = this.sitesGroups[groupIndex];
-                let site = group.sitesList[siteIndex];
-                site.enabled = !site.enabled;
+            toggleSiteEnable() {
                 this.storeList();
             },
             resetList() {
@@ -117,7 +140,7 @@
                 chrome.storage.local.set({"flatEnabledSites": this.flatEnabledSites});
 
             }
-        }
+        },
     };
 </script>
 
@@ -125,4 +148,12 @@
     p {
         font-size: 20px;
     }
+
+    .md-card {
+        width: 320px;
+        margin: 4px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
 </style>

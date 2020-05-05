@@ -13,6 +13,7 @@ const config = {
     'background': './background.js',
     'popup/popup': './popup/popup.js',
     'options/options': './options/options.js',
+    'goback/goback': './goback/goback.js',
   },
   output: {
     path: __dirname + '/dist',
@@ -76,7 +77,7 @@ const config = {
       { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
       { from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml },
       { from: 'options/options.html', to: 'options/options.html', transform: transformHtml },
-      { from: 'GoBack.html', to: 'GoBack.html' },
+      { from: 'goback/goback.html', to: 'goback/goback.html', transform: transformHtml },
       {
         from: 'manifest.json',
         to: 'manifest.json',

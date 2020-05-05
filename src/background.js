@@ -21,7 +21,7 @@ const checkIfCanEnterWebsite = info => {
                 let blockedWebsites = item.flatEnabledSites;
                 var mustGoBack = blockedWebsites.some(website => normalizeLink(info.url).includes(normalizeLink(website.url)));
                 if (info.frameId === 0 && mustGoBack) {
-                    chrome.tabs.update(info.tabId, {"url": "GoBack.html"});
+                    chrome.tabs.update(info.tabId, {"url": "goback/goback.html"});
                 }
             });
         }

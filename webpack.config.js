@@ -52,6 +52,7 @@ const config = {
           name: '[name].[ext]',
           outputPath: '/images/',
           emitFile: false,
+          esModule: false,
         },
       },
       {
@@ -78,6 +79,7 @@ const config = {
       { from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml },
       { from: 'options/options.html', to: 'options/options.html', transform: transformHtml },
       { from: 'goback/goback.html', to: 'goback/goback.html', transform: transformHtml },
+      { from: 'goback/images', to: 'goback/images' },
       {
         from: 'manifest.json',
         to: 'manifest.json',

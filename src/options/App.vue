@@ -8,42 +8,48 @@
                             <span class="md-title">Stay Focused</span>
                         </div>
                         <div class="md-toolbar-section-end">
-                            <md-switch>
+                            <md-switch v-model="active" @change="changeActiveStatus">
                                 Active
                             </md-switch>
                         </div>
                     </div>
 
                     <div class="md-toolbar-row">
-                        <md-tabs class="md-primary">
-                            <md-tab id="tab-home" md-label="Websites"></md-tab>
-                            <md-tab id="tab-pages" md-label="Settings"></md-tab>
+                        <md-tabs class="md-primary" @md-changed="newSelectedTab => selectedTab = newSelectedTab">
+                            <md-tab id="tab-websites" md-label="Websites"></md-tab>
+                            <md-tab id="tab-settings" md-label="Settings"></md-tab>
                         </md-tabs>
                     </div>
                 </md-app-toolbar>
 
 
-                <md-app-content class="buttons-content">
+
+                <md-app-content  v-if="selectedTab === 'tab-websites'">
                     <md-button class="md-raised" @click.native="resetList">Reset Data</md-button>
                     <md-field>
                         <label>Type your new Group of websites</label>
                         <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>
                     </md-field>
-
-                </md-app-content>
-                <md-app-content>
                     <div class="md-layout">
                         <div class="md-layout-item" v-for="(sitesGroup,groupIndex)  in sitesGroups">
                             <md-card>
                                 <md-ripple>
                                     <md-card-header>
-                                        <div class="md-title">{{sitesGroup.groupName}}</div>
+                                        <div class="md-title">{{sitesGroup.groupName}}
+                                            <md-switch class="md-menu-content-right-end"
+                                                       v-model="sitesGroup.groupEnabled"
+                                                       @change="changeGroupStatus(groupIndex)">
+                                            </md-switch>
+                                        </div>
+
+
                                     </md-card-header>
                                     <md-card-content>
                                         <md-list class="md-dense">
                                             <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
                                                 <md-switch v-model="site.enabled"
-                                                           @change="toggleSiteEnable"><span :class="{'website-disabled': !site.enabled}">{{site.url}}</span>
+                                                           @change="toggleSiteEnable"><span
+                                                        :class="{'website-disabled': !site.enabled}">{{site.url}}</span>
                                                 </md-switch>
 
                                                 <md-button class="md-icon-button md-accent">
@@ -55,15 +61,16 @@
                                             <md-list-item>
                                                 <md-field>
                                                     <label>Type your new website</label>
-                                                    <md-input @keyup.enter="addNewSite(groupIndex)" v-model="sitesGroup.newSiteUrl"></md-input>
+                                                    <md-input @keyup.enter="addNewSite(groupIndex)"
+                                                              v-model="sitesGroup.newSiteUrl"></md-input>
                                                 </md-field>
 
                                             </md-list-item>
                                         </md-list>
                                     </md-card-content>
 
-                                    <md-card-actions>
-                                        <md-button @click.native="deleteGroup(groupIndex)" class="md-raised md-accent">
+                                    <md-card-actions class="md-alignment-left">
+                                        <md-button @click.native="deleteGroup(groupIndex)" class="md-raised ">
                                             Delete
                                             Group
                                         </md-button>
@@ -75,6 +82,9 @@
                     </div>
 
                 </md-app-content>
+                <md-app-content v-if="selectedTab === 'tab-settings'">
+                    <settings-tab></settings-tab>
+                </md-app-content>
             </md-app>
         </div>
         <div>
@@ -83,7 +93,7 @@
             <div>
                 <h3>Struture</h3>
                 <ul>
-                    {{sitesGroups}}
+                    {{flatEnabledSites}}
                 </ul>
 
             </div>
@@ -92,9 +102,12 @@
 </template>
 
 <script>
+    import SettingsTab from "./SettingsTab";
     export default {
         name: "App",
+        components: {SettingsTab},
         mounted() {
+            chrome.storage.local.get("active", item => this.active = item.active);
             chrome.storage.local.get("sitesGroups", item => {
                 if (item.sitesGroups) {
                     this.sitesGroups = item.sitesGroups;
@@ -106,8 +119,11 @@
         },
         data() {
             return {
+                selectedTab: "tab-websites",
+                active: false,
                 defultList: [
                     {
+                        groupEnabled: true,
                         groupName: "Social Media",
                         sitesList: [
                             {url: "facebook.com", enabled: true},
@@ -118,6 +134,7 @@
                         newSiteUrl: ""
                     },
                     {
+                        groupEnabled: false,
                         groupName: "Videos Websites",
                         sitesList: [
                             {url: "youtube.com", enabled: true},
@@ -135,7 +152,9 @@
             flatSites() {
                 let flatList = [];
                 this.sitesGroups.forEach(siteGroup => {
-                    flatList.push(...siteGroup.sitesList)
+                    if (siteGroup.groupEnabled) {
+                        flatList.push(...siteGroup.sitesList)
+                    }
                 });
                 return flatList
             },
@@ -153,11 +172,15 @@
                 group.newSiteUrl = "";
                 this.storeList();
             },
+            changeGroupStatus(groupIndex) {
+                this.storeList();
+            },
             addNewGroup() {
                 this.sitesGroups.push({
                     groupName: this.newGroupName,
                     sitesList: [],
-                    newSiteUrl: ""
+                    newSiteUrl: "",
+                    groupEnabled: true
                 });
                 this.newGroupName = "";
                 this.storeList();
@@ -182,6 +205,9 @@
                 chrome.storage.local.set({"sitesGroups": this.sitesGroups});
                 chrome.storage.local.set({"flatEnabledSites": this.flatEnabledSites});
 
+            },
+            changeActiveStatus() {
+                chrome.storage.local.set({"active": this.active});
             }
         },
     };
@@ -194,14 +220,17 @@
         display: inline-block;
         vertical-align: top;
     }
-    .page-container{
+
+    .page-container {
         width: 70%;
         margin-left: 15%;
     }
-    .buttons-content{
+
+    .buttons-content {
         min-height: 5%
     }
-    .website-disabled{
+
+    .website-disabled {
         text-decoration: line-through;
     }
 

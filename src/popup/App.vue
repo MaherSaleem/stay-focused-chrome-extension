@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <button @click="toggleStatus">{{active ? "Deactivate" : 'Activate'}}</button>
         <button @click="openOptionsPage"> Open Setting</button>
     </div>
@@ -36,5 +36,13 @@
 <style lang="scss" scoped>
     p {
         font-size: 20px;
+    }
+    .container{
+        display: flex;
+        padding: 20px;
+        flex-direction: row ;
+    }
+    button{
+        margin: 2%;
     }
 </style>

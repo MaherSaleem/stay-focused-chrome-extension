@@ -8,7 +8,7 @@
                             <span class="md-title">Stay Focused</span>
                         </div>
                         <div class="md-toolbar-section-end">
-                            <md-switch v-model="active" @change="changeActiveStatus">
+                            <md-switch  v-model="active" @change="changeActiveStatus">
                                 Active
                             </md-switch>
                         </div>
@@ -23,24 +23,23 @@
                 </md-app-toolbar>
 
 
-
-                <md-app-content  v-if="selectedTab === 'tab-websites'">
+                <md-app-content v-if="selectedTab === 'tab-websites'">
                     <md-button class="md-raised" @click.native="resetList">Reset Data</md-button>
                     <md-field>
                         <label>Type your new Group of websites</label>
                         <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>
                     </md-field>
-                    <div class="md-layout">
-                        <div class="md-layout-item" v-for="(sitesGroup,groupIndex)  in sitesGroups">
+                    <div class="sites-groups">
+                        <div class="site-group" v-for="(sitesGroup,groupIndex)  in sitesGroups">
                             <md-card>
                                 <md-ripple>
-                                    <md-card-header>
+                                    <md-card-header class="card-header">
                                         <div class="md-title">{{sitesGroup.groupName}}
-                                            <md-switch class="md-menu-content-right-end"
-                                                       v-model="sitesGroup.groupEnabled"
-                                                       @change="changeGroupStatus(groupIndex)">
-                                            </md-switch>
                                         </div>
+                                        <md-switch class="enable-group-switch"
+                                                   v-model="sitesGroup.groupEnabled"
+                                                   @change="changeGroupStatus(groupIndex)">
+                                        </md-switch>
 
 
                                     </md-card-header>
@@ -58,16 +57,14 @@
                                                 </md-button>
                                             </md-list-item>
                                             <md-divider></md-divider>
-                                            <md-list-item>
-                                                <md-field>
-                                                    <label>Type your new website</label>
-                                                    <md-input @keyup.enter="addNewSite(groupIndex)"
-                                                              v-model="sitesGroup.newSiteUrl"></md-input>
-                                                </md-field>
-
-                                            </md-list-item>
                                         </md-list>
                                     </md-card-content>
+
+                                    <md-field>
+                                        <label>Type your new website</label>
+                                        <md-input @keyup.enter="addNewSite(groupIndex)"
+                                                  v-model="sitesGroup.newSiteUrl"></md-input>
+                                    </md-field>
 
                                     <md-card-actions class="md-alignment-left">
                                         <md-button @click.native="deleteGroup(groupIndex)" class="md-raised ">
@@ -103,6 +100,7 @@
 
 <script>
     import SettingsTab from "./SettingsTab";
+
     export default {
         name: "App",
         components: {SettingsTab},
@@ -221,9 +219,33 @@
         vertical-align: top;
     }
 
+    .card-header {
+        display: flex;
+    }
+
+    .enable-group-switch {
+        margin-left: auto;
+        margin-top: 4%;
+        margin-bottom: 2%;
+    }
+
+    .sites-groups {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
     .page-container {
-        width: 70%;
-        margin-left: 15%;
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+
+    .md-card-content {
+        overflow-y: auto;
+        height: 250px;
     }
 
     .buttons-content {

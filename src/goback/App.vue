@@ -17,8 +17,10 @@
                 imagesObjects: [
                     {path: "images/angry-monkey.jpg", text: "Go Back to work now!"}, //TODO maybe add Dimensions
                     {path: "images/Black-Girl-Wat.jpg", text: "WAT are you doing here? Go to work"},
-                    {path: "images/troll.jpg", text: "you didn't learn you lesson right? Go to work"},
-                    {path: "images/angry-white-monkey.jpg", text: "Goooooo!"}
+                    {path: "images/troll.jpg", text: "you didn't learn your lesson right? Go to work"},
+                    {path: "images/angry-white-monkey.jpg", text: "Goooooo!"},
+                    {path: "images/coffin-dance.jpg", text: "Go to work or dance with us!"},
+                    {path: "images/spongebob.jpg", text: ""}
                 ],
                 randomImage: {path: "", text: ""}
             }

@@ -84,17 +84,6 @@
                 </md-app-content>
             </md-app>
         </div>
-        <div>
-            <div>
-            </div>
-            <div>
-                <h3>Struture</h3>
-                <ul>
-                    {{flatEnabledSites}}
-                </ul>
-
-            </div>
-        </div>
     </div>
 </template>
 

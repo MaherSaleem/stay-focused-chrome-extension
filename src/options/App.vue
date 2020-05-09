@@ -1,31 +1,45 @@
 <template>
-    <div>
-        <div class="page-container">
-            <md-app md-waterfall md-mode="fixed-last">
-                <md-app-toolbar class="md-large md-dense md-primary">
-                    <div class="md-toolbar-row">
-                        <div class="md-toolbar-section-start">
-                            <span class="md-title">Stay Focused</span>
-                        </div>
-                        <div class="md-toolbar-section-end">
-                            <md-switch  v-model="active" @change="changeActiveStatus">
-                                Active
-                            </md-switch>
-                        </div>
-                    </div>
+    <div class="page-container">
+        <md-app>
+            <md-app-toolbar class="md-primary">
+                <span class="md-title">Stay Focused</span>
+                <div class="md-toolbar-section-end">
+                    <md-switch  v-model="active" @change="changeActiveStatus">
+                        {{active? "Active": "Inactive"}}
+                    </md-switch>
+                </div>
+            </md-app-toolbar>
 
-                    <div class="md-toolbar-row">
-                        <md-tabs class="md-primary" @md-changed="newSelectedTab => selectedTab = newSelectedTab">
-                            <md-tab id="tab-websites" md-label="Websites"></md-tab>
-                            <md-tab id="tab-settings" md-label="Settings"></md-tab>
-                        </md-tabs>
-                    </div>
-                </md-app-toolbar>
+            <md-app-drawer md-permanent="full">
+                <md-toolbar class="md-transparent" md-elevation="0">
+                    Stay Focused
+                </md-toolbar>
 
+                <md-list>
+                    <md-list-item  :class="{'selected-tab': isSelectedTab('websites')}" @click="selectTab('websites')">
+                        <md-icon>move_to_inbox</md-icon>
+                        <span class="md-list-item-text">Websites</span>
+                    </md-list-item>
 
-                <md-app-content v-if="selectedTab === 'tab-websites'">
-                    <md-button class="md-raised" @click.native="resetList">Reset Data</md-button>
-                    <md-field>
+                    <md-list-item :class="{'selected-tab': isSelectedTab('settings')}" @click="selectTab('settings')">
+                        <md-icon>settings</md-icon>
+                        <span class="md-list-item-text">Settings</span>
+                    </md-list-item>
+
+                    <md-list-item :class="{'selected-tab': isSelectedTab('contribute')}" @click="selectTab('contribute')">
+                        <md-icon>build</md-icon>
+                        <span class="md-list-item-text">Contribute</span>
+                    </md-list-item>
+                    <md-list-item :class="{'selected-tab': isSelectedTab('about')}" @click="selectTab('about')">
+                        <md-icon>info</md-icon>
+                        <span class="md-list-item-text">About</span>
+                    </md-list-item>
+                </md-list>
+            </md-app-drawer>
+
+            <md-app-content>
+                <div v-if="isSelectedTab('websites')">
+                    <md-field class="add-new-website-field">
                         <label>Type your new Group of websites</label>
                         <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>
                     </md-field>
@@ -36,7 +50,7 @@
                                     <md-card-header class="card-header">
                                         <div class="md-title">{{sitesGroup.groupName}}
                                         </div>
-                                        <md-switch class="enable-group-switch"
+                                        <md-switch class="enable-group-switch md-primary"
                                                    v-model="sitesGroup.groupEnabled"
                                                    @change="changeGroupStatus(groupIndex)">
                                         </md-switch>
@@ -46,7 +60,7 @@
                                     <md-card-content>
                                         <md-list class="md-dense">
                                             <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
-                                                <md-switch v-model="site.enabled"
+                                                <md-switch  class="md-primary" v-model="site.enabled"
                                                            @change="toggleSiteEnable"><span
                                                         :class="{'website-disabled': !site.enabled}">{{site.url}}</span>
                                                 </md-switch>
@@ -56,15 +70,15 @@
                                                     </md-icon>
                                                 </md-button>
                                             </md-list-item>
-                                            <md-divider></md-divider>
                                         </md-list>
+                                        <md-field class="enter-website-field">
+                                            <label>Type your new website</label>
+                                            <md-input @keyup.enter="addNewSite(groupIndex)"
+                                                      v-model="sitesGroup.newSiteUrl"></md-input>
+                                        </md-field>
                                     </md-card-content>
+                                    <md-divider></md-divider>
 
-                                    <md-field>
-                                        <label>Type your new website</label>
-                                        <md-input @keyup.enter="addNewSite(groupIndex)"
-                                                  v-model="sitesGroup.newSiteUrl"></md-input>
-                                    </md-field>
 
                                     <md-card-actions class="md-alignment-left">
                                         <md-button @click.native="deleteGroup(groupIndex)" class="md-raised ">
@@ -75,24 +89,32 @@
                                 </md-ripple>
                             </md-card>
                         </div>
-
                     </div>
 
-                </md-app-content>
-                <md-app-content v-if="selectedTab === 'tab-settings'">
+                </div>
+                <div v-if="isSelectedTab('settings')">
                     <settings-tab></settings-tab>
-                </md-app-content>
-            </md-app>
-        </div>
+                </div>
+                <div v-if="isSelectedTab('contribute')">
+                    <contribute-tab></contribute-tab>
+                </div>
+                <div v-if="isSelectedTab('about')">
+                    <about-tab></about-tab>
+                </div>
+
+            </md-app-content>
+        </md-app>
     </div>
 </template>
 
 <script>
     import SettingsTab from "./SettingsTab";
+    import AboutTab from "./AboutTab";
+    import ContributeTab from "./ContributeTab";
 
     export default {
         name: "App",
-        components: {SettingsTab},
+        components: {ContributeTab, AboutTab, SettingsTab},
         mounted() {
             chrome.storage.local.get("active", item => this.active = item.active);
             chrome.storage.local.get("sitesGroups", item => {
@@ -106,7 +128,7 @@
         },
         data() {
             return {
-                selectedTab: "tab-websites",
+                selectedTab: "websites",
                 active: false,
                 defultList: [
                     {
@@ -195,12 +217,40 @@
             },
             changeActiveStatus() {
                 chrome.storage.local.set({"active": this.active});
+            },
+
+            /**
+             * @param {string} tabName
+             */
+            selectTab(tabName) {
+                this.selectedTab = tabName;
+            },
+            isSelectedTab(tabName){
+                return this.selectedTab === tabName;
             }
         },
+
     };
 </script>
 
 <style scoped>
+
+
+    .md-app {
+        border: 1px solid aliceblue;
+        height: inherit;
+    }
+
+    .md-drawer {
+        width: 15%;
+        max-width: calc(100vw - 125px);
+    }
+
+    .page-container {
+        height: 800px;
+    }
+
+    /*/////////////*/
     .md-card {
         width: 320px;
         margin: 4px;
@@ -223,26 +273,29 @@
         flex-flow: row wrap;
     }
 
-    .page-container {
-        display: flex;
-        width: 50%;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: auto;
+    .enter-website-field{
+        margin: 2px auto;
+        width: 90%;
     }
 
-    .md-card-content {
+    .md-list {
         overflow-y: auto;
         height: 250px;
     }
 
-    .buttons-content {
-        min-height: 5%
-    }
+    /*.buttons-content {*/
+    /*    min-height: 5%*/
+    /*}*/
 
-    .website-disabled {
-        text-decoration: line-through;
-    }
+    /*.website-disabled {*/
+    /*    text-decoration: line-through;*/
+    /*}*/
 
+    .selected-tab{
+        background-color: #e9e9e9;
+    }
+    .add-new-website-field {
+        left: 1%;
+        width: 26%;
+    }
 </style>

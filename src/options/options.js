@@ -1,3 +1,4 @@
+
 global.browser = require('webextension-polyfill')
 
 import Vue from 'vue'

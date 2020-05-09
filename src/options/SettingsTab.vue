@@ -7,11 +7,6 @@
 
         </div>
         <div>
-            <md-switch @change="saveSettings" v-model="settings.allowQuestionToDeactivate" class="md-menu-content-right-end">
-                Allow Question To deactivate?
-            </md-switch>
-        </div>
-        <div>
             <md-switch @change="saveSettings" v-model="settings.workHours.enableWorkHours" class="md-menu-content-right-end">
                 Working hours
             </md-switch>
@@ -19,6 +14,9 @@
                 <vue-timepicker @change="saveSettings" :disabled="!settings.workHours.enableWorkHours" format="hh:mm A" v-model="settings.workHours.startTime"></vue-timepicker>
                 <vue-timepicker @change="saveSettings" :disabled="!settings.workHours.enableWorkHours" format="hh:mm A" v-model="settings.workHours.endTime"></vue-timepicker>
             </div>
+        </div>
+        <div>
+            <md-button class="md-raised reset-button" @click.native="resetList">Reset Data</md-button>
         </div>
     </div>
 </template>
@@ -56,7 +54,13 @@
         methods: {
             saveSettings(){
                 chrome.storage.local.set({"settings": this.settings});
-            }
+            },
+            resetList() {
+                //TODO fix that
+                // this.sitesGroups = this.defultList;
+                // this.storeList();
+            },
+
         },
         components: {
             VueTimepicker
@@ -65,5 +69,8 @@
 </script>
 
 <style scoped>
-
+    .reset-button{
+        margin-top: 2%;
+        
+    }
 </style>

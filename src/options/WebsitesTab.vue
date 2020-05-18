@@ -56,43 +56,15 @@
 </template>
 
 <script>
+    import {websitesListDefault} from '../defaults'
     export default {
         name: "WebsitesTab",
         mounted() {
-            chrome.storage.local.get("sitesGroups", item => {
-                if (item.sitesGroups) {
-                    this.sitesGroups = item.sitesGroups;
-                } else {
-
-                    this.storeList();//initial run for the app will get default data
-                }
-            });
+            this.loadWebsites();
         },
         data() {
             return {
-                defultList: [
-                    {
-                        groupEnabled: true,
-                        groupName: "Social Media",
-                        sitesList: [
-                            {url: "facebook.com", enabled: true},
-                            {url: "twitter.com", enabled: true},
-                            {url: "instagram.com", enabled: true},
-                            {url: "linkedin.com", enabled: true}
-                        ],
-                        newSiteUrl: ""
-                    },
-                    {
-                        groupEnabled: false,
-                        groupName: "Videos Websites",
-                        sitesList: [
-                            {url: "youtube.com", enabled: true},
-                            {url: "netflix.com", enabled: true},
-                            {url: "dailymotion.com", enabled: true},
-                        ],
-                        newSiteUrl: ""
-                    },
-                ],
+                defultList: websitesListDefault,
                 sitesGroups: [],
                 newGroupName: "",
             }
@@ -112,6 +84,23 @@
             }
         },
         methods: {
+
+            loadWebsites(){
+                chrome.storage.local.get("sitesGroups", item => {
+                    if (item.sitesGroups) {
+                        this.sitesGroups = item.sitesGroups;
+                    } else {
+                        this.storeWebsites();//initial run for the app will get default data
+                    }
+                });
+            },
+            storeWebsites() {
+                chrome.storage.local.set({"sitesGroups": this.sitesGroups});
+                chrome.storage.local.set({"flatEnabledSites": this.flatEnabledSites});
+
+            },
+
+
             addNewSite(groupIndex) {
                 let group = this.sitesGroups[groupIndex];
                 group.sitesList.push({
@@ -119,10 +108,10 @@
                     enabled: true
                 });
                 group.newSiteUrl = "";
-                this.storeList();
+                this.storeWebsites();
             },
             changeGroupStatus(groupIndex) {
-                this.storeList();
+                this.storeWebsites();
             },
             addNewGroup() {
                 this.sitesGroups.push({
@@ -132,28 +121,19 @@
                     groupEnabled: true
                 });
                 this.newGroupName = "";
-                this.storeList();
+                this.storeWebsites();
             },
             deleteGroup(groupIndex) {
                 this.sitesGroups.splice(groupIndex, 1);
-                this.storeList();
+                this.storeWebsites();
             },
             deleteSite(groupIndex, siteIndex) {
                 let group = this.sitesGroups[groupIndex];
                 group.sitesList.splice(siteIndex, 1);
-                this.storeList();
+                this.storeWebsites();
             },
             toggleSiteEnable() {
-                this.storeList();
-            },
-            resetList() {
-                this.sitesGroups = this.defultList;
-                this.storeList();
-            },
-            storeList() {
-                chrome.storage.local.set({"sitesGroups": this.sitesGroups});
-                chrome.storage.local.set({"flatEnabledSites": this.flatEnabledSites});
-
+                this.storeWebsites();
             },
         },
     }

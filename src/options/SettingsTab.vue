@@ -36,44 +36,37 @@
 <script>
     import VueTimepicker from 'vue2-timepicker'
     import 'vue2-timepicker/dist/VueTimepicker.css'
+    import {settingsDefault} from '../defaults';
+    import {resetChromeStorageData} from '../helpers';
 
     export default {
         name: "SettingsTab",
         mounted() {
-            chrome.storage.local.get("settings", item => {
-                if (item.settings) {
-                    this.settings = item.settings;
-                } else {
-                    this.saveSettings();//save default settings
-                }
-            });
-
+            this.loadSettings();
         },
         data() {
             return {
-                settings: {
-                    workHours: {
-                        startTime: "08:00 AM",
-                        endTime: "05:00 PM",
-                        enableWorkHours: false
-                    },
-                    allowFunnyGoBackImages: true,
-                },
+                settings: settingsDefault,
                 isResetButtonActive: false,
             }
         },
 
         methods: {
+            loadSettings(){
+                chrome.storage.local.get("settings", item => {
+                    if (item.settings) {
+                        this.settings = item.settings;
+                    } else {
+                        this.saveSettings();//save default settings(initially default settings will be in data)
+                    }
+                });
+            },
             saveSettings() {
                 chrome.storage.local.set({"settings": this.settings});
             },
-            resetList() {
-            },
             onResetConfirm() {
-                alert("Confirm");
-                //TODO fix that
-                // this.sitesGroups = this.defultList;
-                // this.storeList();
+                resetChromeStorageData();
+                this.loadSettings();
             }
 
         },

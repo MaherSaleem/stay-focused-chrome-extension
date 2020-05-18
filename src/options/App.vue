@@ -16,21 +16,21 @@
                 </md-toolbar>
 
                 <md-list>
-                    <md-list-item  :class="{'selected-tab': isSelectedTab('websites')}" @click="selectTab('websites')">
+                    <md-list-item  :class="{'selected-tab': isSelectedTab('websites-tab')}" @click="selectTab('websites-tab')">
                         <md-icon>move_to_inbox</md-icon>
                         <span class="md-list-item-text">Websites</span>
                     </md-list-item>
 
-                    <md-list-item :class="{'selected-tab': isSelectedTab('settings')}" @click="selectTab('settings')">
+                    <md-list-item :class="{'selected-tab': isSelectedTab('settings-tab')}" @click="selectTab('settings-tab')">
                         <md-icon>settings</md-icon>
                         <span class="md-list-item-text">Settings</span>
                     </md-list-item>
 
-                    <md-list-item :class="{'selected-tab': isSelectedTab('contribute')}" @click="selectTab('contribute')">
+                    <md-list-item :class="{'selected-tab': isSelectedTab('contribute-tab')}" @click="selectTab('contribute-tab')">
                         <md-icon>build</md-icon>
                         <span class="md-list-item-text">Contribute</span>
                     </md-list-item>
-                    <md-list-item :class="{'selected-tab': isSelectedTab('about')}" @click="selectTab('about')">
+                    <md-list-item :class="{'selected-tab': isSelectedTab('about-tab')}" @click="selectTab('about-tab')">
                         <md-icon>info</md-icon>
                         <span class="md-list-item-text">About</span>
                     </md-list-item>
@@ -38,17 +38,8 @@
             </md-app-drawer>
 
             <md-app-content>
-                <div v-if="isSelectedTab('websites')">
-                    <WebsitesTab></WebsitesTab>
-                </div>
-                <div v-if="isSelectedTab('settings')">
-                    <settings-tab></settings-tab>
-                </div>
-                <div v-if="isSelectedTab('contribute')">
-                    <contribute-tab></contribute-tab>
-                </div>
-                <div v-if="isSelectedTab('about')">
-                    <about-tab></about-tab>
+                <div>
+                    <component :is="selectedTab"></component>
                 </div>
 
             </md-app-content>
@@ -71,7 +62,7 @@
         },
         data(){
             return {
-                selectedTab: "websites",
+                selectedTab: "websites-tab",
                 active: false,
             }
         },

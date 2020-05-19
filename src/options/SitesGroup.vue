@@ -6,8 +6,9 @@
                     <div class="md-title">{{sitesGroup.groupName}}
                     </div>
                     <md-switch class="enable-group-switch md-primary"
-                               :value="sitesGroup.groupEnabled"
-                               @change="$emit('update:sitesGroup.groupEnabled')">
+                               v-model="sitesGroup.groupEnabled"
+                               @change="$emit('store-websites')"
+                    >
                     </md-switch>
 
 
@@ -16,7 +17,9 @@
                     <md-list class="md-dense">
                         <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
                             <md-switch  class="md-primary"
-                                        :value="site.enabled">
+                                        v-model="site.enabled"
+                                        @change="$emit('store-websites')"
+                            >
                                 <span
                                     :class="{'website-disabled': !site.enabled}">{{site.url}}</span>
                             </md-switch>

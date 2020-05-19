@@ -9,6 +9,7 @@
                     v-for="(sitesGroup,groupIndex)  in sitesGroups"
                     :key="groupIndex"
                     :sitesGroup="sitesGroup"
+                    v-on:store-websites="storeWebsites"
                     v-on:add-new-website="newSiteUrl => {addNewSite(groupIndex, newSiteUrl)}"
                     v-on:delete-sites-group="deleteGroup(groupIndex)"
                     v-on:delete-site="siteIndex => deleteSite(groupIndex, siteIndex)"

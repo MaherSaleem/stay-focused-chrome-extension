@@ -107,13 +107,7 @@
 
 
 
-    /*.buttons-content {*/
-    /*    min-height: 5%*/
-    /*}*/
 
-    /*.website-disabled {*/
-    /*    text-decoration: line-through;*/
-    /*}*/
 
     .selected-tab{
         background-color: #e9e9e9;

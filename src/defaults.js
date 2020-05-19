@@ -17,7 +17,6 @@ export let websitesListDefault = [
             {url: "instagram.com", enabled: true},
             {url: "linkedin.com", enabled: true}
         ],
-        newSiteUrl: ""
     },
     {
         groupEnabled: false,
@@ -27,7 +26,6 @@ export let websitesListDefault = [
             {url: "netflix.com", enabled: true},
             {url: "dailymotion.com", enabled: true},
         ],
-        newSiteUrl: ""
     },
 ]
 export let activeDefault = false

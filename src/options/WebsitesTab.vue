@@ -21,6 +21,7 @@
 <script>
     import {websitesListDefault} from '../defaults'
     import SitesGroup from "./SitesGroup";
+    import {getHostNameFromStringUrl} from "../helpers";
 
     export default {
         name: "WebsitesTab",
@@ -65,6 +66,7 @@
 
             },
             addNewSite(groupIndex, siteUrl) {
+                siteUrl = getHostNameFromStringUrl(siteUrl);
                 let group = this.sitesGroups[groupIndex];
                 group.sitesList.push({
                     url: siteUrl,

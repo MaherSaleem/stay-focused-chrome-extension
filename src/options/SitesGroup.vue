@@ -1,5 +1,5 @@
 <template>
-    <div class="site-group" >
+    <div :class="['site-group', sitesGroup.groupEnabled ? '' : 'disabled']" >
         <md-card>
             <md-ripple>
                 <md-card-header class="card-header">
@@ -97,6 +97,10 @@
     }
     .website-disabled {
         text-decoration: line-through;
+        opacity: 0.5;
+    }
+    .disabled{
+        opacity: 0.5;
     }
 
 </style>

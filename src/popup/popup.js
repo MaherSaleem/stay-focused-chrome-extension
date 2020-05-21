@@ -6,11 +6,12 @@ import store from '../store'
 global.browser = require('webextension-polyfill');
 Vue.prototype.$browser = global.browser;
 
-import { MdSwitch, MdButton } from 'vue-material/dist/components'
+import { MdSwitch, MdButton, MdCard } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
 Vue.use(MdSwitch);
 Vue.use(MdButton);
+Vue.use(MdCard);
 
 
 /* eslint-disable no-new */

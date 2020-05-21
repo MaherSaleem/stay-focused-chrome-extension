@@ -6,20 +6,28 @@
 
         </header>
         <main>
-            <div class="main-row">
-                <p><b>Focus Mode enabled?<b></p>
-                <p>
-                    <md-switch v-model="active" @change="saveActive"></md-switch>
-                </p>
-            </div>
-            <div class="main-row">
-                <p><b>Website: </b>{{this.websiteName}}</p>
-                <p>
-                    <md-button @click.native="addCurrentWebsite" class="md-raised md-accent">
-                        Add Website
-                    </md-button>
-                </p>
-            </div>
+            <md-card >
+                <md-ripple>
+                    <md-card-content>
+                        <div class="main-row">
+                            <p><b>Focus Mode enabled?</b></p>
+                            <p>
+                                <md-switch v-model="active" @change="saveActive"></md-switch>
+                            </p>
+                        </div>
+                        <div class="main-row">
+                            <p><b>Website: </b>{{this.websiteName}}</p>
+                            <p>
+                                <md-button @click.native="addCurrentWebsite" class="md-raised md-accent">
+                                    Add Website
+                                </md-button>
+                            </p>
+                        </div>
+                    </md-card-content>
+                </md-ripple>
+            </md-card>
+
+
         </main>
 
         <footer></footer>
@@ -64,6 +72,7 @@
 
             },
             setWebsiteName() {
+                //TODO check if valid website
                 chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                     this.websiteName = getHostNameFromStringUrl(tabs[0].url);
                 });
@@ -103,7 +112,10 @@
         padding-left: 5%;
         padding-right: 5%;
         flex-direction: column;
-
+        .md-card{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
         .main-row {
             display: flex;
             flex-direction: row;

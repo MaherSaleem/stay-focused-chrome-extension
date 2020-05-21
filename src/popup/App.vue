@@ -6,7 +6,7 @@
 
         </header>
         <main>
-            <md-card >
+            <md-card>
                 <md-ripple>
                     <md-card-content>
                         <div class="main-row">
@@ -15,7 +15,7 @@
                                 <md-switch v-model="active" @change="saveActive"></md-switch>
                             </p>
                         </div>
-                        <div class="main-row">
+                        <div class="main-row" v-if="isValidUrl">
                             <p><b>Website: </b>{{this.websiteName}}</p>
                             <p>
                                 <md-button @click.native="addCurrentWebsite" class="md-raised md-accent">
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import {getHostNameFromStringUrl} from "../helpers";
+    import {getHostNameFromStringUrl, isValidURL} from "../helpers";
 
     export default {
         mounted() {
@@ -47,6 +47,11 @@
             return {
                 active: true,
                 websiteName: "",
+            }
+        },
+        computed: {
+            isValidUrl() {
+                return isValidURL(this.websiteName);
             }
         },
         methods: {
@@ -72,7 +77,6 @@
 
             },
             setWebsiteName() {
-                //TODO check if valid website
                 chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
                     this.websiteName = getHostNameFromStringUrl(tabs[0].url);
                 });
@@ -112,10 +116,12 @@
         padding-left: 5%;
         padding-right: 5%;
         flex-direction: column;
-        .md-card{
+
+        .md-card {
             margin-top: 20px;
             margin-bottom: 20px;
         }
+
         .main-row {
             display: flex;
             flex-direction: row;

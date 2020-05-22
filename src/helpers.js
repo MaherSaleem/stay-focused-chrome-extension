@@ -20,7 +20,7 @@ export const isValidURL  = str => {
  * @returns {string}
  */
 export const getHostNameFromStringUrl = url => {
-    var a = document.createElement("a");
+    let a = document.createElement("a");
     if (!url.startsWith("http")) {
         url = "http://" + url;
     }
@@ -45,7 +45,7 @@ export const isCurrentTimeBetweenTwoTimes = (startTime, endTime) => {
     let currentDate = new Date();
     const convertTimeToDate = timeString => {
 
-        var timeAsDate = new Date(currentDate.getTime());
+        let timeAsDate = new Date(currentDate.getTime());
         timeAsDate.setHours(timeString.substring(0, 2));
         timeAsDate.setMinutes(timeString.substring(3, 5));
         timeAsDate.setSeconds(0);

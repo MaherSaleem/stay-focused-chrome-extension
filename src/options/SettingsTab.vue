@@ -76,9 +76,11 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .reset-button {
         margin-top: 2%;
-
+    }
+    .time-picker{
+        z-index: 6
     }
 </style>

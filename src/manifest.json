@@ -1,14 +1,14 @@
 {
-  "name": "focus-time",
+  "name": "stay-focused",
   "description": "focusing",
   "version": "1.0.0",
   "manifest_version": 2,
   "icons": {
-    "48": "icons/icon_48_inactive.png",
+    "48": "icons/icon_48_inactive.ico",
     "128": "icons/icon_128.png"
   },
   "browser_action": {
-    "default_title": "focus-time",
+    "default_title": "Stay Focused",
     "default_popup": "popup/popup.html"
   },
   "background": {

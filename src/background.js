@@ -20,7 +20,7 @@ const checkIfCanEnterWebsite = info => {
                     if (isActive) {
                         chrome.storage.local.get("flatEnabledSites", item => {
                             let blockedWebsites = item.flatEnabledSites;
-                            var mustGoBack = blockedWebsites.some(website => info.url.includes(website.url));
+                            let mustGoBack = blockedWebsites.some(website => info.url.includes(website.url));
                             if (mustGoBack) {
                                 chrome.tabs.update(info.tabId, {"url": "goback/goback.html"});
                             }

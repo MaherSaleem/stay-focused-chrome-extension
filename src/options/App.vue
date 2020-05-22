@@ -12,7 +12,7 @@
 
             <md-app-drawer md-permanent="full">
                 <md-toolbar class="md-transparent" md-elevation="0">
-                    Stay Focused
+                    <span><img src="../images/logo-red.png"></span>
                 </md-toolbar>
 
                 <md-list>
@@ -102,13 +102,6 @@
     }
 
     /*/////////////*/
-
-
-
-
-
-
-
     .selected-tab{
         background-color: #e9e9e9;
     }

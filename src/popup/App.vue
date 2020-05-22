@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
-            <p>Stay Focused</p>
+            <img src="../images/logo-red-white.png">
             <span id="settings-page-btn" @click="openOptionsPage"></span>
 
         </header>
@@ -63,7 +63,7 @@
                 this.setIcon();
             },
             setIcon() {
-                let iconPath = this.active ? "../icons/icon_48_active.png" : "../icons/icon_48_inactive.png";
+                let iconPath = this.active ? "../icons/icon_48_active.ico" : "../icons/icon_48_inactive.ico";
                 chrome.browserAction.setIcon({"path": iconPath});
             },
             addCurrentWebsite() {
@@ -92,12 +92,10 @@
         align-items: center;
         justify-content: space-between;
         background: #323232;
-        padding-left: 3%;
-        padding-right: 3%;
-
-        p {
-            color: white;
-            font-weight: bold;
+        padding: 10px 5%;
+        img{
+            width: 150px;
+            height: 25px;
         }
     }
 

@@ -23,7 +23,7 @@ export const getChromeLocalStorage = key => {
  * @param value {any}
  */
 export const setChromeLocalStorage = (key, value) => {
-    chrome.storage.local.set({key: value});
+    chrome.storage.local.set({[key]: value});
 }
 
 

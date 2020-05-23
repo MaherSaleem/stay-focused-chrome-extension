@@ -22,6 +22,7 @@
     import {websitesListDefault} from '../defaults'
     import SitesGroup from "./SitesGroup";
     import {getHostNameFromStringUrl} from "../helpers";
+    import {getChromeLocalStorage, setChromeLocalStorage} from "../chromeApiHelpers";
 
     export default {
         name: "WebsitesTab",
@@ -52,17 +53,15 @@
         methods: {
 
             loadWebsites() {
-                chrome.storage.local.get("sitesGroups", item => {
-                    if (item.sitesGroups) {
-                        this.sitesGroups = item.sitesGroups;
-                    } else {
-                        this.storeWebsites();//initial run for the app will get default data
-                    }
-                });
+                getChromeLocalStorage("sitesGroups").then(sitesGroups => {
+                    this.sitesGroups = sitesGroups
+                }).catch(() => {
+                    this.storeWebsites();//initial run for the app will get default data
+                })
             },
             storeWebsites() {
-                chrome.storage.local.set({"sitesGroups": this.sitesGroups});
-                chrome.storage.local.set({"flatEnabledSites": this.flatEnabledSites});
+                setChromeLocalStorage("sitesGroups", this.sitesGroups)
+                setChromeLocalStorage("flatEnabledSites", this.flatEnabledSites)
 
             },
             addNewSite(groupIndex, siteUrl) {

@@ -1,12 +1,13 @@
 import * as defaults from "./defaults";
+import {setChromeLocalStorage} from "./chromeApiHelpers";
 
 export const resetChromeStorageData = () => {
-    chrome.storage.local.set({"sitesGroups": defaults.websitesListDefault});
-    chrome.storage.local.set({"settings": defaults.settingsDefault});
-    chrome.storage.local.set({"active": defaults.activeDefault});
+    setChromeLocalStorage("sitesGroups", defaults.websitesListDefault);
+    setChromeLocalStorage("settings", defaults.settingsDefault);
+    setChromeLocalStorage("active", defaults.activeDefault);
 }
 
-export const isValidURL  = str => {
+export const isValidURL = str => {
     const pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
         '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
@@ -40,8 +41,6 @@ export const getHostNameFromStringUrl = url => {
  * @returns {boolean}
  */
 export const isCurrentTimeBetweenTwoTimes = (startTime, endTime) => {
-
-    console.log(startTime, endTime);
     let currentDate = new Date();
     const convertTimeToDate = timeString => {
 

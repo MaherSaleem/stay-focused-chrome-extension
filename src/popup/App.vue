@@ -36,10 +36,18 @@
 
 <script>
     import {getHostNameFromStringUrl, isValidURL} from "../helpers";
+    import {
+        getChromeActiveTab,
+        getChromeLocalStorage,
+        openChromeNewTab,
+        setChromeLocalStorage
+    } from "../chromeApiHelpers";
 
     export default {
         mounted() {
-            chrome.storage.local.get("active", item => this.active = item.active);
+            getChromeLocalStorage("active").then(active => {
+                this.active = active
+            });
             this.setWebsiteName();
             this.setIcon();
         },
@@ -56,10 +64,10 @@
         },
         methods: {
             openOptionsPage() {
-                chrome.tabs.create({"url": "options/options.html"});
+                openChromeNewTab("options/options.html");
             },
             saveActive() {
-                chrome.storage.local.set({"active": this.active});
+                setChromeLocalStorage("active", this.active);
                 this.setIcon();
             },
             setIcon() {
@@ -67,19 +75,15 @@
                 chrome.browserAction.setIcon({"path": iconPath});
             },
             addCurrentWebsite() {
-                chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-                    let url = getHostNameFromStringUrl(tabs[0].url);
-                    chrome.storage.local.get("sitesGroups", item => {
-                        item.sitesGroups[0].sitesList.push({url, enabled: true});
-                        chrome.storage.local.set({"sitesGroups": item.sitesGroups});//TODO save flat list too
-                    });
-                });
-
+                getChromeLocalStorage("sitesGroups").then(sitesGroups => {
+                    sitesGroups[0].sitesList.push({url: this.websiteName, enabled: true});//TODO save it to specific group
+                    setChromeLocalStorage("sitesGroups", sitesGroups);//TODO save flat list too
+                })
             },
             setWebsiteName() {
-                chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-                    this.websiteName = getHostNameFromStringUrl(tabs[0].url);
-                });
+                getChromeActiveTab().then(tab => {
+                    this.websiteName = getHostNameFromStringUrl(tab.url)
+                })
             }
         }
     }
@@ -93,7 +97,8 @@
         justify-content: space-between;
         background: #323232;
         padding: 10px 5%;
-        img{
+
+        img {
             width: 150px;
             height: 25px;
         }

@@ -1,15 +1,17 @@
 <template>
-        <md-card>
-            <md-card-header v-if="randomImage.text != ''">
-                <div class="md-title">{{randomImage.text}}</div>
-            </md-card-header>
-            <md-card-media>
-                <img :src="randomImage.path" >
-            </md-card-media>
-        </md-card>
+    <md-card>
+        <md-card-header v-if="randomImage.text != ''">
+            <div class="md-title">{{randomImage.text}}</div>
+        </md-card-header>
+        <md-card-media>
+            <img :src="randomImage.path">
+        </md-card-media>
+    </md-card>
 </template>
 
 <script>
+    import {getChromeLocalStorage} from "../chromeApiHelpers";
+
     export default {
         name: "App",
 
@@ -34,35 +36,34 @@
             }
         },
         computed: {
-            randomImage(){
+            randomImage() {
                 return this.imagesObjects[this.selectedImageIndex];
             }
         },
         methods: {
 
             getRandomImage() {
-                chrome.storage.local.get("settings", settingsItem => {
-                    let settings = settingsItem.settings;
-                    if(settings.allowFunnyGoBackImages){
-                        this.selectedImageIndex = Math.floor(Math.random() * this.imagesObjects.length);
-                    }
-
-                });
-
+                getChromeLocalStorage("settings")
+                    .then(settings => {
+                        if (settings.allowFunnyGoBackImages) {
+                            this.selectedImageIndex = Math.floor(Math.random() * this.imagesObjects.length);
+                        }
+                    })
             }
         }
     };
 </script>
 
 <style scoped>
-    .md-card{
+    .md-card {
         max-width: 40%;
         margin: auto;
         position: relative;
         top: 40px;
         text-align: center;
     }
-    .md-card-media img{
+
+    .md-card-media img {
         width: 95%;
     }
 </style>

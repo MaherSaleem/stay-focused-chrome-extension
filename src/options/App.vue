@@ -4,7 +4,7 @@
             <md-app-toolbar class="md-primary">
                 <span class="md-title">Stay Focused</span>
                 <div class="md-toolbar-section-end">
-                    <md-switch  v-model="active" @change="changeActiveStatus">
+                    <md-switch v-model="active" @change="changeActiveStatus">
                         {{active? "Active": "Inactive"}}
                     </md-switch>
                 </div>
@@ -16,17 +16,20 @@
                 </md-toolbar>
 
                 <md-list>
-                    <md-list-item  :class="{'selected-tab': isSelectedTab('websites-tab')}" @click="selectTab('websites-tab')">
+                    <md-list-item :class="{'selected-tab': isSelectedTab('websites-tab')}"
+                                  @click="selectTab('websites-tab')">
                         <md-icon>move_to_inbox</md-icon>
                         <span class="md-list-item-text">Websites</span>
                     </md-list-item>
 
-                    <md-list-item :class="{'selected-tab': isSelectedTab('settings-tab')}" @click="selectTab('settings-tab')">
+                    <md-list-item :class="{'selected-tab': isSelectedTab('settings-tab')}"
+                                  @click="selectTab('settings-tab')">
                         <md-icon>settings</md-icon>
                         <span class="md-list-item-text">Settings</span>
                     </md-list-item>
 
-                    <md-list-item :class="{'selected-tab': isSelectedTab('contribute-tab')}" @click="selectTab('contribute-tab')">
+                    <md-list-item :class="{'selected-tab': isSelectedTab('contribute-tab')}"
+                                  @click="selectTab('contribute-tab')">
                         <md-icon>build</md-icon>
                         <span class="md-list-item-text">Contribute</span>
                     </md-list-item>
@@ -52,15 +55,18 @@
     import AboutTab from "./AboutTab";
     import ContributeTab from "./ContributeTab";
     import WebsitesTab from "./WebsitesTab";
+    import {getChromeLocalStorage, setChromeLocalStorage} from "../chromeApiHelpers";
 
     export default {
         name: "App",
         components: {ContributeTab, AboutTab, SettingsTab, WebsitesTab},
 
         mounted() {
-            chrome.storage.local.get("active", item => this.active = item.active);
+            getChromeLocalStorage("active").then(active => {
+                this.active = active
+            })
         },
-        data(){
+        data() {
             return {
                 selectedTab: "websites-tab",
                 active: false,
@@ -74,11 +80,11 @@
             selectTab(tabName) {
                 this.selectedTab = tabName;
             },
-            isSelectedTab(tabName){
+            isSelectedTab(tabName) {
                 return this.selectedTab === tabName;
             },
             changeActiveStatus() {
-                chrome.storage.local.set({"active": this.active});
+                setChromeLocalStorage("active", this.active);
             },
         }
     };
@@ -102,7 +108,7 @@
     }
 
     /*/////////////*/
-    .selected-tab{
+    .selected-tab {
         background-color: #e9e9e9;
     }
 

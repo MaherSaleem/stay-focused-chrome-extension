@@ -35,7 +35,7 @@
 </template>
 
 <script>
-    import {getHostNameFromStringUrl, isValidURL} from "../helpers";
+    import {getHostNameFromStringUrl, isValidURL, setIcon} from "../helpers";
     import {
         getChromeActiveTab,
         localStorage,
@@ -48,7 +48,6 @@
                 this.active = active
             });
             this.setWebsiteName();
-            this.setIcon();
         },
         data() {
             return {
@@ -67,11 +66,7 @@
             },
             saveActive() {
                 localStorage.set("active", this.active);
-                this.setIcon();
-            },
-            setIcon() {
-                let iconPath = this.active ? "../icons/icon_48_active.ico" : "../icons/icon_48_inactive.ico";
-                chrome.browserAction.setIcon({"path": iconPath});
+                setIcon(this.active);
             },
             addCurrentWebsite() {
                 localStorage.get("sitesGroups").then(sitesGroups => {

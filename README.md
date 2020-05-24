@@ -22,7 +22,7 @@ So this chrome extension will show an image to remind you to back to work.
 
 Download the extension from [chrome web store]().
 
-##Functionalities:
+## Functionalities:
 - Block entering websites.  
 - Group block websites in groups (like social media, videos, etc)
 - specify working hours(to only block websites during your working hours)

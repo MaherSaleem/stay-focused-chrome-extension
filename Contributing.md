@@ -1,12 +1,12 @@
-##Steps: 
+## Steps: 
 1) Fork the project
 2) Create new branch
 3) Make a pull request :D
 
 
-##Development Setup
+## Development Setup
 
-####Prerequisites
+#### Prerequisites
 1) [NodeJs](https://nodejs.org/en/) Installed.
 
 #### Commonly used NPM scripts

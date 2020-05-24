@@ -1,5 +1,5 @@
 import * as defaults from "./defaults";
-import {localStorage} from "./chromeApiHelpers";
+import {localStorage, setExtensionIcon} from "./chromeApiHelpers";
 
 export const resetChromeStorageData = () => {
     localStorage.set("sitesGroups", defaults.websitesListDefault);
@@ -59,5 +59,8 @@ export const isCurrentTimeBetweenTwoTimes = (startTime, endTime) => {
 
     return startTimeAsDate < currentDate && endTimeAsDate > currentDate
 }
-
+export const setIcon = isActive => {
+    let iconPath = isActive ? "/icons/icon_48_active.ico" : "/icons/icon_48_inactive.ico";
+    setExtensionIcon(iconPath);
+}
 

@@ -46,4 +46,7 @@ export const getChromeActiveTab = () => {
 export const openChromeNewTab = url => {
     chrome.tabs.create({"url": url});
 }
+export const setExtensionIcon = iconPath => {
+    chrome.browserAction.setIcon({"path": iconPath});
+}
 

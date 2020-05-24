@@ -1,8 +1,13 @@
-import {isCurrentTimeBetweenTwoTimes, isValidURL} from "./helpers";
+import {isCurrentTimeBetweenTwoTimes, isValidURL, setIcon} from "./helpers";
 
 global.browser = require('webextension-polyfill');
 import {localStorage} from "./chromeApiHelpers";
 
+const chooseIconColor = () => {
+    localStorage.get("active").then(active => {
+        setIcon(active);
+    });
+}
 
 const checkIfCanEnterWebsite = info => {
     if (info.frameId === 0 && isValidURL(info.url)) {
@@ -27,3 +32,4 @@ const checkIfCanEnterWebsite = info => {
 };
 
 chrome.webNavigation.onCommitted.addListener(checkIfCanEnterWebsite);
+chrome.webNavigation.onCommitted.addListener(chooseIconColor);

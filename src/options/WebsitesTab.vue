@@ -37,18 +37,7 @@
             }
         },
         computed: {
-            flatSites() {
-                let flatList = [];
-                this.sitesGroups.forEach(siteGroup => {
-                    if (siteGroup.groupEnabled) {
-                        flatList.push(...siteGroup.sitesList)
-                    }
-                });
-                return flatList
-            },
-            flatEnabledSites() {
-                return this.flatSites.filter(site => site.enabled === true);
-            }
+
         },
         methods: {
 
@@ -61,8 +50,6 @@
             },
             storeWebsites() {
                 localStorage.set("sitesGroups", this.sitesGroups)
-                localStorage.set("flatEnabledSites", this.flatEnabledSites)
-
             },
             addNewSite(groupIndex, siteUrl) {
                 siteUrl = getHostNameFromStringUrl(siteUrl);

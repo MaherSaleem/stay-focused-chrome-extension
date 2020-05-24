@@ -38,14 +38,13 @@
     import {getHostNameFromStringUrl, isValidURL} from "../helpers";
     import {
         getChromeActiveTab,
-        getChromeLocalStorage,
+        localStorage,
         openChromeNewTab,
-        setChromeLocalStorage
     } from "../chromeApiHelpers";
 
     export default {
         mounted() {
-            getChromeLocalStorage("active").then(active => {
+            localStorage.get("active").then(active => {
                 this.active = active
             });
             this.setWebsiteName();
@@ -67,7 +66,7 @@
                 openChromeNewTab("options/options.html");
             },
             saveActive() {
-                setChromeLocalStorage("active", this.active);
+                localStorage.set("active", this.active);
                 this.setIcon();
             },
             setIcon() {
@@ -75,9 +74,9 @@
                 chrome.browserAction.setIcon({"path": iconPath});
             },
             addCurrentWebsite() {
-                getChromeLocalStorage("sitesGroups").then(sitesGroups => {
+                localStorage.get("sitesGroups").then(sitesGroups => {
                     sitesGroups[0].sitesList.push({url: this.websiteName, enabled: true});//TODO save it to specific group
-                    setChromeLocalStorage("sitesGroups", sitesGroups);//TODO save flat list too
+                    localStorage.set("sitesGroups", sitesGroups);//TODO save flat list too
                 })
             },
             setWebsiteName() {

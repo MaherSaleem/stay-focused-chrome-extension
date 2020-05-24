@@ -55,14 +55,14 @@
     import AboutTab from "./AboutTab";
     import ContributeTab from "./ContributeTab";
     import WebsitesTab from "./WebsitesTab";
-    import {getChromeLocalStorage, setChromeLocalStorage} from "../chromeApiHelpers";
+    import {localStorage} from "../chromeApiHelpers";
 
     export default {
         name: "App",
         components: {ContributeTab, AboutTab, SettingsTab, WebsitesTab},
 
         mounted() {
-            getChromeLocalStorage("active").then(active => {
+            localStorage.get("active").then(active => {
                 this.active = active
             })
         },
@@ -84,7 +84,7 @@
                 return this.selectedTab === tabName;
             },
             changeActiveStatus() {
-                setChromeLocalStorage("active", this.active);
+                localStorage.set("active", this.active);
             },
         }
     };

@@ -38,7 +38,7 @@
     import 'vue2-timepicker/dist/VueTimepicker.css'
     import {settingsDefault} from '../defaults';
     import {resetChromeStorageData} from '../helpers';
-    import {getChromeLocalStorage, setChromeLocalStorage} from "../chromeApiHelpers";
+    import {localStorage} from "../chromeApiHelpers";
 
     export default {
         name: "SettingsTab",
@@ -54,7 +54,7 @@
 
         methods: {
             loadSettings() {
-                getChromeLocalStorage("settings")
+                localStorage.get("settings")
                     .then(settings => {
                         this.settings = settings;
                     })
@@ -63,7 +63,7 @@
                     })
             },
             saveSettings() {
-                setChromeLocalStorage("settings", this.settings);
+                localStorage.set("settings", this.settings);
             },
             onResetConfirm() {
                 resetChromeStorageData();

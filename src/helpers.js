@@ -1,10 +1,10 @@
 import * as defaults from "./defaults";
-import {setChromeLocalStorage} from "./chromeApiHelpers";
+import {localStorage} from "./chromeApiHelpers";
 
 export const resetChromeStorageData = () => {
-    setChromeLocalStorage("sitesGroups", defaults.websitesListDefault);
-    setChromeLocalStorage("settings", defaults.settingsDefault);
-    setChromeLocalStorage("active", defaults.activeDefault);
+    localStorage.set("sitesGroups", defaults.websitesListDefault);
+    localStorage.set("settings", defaults.settingsDefault);
+    localStorage.set("active", defaults.activeDefault);
 }
 
 export const isValidURL = str => {

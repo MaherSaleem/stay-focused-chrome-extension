@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import {getChromeLocalStorage} from "../chromeApiHelpers";
+    import {localStorage} from "../chromeApiHelpers";
 
     export default {
         name: "App",
@@ -43,7 +43,7 @@
         methods: {
 
             getRandomImage() {
-                getChromeLocalStorage("settings")
+                localStorage.get("settings")
                     .then(settings => {
                         if (settings.allowFunnyGoBackImages) {
                             this.selectedImageIndex = Math.floor(Math.random() * this.imagesObjects.length);

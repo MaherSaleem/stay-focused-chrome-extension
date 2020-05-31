@@ -11,6 +11,7 @@ export let websitesListDefault = [
     {
         groupEnabled: true,
         groupName: "Social Media",
+        uid: "a1b1c1",
         sitesList: [
             {url: "facebook.com", enabled: true},
             {url: "twitter.com", enabled: true},
@@ -20,6 +21,7 @@ export let websitesListDefault = [
     },
     {
         groupEnabled: false,
+        uid: "a2b2c2",
         groupName: "Videos Websites",
         sitesList: [
             {url: "youtube.com", enabled: true},

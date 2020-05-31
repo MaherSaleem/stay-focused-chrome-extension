@@ -7,7 +7,7 @@
         <div class="sites-groups">
             <sites-group
                     v-for="(sitesGroup,groupIndex)  in sitesGroups"
-                    :key="groupIndex"
+                    :key="sitesGroup.uid"
                     :sitesGroup="sitesGroup"
                     v-on:store-websites="storeWebsites"
                     v-on:add-new-website="newSiteUrl => {addNewSite(groupIndex, newSiteUrl)}"
@@ -21,7 +21,7 @@
 <script>
     import {websitesListDefault} from '../defaults'
     import SitesGroup from "./SitesGroup";
-    import {getHostNameFromStringUrl} from "../helpers";
+    import {getHostNameFromStringUrl, getUniqueId} from "../helpers";
     import {localStorage} from "../chromeApiHelpers";
 
     export default {
@@ -67,6 +67,7 @@
                 this.sitesGroups.push({
                     groupName: this.newGroupName,
                     sitesList: [],
+                    id: getUniqueId(),
                     groupEnabled: true
                 });
                 this.newGroupName = "";

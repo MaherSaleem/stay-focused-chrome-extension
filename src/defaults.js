@@ -5,6 +5,10 @@ export let settingsDefault = {
         enableWorkHours: false
     },
     allowFunnyGoBackImages: true,
+    lock: {
+        type: "none", /*types are: question, password, none*/
+        password: ""
+    }
 };
 
 export let websitesListDefault = [

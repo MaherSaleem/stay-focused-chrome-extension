@@ -1,6 +1,11 @@
 <template>
     <div class="page-container">
-        <md-app>
+
+        <unlock-page
+                v-if="this.isLocked"
+                v-on:unlock="isLocked = false"
+        />
+        <md-app v-else>
             <md-app-toolbar class="md-primary">
                 <span class="md-title">Stay Focused</span>
                 <div class="md-toolbar-section-end">
@@ -56,20 +61,27 @@
     import ContributeTab from "./ContributeTab";
     import WebsitesTab from "./WebsitesTab";
     import {localStorage} from "../chromeApiHelpers";
+    import UnlockPage from "./unlock/UnlockPage";
 
     export default {
         name: "App",
-        components: {ContributeTab, AboutTab, SettingsTab, WebsitesTab},
+        components: {UnlockPage, ContributeTab, AboutTab, SettingsTab, WebsitesTab},
 
         mounted() {
             localStorage.get("active").then(active => {
-                this.active = active
-            })
+                this.active = active;
+            });
+            localStorage.get("settings").then(settings => {
+                this.lockType = settings.lock.type;
+                this.isLocked = this.lockType !== 'none'
+            });
         },
         data() {
             return {
                 selectedTab: "websites-tab",
                 active: false,
+                lockType: "none",
+                isLocked: false,
             }
         },
         methods: {

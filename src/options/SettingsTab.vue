@@ -1,23 +1,35 @@
 <template>
     <div>
         <div>
-            <md-switch @change="saveSettings" v-model="settings.allowFunnyGoBackImages"
+            <md-switch v-model="settings.allowFunnyGoBackImages"
                        class="md-menu-content-right-end">
                 Funny images to go back to work?
             </md-switch>
 
         </div>
         <div>
-            <md-switch @change="saveSettings" v-model="settings.workHours.enableWorkHours"
+            <md-switch v-model="settings.workHours.enableWorkHours"
                        class="md-menu-content-right-end">
                 Working hours
             </md-switch>
             <div>
-                <vue-timepicker @change="saveSettings" :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
+                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
                                 v-model="settings.workHours.startTime"></vue-timepicker>
-                <vue-timepicker @change="saveSettings" :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
+                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
                                 v-model="settings.workHours.endTime"></vue-timepicker>
             </div>
+        </div>
+
+        <div>
+            <h4>Lock Type</h4>
+            <md-radio v-model="settings.lock.type" value="none">None</md-radio>
+            <md-radio v-model="settings.lock.type" value="question">Question</md-radio>
+            <md-radio v-model="settings.lock.type" value="password">Password</md-radio>
+            <md-field v-if="settings.lock.type === 'password'">
+                <label>Password</label>
+                <md-input type="password"
+                          v-model="settings.lock.password"></md-input>
+            </md-field>
         </div>
         <div>
             <md-button class="md-raised reset-button" @click.native="isResetButtonActive = true">Reset Data</md-button>
@@ -73,6 +85,14 @@
         },
         components: {
             VueTimepicker
+        },
+        watch: {
+            settings: {
+                handler() {
+                    this.saveSettings()
+                },
+                deep: true
+            },
         }
     }
 </script>
@@ -84,5 +104,8 @@
 
     .time-picker {
         z-index: 6
+    }
+    .md-radio {
+        display: flex;
     }
 </style>

@@ -10,14 +10,19 @@
                 <md-ripple>
                     <md-card-content>
                         <div class="main-row">
-                            <p><b>Focus Mode enabled?</b></p>
-                            <p>
-                                <md-switch v-model="active" @change="saveActive"></md-switch>
-                            </p>
+                            <div v-if="isLocked && active">
+                                <md-button @click.native="openOptionsPage">Unlcok</md-button>
+                            </div>
+                            <div v-else>
+                                <p><b>Focus Mode enabled?</b></p>
+                                <p>
+                                    <md-switch v-model="active" @change="saveActive"></md-switch>
+                                </p>
+                            </div>
                         </div>
                         <div class="main-row" v-if="isValidUrl">
                             <p><b>Website: </b>{{this.websiteName}}</p>
-                            <p>
+                         m   <p>
                                 <md-button @click.native="addCurrentWebsite" class="md-raised md-accent">
                                     Add Website
                                 </md-button>
@@ -47,12 +52,19 @@
             localStorage.get("active").then(active => {
                 this.active = active
             });
+            if(this.active){
+                localStorage.get("settings").then(settings => {
+                    this.isLocked = settings.lock.type !== 'none'
+                });
+            }
             this.setWebsiteName();
         },
         data() {
             return {
                 active: true,
                 websiteName: "",
+                isLocked: false,
+
             }
         },
         computed: {
@@ -71,7 +83,7 @@
             addCurrentWebsite() {
                 localStorage.get("sitesGroups").then(sitesGroups => {
                     sitesGroups[0].sitesList.push({url: this.websiteName, enabled: true});//TODO save it to specific group
-                    localStorage.set("sitesGroups", sitesGroups);//TODO save flat list too
+                    localStorage.set("sitesGroups", sitesGroups);
                 })
             },
             setWebsiteName() {

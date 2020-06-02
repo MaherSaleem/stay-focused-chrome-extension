@@ -24,6 +24,11 @@
             <h4>Lock Type</h4>
             <md-radio v-model="settings.lock.type" value="none">None</md-radio>
             <md-radio v-model="settings.lock.type" value="question">Question</md-radio>
+            <md-field v-if="settings.lock.type === 'question'">
+                <label>Number of tries before showing answer</label>
+                <md-input type="number"
+                          v-model="settings.lock.questionNumberOfTries"></md-input>
+            </md-field>
             <md-radio v-model="settings.lock.type" value="password">Password</md-radio>
             <md-field v-if="settings.lock.type === 'password'">
                 <label>Password</label>

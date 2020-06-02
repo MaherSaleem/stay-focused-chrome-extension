@@ -7,7 +7,8 @@ export let settingsDefault = {
     allowFunnyGoBackImages: true,
     lock: {
         type: "none", /*types are: question, password, none*/
-        password: ""
+        password: "",
+        questionNumberOfTries: 3,
     }
 };
 

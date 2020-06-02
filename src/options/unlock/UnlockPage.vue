@@ -1,12 +1,14 @@
 <template>
-    <div>
-        <component
-                v-on:unlock="handleUnlock"
-                :lock-settings="lockSettings"
-                :is="lockComponentName"
-        />
+    <md-card>
+        <md-card-content>
+            <component
+                    v-on:unlock="handleUnlock"
+                    :lock-settings="lockSettings"
+                    :is="lockComponentName"
+            />
+        </md-card-content>
+    </md-card>
 
-    </div>
 </template>
 
 <script>
@@ -42,5 +44,11 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .md-card {
+        max-width: 40%;
+        margin: auto;
+        position: relative;
+        top: 40px;
+        text-align: center;
+    }
 </style>

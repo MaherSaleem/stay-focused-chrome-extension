@@ -1,13 +1,17 @@
 <template>
     <div>
 
-        <md-field>
-            <label>Enter Password</label>
-            <md-input @keyup.enter="handleUnlock" v-model="password" type="password"></md-input>
-        </md-field>
-        <md-button @click="handleUnlock">Unlock</md-button>
+        <div class="md-layout">
+            <div class="md-layout-item">
+                <md-field>
+                    <label>Enter Password</label>
+                    <md-input @keyup.enter="handleUnlock" v-model="password" type="password"></md-input>
+                </md-field>
+            </div>
+        </div>
+
         <md-snackbar :md-position="`center`" :md-duration="4000"
-                     :md-active.sync="showSnackbar" md-persistent>
+                     :md-active.sync="showErrorMessage" md-persistent>
             <span>Wrong Password!</span>
         </md-snackbar>
     </div>
@@ -20,7 +24,7 @@
         data() {
             return {
                 password: "",
-                showSnackbar: false,
+                showErrorMessage: false,
             }
         },
         methods: {
@@ -28,7 +32,7 @@
                 if (this.password === this.lockSettings.password) {// TODO make trim/to_lower and things like that
                     this.$emit('unlock');
                 } else {
-                    this.showSnackbar = true;
+                    this.showErrorMessage = true;
                 }
             }
         }

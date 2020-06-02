@@ -1,7 +1,6 @@
 <template>
     <div :class="['site-group', sitesGroup.groupEnabled ? '' : 'disabled']">
         <md-card>
-            <md-ripple>
                 <md-card-header class="card-header">
                     <div class="md-title">{{sitesGroup.groupName}}
                     </div>
@@ -44,7 +43,6 @@
                         Group
                     </md-button>
                 </md-card-actions>
-            </md-ripple>
         </md-card>
     </div>
 </template>
@@ -84,7 +82,7 @@
         margin: 4px;
         display: inline-block;
         vertical-align: top;
-
+        border-radius: 4px;
         .card-header {
             display: flex;
         }

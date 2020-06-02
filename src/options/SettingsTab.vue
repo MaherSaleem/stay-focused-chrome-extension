@@ -1,13 +1,7 @@
 <template>
     <div>
-        <div>
-            <md-switch v-model="settings.allowFunnyGoBackImages"
-                       class="md-menu-content-right-end">
-                Funny images to go back to work?
-            </md-switch>
 
-        </div>
-        <div>
+        <shared-card>
             <md-switch v-model="settings.workHours.enableWorkHours"
                        class="md-menu-content-right-end">
                 Working hours
@@ -18,9 +12,9 @@
                 <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
                                 v-model="settings.workHours.endTime"></vue-timepicker>
             </div>
-        </div>
+        </shared-card>
 
-        <div>
+        <shared-card>
             <h4>Lock Type</h4>
             <md-radio v-model="settings.lock.type" value="none">None</md-radio>
             <md-radio v-model="settings.lock.type" value="question">Question</md-radio>
@@ -35,10 +29,16 @@
                 <md-input type="password"
                           v-model="settings.lock.password"></md-input>
             </md-field>
-        </div>
-        <div>
+        </shared-card>
+        <shared-card>
+            <md-switch v-model="settings.allowFunnyGoBackImages"
+                       class="md-menu-content-right-end">
+                Funny images to go back to work?
+            </md-switch>
+        </shared-card>
+        <shared-card>
             <md-button class="md-raised reset-button" @click.native="isResetButtonActive = true">Reset Data</md-button>
-        </div>
+        </shared-card>
         <md-dialog-confirm
                 :md-active.sync="isResetButtonActive"
                 md-title="Are you sure you want to reset the data?"
@@ -56,6 +56,7 @@
     import {settingsDefault} from '../defaults';
     import {resetChromeStorageData} from '../helpers';
     import {localStorage} from "../chromeApiHelpers";
+    import SharedCard from "../sharedComponents/SharedCard";
 
     export default {
         name: "SettingsTab",
@@ -89,6 +90,7 @@
 
         },
         components: {
+            SharedCard,
             VueTimepicker
         },
         watch: {
@@ -112,5 +114,9 @@
     }
     .md-radio {
         display: flex;
+    }
+
+    .shared-card {
+        margin-bottom: 2%;
     }
 </style>

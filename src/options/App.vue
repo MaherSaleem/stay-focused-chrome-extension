@@ -102,12 +102,15 @@
     };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 
     .md-app {
         border: 1px solid aliceblue;
         height: inherit;
+        .md-content{
+            background-color: rgb(248, 249, 250);
+        }
     }
 
     .md-drawer {

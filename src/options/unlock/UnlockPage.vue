@@ -1,13 +1,13 @@
 <template>
-    <md-card>
-        <md-card-content>
+
+    <card-with-logo>
             <component
+                    v-if="this.lockSettings.type"
                     v-on:unlock="handleUnlock"
                     :lock-settings="lockSettings"
                     :is="lockComponentName"
             />
-        </md-card-content>
-    </md-card>
+    </card-with-logo>
 
 </template>
 
@@ -16,10 +16,11 @@
     import {localStorage} from "../../chromeApiHelpers";
     import QuestionUnlock from "./QuestionUnlock";
     import PasswordUnlock from "./PasswordUnlock";
+    import CardWithLogo from "../../sharedComponents/CardWithLogo";
 
     export default {
         name: "UnlockPage",
-        components: {PasswordUnlock, QuestionUnlock},
+        components: {CardWithLogo, PasswordUnlock, QuestionUnlock},
         data() {
             return {
                 lockSettings: {}
@@ -37,6 +38,7 @@
         },
         computed: {
             lockComponentName() {
+                console.log(this.lockSettings);
                 return this.lockSettings.type + "-unlock"
             }
         }
@@ -44,11 +46,5 @@
 </script>
 
 <style lang="scss" scoped>
-    .md-card {
-        max-width: 40%;
-        margin: auto;
-        position: relative;
-        top: 40px;
-        text-align: center;
-    }
+
 </style>

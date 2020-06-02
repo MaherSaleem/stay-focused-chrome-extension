@@ -1,20 +1,24 @@
 <template>
-    <md-card>
-        <md-card-header v-if="randomImage.text != ''">
+
+    <card-with-logo>
+
+        <template v-slot:header>
             <div class="md-title">{{randomImage.text}}</div>
-        </md-card-header>
-        <md-card-media>
-            <img :src="randomImage.path">
-        </md-card-media>
-    </md-card>
+        </template>
+        <template v-slot:media>
+            <img id="go-back-image" :src="randomImage.path">
+        </template>
+    </card-with-logo>
+
 </template>
 
 <script>
     import {localStorage} from "../chromeApiHelpers";
+    import CardWithLogo from "../sharedComponents/CardWithLogo";
 
     export default {
         name: "App",
-
+        components: {CardWithLogo},
         mounted() {
             this.getRandomImage();
         },
@@ -55,15 +59,8 @@
 </script>
 
 <style scoped>
-    .md-card {
-        max-width: 40%;
-        margin: auto;
-        position: relative;
-        top: 40px;
-        text-align: center;
-    }
 
-    .md-card-media img {
+    #go-back-image {
         width: 95%;
     }
 </style>

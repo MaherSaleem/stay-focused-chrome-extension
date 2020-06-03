@@ -6,32 +6,28 @@
 
         </header>
         <main>
-            <md-card>
-                <md-ripple>
-                    <md-card-content>
-                        <div class="main-row">
-                            <div v-if="isLocked && active">
-                                <md-button @click.native="openOptionsPage">Unlcok</md-button>
-                            </div>
-                            <div v-else>
-                                <p><b>Focus Mode enabled?</b></p>
-                                <p>
-                                    <md-switch v-model="active" @change="saveActive"></md-switch>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="main-row" v-if="isValidUrl">
-                            <p><b>Website: </b>{{this.websiteName}}</p>
-                         m   <p>
-                                <md-button @click.native="addCurrentWebsite" class="md-raised md-accent">
-                                    Add Website
-                                </md-button>
-                            </p>
-                        </div>
-                    </md-card-content>
-                </md-ripple>
-            </md-card>
-
+            <shared-card>
+                <div class="main-row center" v-if="isLocked && active">
+                    <md-button id="unlock-btn" class="md-raised md-accent" @click.native="openOptionsPage">Unlock
+                    </md-button>
+                </div>
+                <div class="main-row" v-else>
+                    <p><b>Focus Mode enabled?</b></p>
+                    <p>
+                        <md-switch v-model="active" @change="saveActive"></md-switch>
+                    </p>
+                </div>
+            </shared-card>
+            <shared-card v-if="isValidUrl">
+                <div class="main-row">
+                    <p><b>Website: </b>{{this.websiteName}}</p>
+                    <p>
+                        <md-button @click.native="addCurrentWebsite" class="md-raised md-accent">
+                            Add Website
+                        </md-button>
+                    </p>
+                </div>
+            </shared-card>
 
         </main>
 
@@ -46,13 +42,15 @@
         localStorage,
         openChromeNewTab,
     } from "../chromeApiHelpers";
+    import SharedCard from "../sharedComponents/SharedCard";
 
     export default {
+        components: {SharedCard},
         mounted() {
             localStorage.get("active").then(active => {
                 this.active = active
             });
-            if(this.active){
+            if (this.active) {
                 localStorage.get("settings").then(settings => {
                     this.isLocked = settings.lock.type !== 'none'
                 });
@@ -125,10 +123,12 @@
         padding-left: 5%;
         padding-right: 5%;
         flex-direction: column;
+        margin-top: 8px;
+        margin-bottom: 8px;
 
         .md-card {
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
 
         .main-row {
@@ -136,7 +136,14 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+        }
 
+        .main-row.center {
+            justify-content: center;
+
+            #unlock-btn {
+                width: 60%;
+            }
         }
     }
 

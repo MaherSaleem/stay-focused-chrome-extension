@@ -8,6 +8,7 @@
         <main>
             <shared-card>
                 <div class="main-row center" v-if="isLocked && active">
+                    <p>Focus mode is enabled, and you have set lock mechanism to unlock</p>
                     <md-button id="unlock-btn" class="md-raised md-accent" @click.native="openOptionsPage">Unlock
                     </md-button>
                 </div>
@@ -20,12 +21,15 @@
             </shared-card>
             <shared-card v-if="isValidUrl">
                 <div class="main-row">
-                    <p><b>Website: </b>{{this.websiteName}}</p>
-                    <p>
+                    <div><b>Website: </b>{{this.websiteName}}</div>
+                    <div v-if="!websiteIsAddedBefore">
                         <md-button @click.native="addCurrentWebsite" class="md-raised md-accent">
                             Add Website
                         </md-button>
-                    </p>
+                    </div>
+                    <md-badge v-else
+                              class="md-square md-primary" md-content="Already Added"/>
+
                 </div>
             </shared-card>
 
@@ -36,7 +40,7 @@
 </template>
 
 <script>
-    import {getHostNameFromStringUrl, isValidURL, setIcon} from "../helpers";
+    import {getFlatListOfWebsites, getHostNameFromStringUrl, isValidURL, setIcon} from "../helpers";
     import {
         getChromeActiveTab,
         localStorage,
@@ -62,7 +66,7 @@
                 active: true,
                 websiteName: "",
                 isLocked: false,
-
+                websiteIsAddedBefore: false,
             }
         },
         computed: {
@@ -82,11 +86,17 @@
                 localStorage.get("sitesGroups").then(sitesGroups => {
                     sitesGroups[0].sitesList.push({url: this.websiteName, enabled: true});//TODO save it to specific group
                     localStorage.set("sitesGroups", sitesGroups);
-                })
+                    this.websiteIsAddedBefore = true;
+                });
             },
             setWebsiteName() {
                 getChromeActiveTab().then(tab => {
-                    this.websiteName = getHostNameFromStringUrl(tab.url)
+                    this.websiteName = getHostNameFromStringUrl(tab.url);
+                    //TODO enhance that, localStorage.get("sitesGroups") is used twice
+                    localStorage.get("sitesGroups").then(sitesGroups => {
+                        this.websiteIsAddedBefore = getFlatListOfWebsites(sitesGroups).some(site => site.url === this.websiteName);
+                    });
+
                 })
             }
         }
@@ -136,6 +146,13 @@
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+
+            .md-badge {
+                margin-right: 5%;
+                padding: 4%;
+                background-color: #2bbd7e;
+                font-size: small;
+            }
         }
 
         .main-row.center {

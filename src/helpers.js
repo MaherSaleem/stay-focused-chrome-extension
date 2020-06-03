@@ -64,12 +64,13 @@ export const setIcon = isActive => {
     setExtensionIcon(iconPath);
 }
 
-export const getFlatEnabledListOfWebsites = groupsList => {
+export const getFlatEnabledListOfWebsites = groupsList =>
+    getFlatListOfWebsites(groupsList).filter(site => site.groupEnabled && site.enabled === true);
+
+export const getFlatListOfWebsites = groupsList => {
     let flatList = [];
     groupsList.forEach(siteGroup => {
-        if (siteGroup.groupEnabled) {
-            flatList.push(...(siteGroup.sitesList.filter(site => site.enabled === true)))
-        }
+        flatList.push(...siteGroup.sitesList.map(site => ({...site, groupEnabled: siteGroup.groupEnabled})));
     });
     return flatList
 }

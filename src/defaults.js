@@ -1,3 +1,5 @@
+import {getSiteGroupStructure, getSiteStructure} from "./dataHelpers/SitesGroup";
+
 export let settingsDefault = {
     workHours: {
         startTime: "08:00 AM",
@@ -13,26 +15,16 @@ export let settingsDefault = {
 };
 
 export let websitesListDefault = [
-    {
-        groupEnabled: true,
-        groupName: "Social Media",
-        uid: "a1b1c1",
-        sitesList: [
-            {url: "facebook.com", enabled: true},
-            {url: "twitter.com", enabled: true},
-            {url: "instagram.com", enabled: true},
-            {url: "linkedin.com", enabled: true}
-        ],
-    },
-    {
-        groupEnabled: false,
-        uid: "a2b2c2",
-        groupName: "Videos Websites",
-        sitesList: [
-            {url: "youtube.com", enabled: true},
-            {url: "netflix.com", enabled: true},
-            {url: "dailymotion.com", enabled: true},
-        ],
-    },
+    getSiteGroupStructure("Social Media", true, [
+        getSiteStructure("facebook.com"),
+        getSiteStructure("twitter.com"),
+        getSiteStructure("instagram.com"),
+        getSiteStructure("linkedin.com"),
+    ]),
+    getSiteGroupStructure("Videos Websites", false, [
+        getSiteStructure("youtube.com"),
+        getSiteStructure("netflix.com"),
+        getSiteStructure("dailymotion.com"),
+    ]),
 ]
 export let activeDefault = false

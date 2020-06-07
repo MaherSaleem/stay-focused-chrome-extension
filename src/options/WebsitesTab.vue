@@ -21,8 +21,9 @@
 <script>
     import {websitesListDefault} from '../defaults'
     import SitesGroup from "./SitesGroup";
-    import {getHostNameFromStringUrl, getUniqueId} from "../helpers";
+    import {getHostNameFromStringUrl} from "../helpers";
     import {localStorage} from "../chromeApiHelpers";
+    import {getSiteGroupStructure, getSiteStructure} from "../dataHelpers/SitesGroup";
 
     export default {
         name: "WebsitesTab",
@@ -54,22 +55,14 @@
             addNewSite(groupIndex, siteUrl) {
                 siteUrl = getHostNameFromStringUrl(siteUrl);
                 let group = this.sitesGroups[groupIndex];
-                group.sitesList.push({
-                    url: siteUrl,
-                    enabled: true
-                });
+                group.sitesList.push(getSiteStructure(siteUrl));
                 this.storeWebsites();
             },
             changeGroupStatus(groupIndex) {
                 this.storeWebsites();
             },
             addNewGroup() {
-                this.sitesGroups.push({
-                    groupName: this.newGroupName,
-                    sitesList: [],
-                    id: getUniqueId(),
-                    groupEnabled: true
-                });
+                this.sitesGroups.push(getSiteGroupStructure(this.newGroupName));
                 this.newGroupName = "";
                 this.storeWebsites();
             },

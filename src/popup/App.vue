@@ -47,6 +47,7 @@
         openChromeNewTab,
     } from "../chromeApiHelpers";
     import SharedCard from "../sharedComponents/SharedCard";
+    import {getSiteGroupStructure, getSiteStructure} from "../dataHelpers/SitesGroup";
 
     export default {
         components: {SharedCard},
@@ -84,7 +85,13 @@
             },
             addCurrentWebsite() {
                 localStorage.get("sitesGroups").then(sitesGroups => {
-                    sitesGroups[0].sitesList.push({url: this.websiteName, enabled: true});//TODO save it to specific group
+
+                    let addedFromPopupSiteGroup = sitesGroups.find(sg => sg.uid === "added-from-popup-uid");
+                    if (!addedFromPopupSiteGroup){
+                        addedFromPopupSiteGroup = getSiteGroupStructure("Added From Popup", true, [], "added-from-popup-uid");
+                        sitesGroups.push(addedFromPopupSiteGroup);
+                    }
+                    addedFromPopupSiteGroup.sitesList.push(getSiteStructure(this.websiteName))
                     localStorage.set("sitesGroups", sitesGroups);
                     this.websiteIsAddedBefore = true;
                 });

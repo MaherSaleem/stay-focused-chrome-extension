@@ -5,6 +5,7 @@
             <md-switch v-model="settings.workHours.enableWorkHours"
                        class="md-menu-content-right-end">
                 Working hours
+                <tooltip >Specifying working hours, so the websites will be blocked in these hours(only when the tool is active)</tooltip>
             </md-switch>
             <div>
                 <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
@@ -15,9 +16,9 @@
         </shared-card>
 
         <shared-card>
-            <h4>Lock Type</h4>
+            <h4>Lock Type </h4>
             <md-radio v-model="settings.lock.type" value="none">None</md-radio>
-            <md-radio v-model="settings.lock.type" value="question">Question</md-radio>
+            <md-radio v-model="settings.lock.type" value="question">Answering a Question</md-radio>
             <md-field v-if="settings.lock.type === 'question'">
                 <label>Number of tries before showing answer</label>
                 <md-input type="number" min="1"
@@ -29,7 +30,9 @@
                 <md-input type="password"
                           v-model="settings.lock.password"></md-input>
             </md-field>
-            <md-radio v-model="settings.lock.type" value="click-button">Click Button</md-radio>
+            <md-radio v-model="settings.lock.type" value="click-button">Click Button <tooltip>This will make you click a button number of times to unlock</tooltip></md-radio>
+
+
             <md-field v-if="settings.lock.type === 'click-button'">
                 <label>Number of clicks to unlock</label>
                 <md-input type="number" min="1" v-model="settings.lock.clickButtonCounts"></md-input>
@@ -38,7 +41,7 @@
         <shared-card>
             <md-switch v-model="settings.allowFunnyGoBackImages"
                        class="md-menu-content-right-end">
-                Funny images to go back to work?
+                Show funny images to go back to work
             </md-switch>
         </shared-card>
         <shared-card>
@@ -62,6 +65,7 @@
     import {resetChromeStorageData} from '../helpers';
     import {localStorage} from "../chromeApiHelpers";
     import SharedCard from "../sharedComponents/SharedCard";
+    import Tooltip from "../sharedComponents/Tooltip";
 
     export default {
         name: "SettingsTab",
@@ -95,6 +99,7 @@
 
         },
         components: {
+            Tooltip,
             SharedCard,
             VueTimepicker
         },

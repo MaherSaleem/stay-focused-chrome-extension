@@ -17,10 +17,11 @@
     import QuestionUnlock from "./QuestionUnlock";
     import PasswordUnlock from "./PasswordUnlock";
     import CardWithLogo from "../../sharedComponents/CardWithLogo";
+    import ClickButtonUnlock from "./ClickButtonUnlock";
 
     export default {
         name: "UnlockPage",
-        components: {CardWithLogo, PasswordUnlock, QuestionUnlock},
+        components: {CardWithLogo, PasswordUnlock, QuestionUnlock, ClickButtonUnlock},
         data() {
             return {
                 lockSettings: {}

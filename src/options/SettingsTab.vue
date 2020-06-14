@@ -20,7 +20,7 @@
             <md-radio v-model="settings.lock.type" value="question">Question</md-radio>
             <md-field v-if="settings.lock.type === 'question'">
                 <label>Number of tries before showing answer</label>
-                <md-input type="number"
+                <md-input type="number" min="1"
                           v-model="settings.lock.questionNumberOfTries"></md-input>
             </md-field>
             <md-radio v-model="settings.lock.type" value="password">Password</md-radio>
@@ -28,6 +28,11 @@
                 <label>Password</label>
                 <md-input type="password"
                           v-model="settings.lock.password"></md-input>
+            </md-field>
+            <md-radio v-model="settings.lock.type" value="click-button">Click Button</md-radio>
+            <md-field v-if="settings.lock.type === 'click-button'">
+                <label>Number of clicks to unlock</label>
+                <md-input type="number" min="1" v-model="settings.lock.clickButtonCounts"></md-input>
             </md-field>
         </shared-card>
         <shared-card>

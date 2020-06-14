@@ -5,7 +5,9 @@
             <md-switch v-model="settings.workHours.enableWorkHours"
                        class="md-menu-content-right-end">
                 Working hours
-                <tooltip >Specifying working hours, so the websites will be blocked in these hours(only when the tool is active)</tooltip>
+                <tooltip>Specifying working hours, so the websites will be blocked in these hours(only when the tool is
+                    active)
+                </tooltip>
             </md-switch>
             <div>
                 <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
@@ -17,6 +19,8 @@
 
         <shared-card>
             <h4>Lock Type </h4>
+            <p style="color: #fa6d6d">Note: The idea behind this is to make deactivating the extension needs some time, so you might prefer to
+                continue working instead of deactivating it.</p>
             <md-radio v-model="settings.lock.type" value="none">None</md-radio>
             <md-radio v-model="settings.lock.type" value="question">Answering a Question</md-radio>
             <md-field v-if="settings.lock.type === 'question'">
@@ -30,7 +34,9 @@
                 <md-input type="password"
                           v-model="settings.lock.password"></md-input>
             </md-field>
-            <md-radio v-model="settings.lock.type" value="click-button">Click Button <tooltip>This will make you click a button number of times to unlock</tooltip></md-radio>
+            <md-radio v-model="settings.lock.type" value="click-button">Click Button
+                <tooltip>This will make you click a button number of times to unlock</tooltip>
+            </md-radio>
 
 
             <md-field v-if="settings.lock.type === 'click-button'">

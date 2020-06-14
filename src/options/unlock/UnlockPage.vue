@@ -34,6 +34,7 @@
         },
         methods: {
             handleUnlock() {
+                localStorage.set("active", false);
                 this.$emit('unlock');
             }
         },

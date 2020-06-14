@@ -3,7 +3,7 @@
 
         <unlock-page
                 v-if="this.isLocked"
-                v-on:unlock="isLocked = false"
+                v-on:unlock="handleUnlock"
         />
         <md-app v-else>
             <md-app-toolbar class="md-primary">
@@ -33,11 +33,6 @@
                         <span class="md-list-item-text">Settings</span>
                     </md-list-item>
 
-                    <md-list-item :class="{'selected-tab': isSelectedTab('contribute-tab')}"
-                                  @click="selectTab('contribute-tab')">
-                        <md-icon>build</md-icon>
-                        <span class="md-list-item-text">Contribute</span>
-                    </md-list-item>
                     <md-list-item :class="{'selected-tab': isSelectedTab('about-tab')}" @click="selectTab('about-tab')">
                         <md-icon>info</md-icon>
                         <span class="md-list-item-text">About</span>
@@ -58,14 +53,13 @@
 <script>
     import SettingsTab from "./SettingsTab";
     import AboutTab from "./AboutTab";
-    import ContributeTab from "./ContributeTab";
     import WebsitesTab from "./WebsitesTab";
     import {localStorage} from "../chromeApiHelpers";
     import UnlockPage from "./unlock/UnlockPage";
 
     export default {
         name: "App",
-        components: {UnlockPage, ContributeTab, AboutTab, SettingsTab, WebsitesTab},
+        components: {UnlockPage, AboutTab, SettingsTab, WebsitesTab},
 
         mounted() {
             localStorage.get("active").then(active => {
@@ -98,6 +92,10 @@
             changeActiveStatus() {
                 localStorage.set("active", this.active);
             },
+            handleUnlock() {
+                this.isLocked = false;
+                this.active = false
+            }
         }
     };
 </script>
@@ -108,7 +106,8 @@
     .md-app {
         border: 1px solid aliceblue;
         height: inherit;
-        .md-content{
+
+        .md-content {
             background-color: rgb(248, 249, 250);
         }
     }

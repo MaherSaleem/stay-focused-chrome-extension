@@ -19,8 +19,14 @@
                                        v-model="site.enabled"
                                        @change="$emit('store-websites')"
                             >
-                                <span
-                                        :class="{'website-disabled': !site.enabled}">{{site.url}}</span>
+                            <span :class="{'website-disabled': !site.enabled}">
+                              <span>
+                                  <span>{{truncateSiteUrl(site.url)}}</span>
+                                  <md-tooltip>
+                                     {{site.url}}
+                                  </md-tooltip>
+                              </span>
+                            </span>
                             </md-switch>
                             <md-button class="md-icon-button md-accent">
                                 <md-icon @click.native="$emit('delete-site', siteIndex)">delete
@@ -48,7 +54,7 @@
 </template>
 
 <script>
-    import {isValidURL} from "../helpers";
+    import {isValidURL, truncateText} from "../helpers";
 
     export default {
         name: "SitesGroup",
@@ -70,6 +76,9 @@
                         this.$emit('add-new-website', this.newSiteUrl);
                         this.newSiteUrl = ''
                     }
+                },
+                truncateSiteUrl(siteUrl){
+                    return truncateText(siteUrl, 15);
                 }
             }
 

@@ -85,3 +85,8 @@ export function getUniqueId(numberOfChars = 6) {
     return result;
 }
 
+
+export function truncateText(value, charsLength = 30) {
+    return value.length <= charsLength ?
+        value : value.substring(0, charsLength) + "...";
+}

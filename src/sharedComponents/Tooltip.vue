@@ -2,7 +2,7 @@
       <span>
           <span class="tooltip-icon">{{iconText}}</span>
       <md-tooltip :md-direction="direction" :md-delay="delay">
-          <slot/>
+         <slot/> <!-- the text to be displayed when hovering-->
       </md-tooltip>
     </span>
 </template>

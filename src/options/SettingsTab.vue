@@ -2,24 +2,47 @@
     <div>
 
         <shared-card>
+            <h4>Working Days and Hours
+                <tooltip>Specifying working hours, so the websites will be blocked in these days/hours
+                </tooltip>
+
+            </h4>
+            <p class="note">Note: You have to activate the tool too, to make it works in working hours/days)</p>
             <md-switch v-model="settings.workHours.enableWorkHours"
                        class="md-menu-content-right-end">
-                Working hours
-                <tooltip>Specifying working hours, so the websites will be blocked in these hours(only when the tool is
-                    active)
-                </tooltip>
+                Active?
             </md-switch>
+
+
             <div>
-                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
+
+                <div class="md-layout md-gutter">
+                    <div class="md-layout-item md-size-50">
+                        <md-field>
+                            <label>Working Days</label>
+                            <md-select :disabled="!settings.workHours.enableWorkHours" v-model="settings.workHours.days" name="working-days" id="working-days" multiple>
+                                <md-option value="0">Sunday</md-option>
+                                <md-option value="1">Monday</md-option>
+                                <md-option value="2">Tuesday</md-option>
+                                <md-option value="3">Wednesday</md-option>
+                                <md-option value="4">Thursday</md-option>
+                                <md-option value="5">Friday</md-option>
+                                <md-option value="6">Saturday</md-option>
+                            </md-select>
+                        </md-field>
+                    </div>
+                </div>
+                From: <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
                                 v-model="settings.workHours.startTime"></vue-timepicker>
-                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
+                To:  <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
                                 v-model="settings.workHours.endTime"></vue-timepicker>
             </div>
         </shared-card>
 
         <shared-card>
             <h4>Lock Type </h4>
-            <p style="color: #fa6d6d">Note: The idea behind this is to make deactivating the extension needs some time, so you might prefer to
+            <p class="note">Note: The idea behind this is to make deactivating the extension needs some time,
+                so you might prefer to
                 continue working instead of deactivating it.</p>
             <md-radio v-model="settings.lock.type" value="none">None</md-radio>
             <md-radio v-model="settings.lock.type" value="question">Answering a Question</md-radio>
@@ -134,5 +157,8 @@
 
     .shared-card {
         margin-bottom: 2%;
+    }
+    .note{
+        color: #fa6d6d
     }
 </style>

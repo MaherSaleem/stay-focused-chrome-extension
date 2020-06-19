@@ -1,6 +1,7 @@
 import {
     getFlatEnabledListOfWebsites,
     isCurrentTimeBetweenTwoTimes,
+    isTodayOneOfTheseDays,
     isValidURL,
     resetChromeStorageData as setDefaultStorageData,
     setIcon
@@ -20,7 +21,8 @@ const checkIfCanEnterWebsite = info => {
             if (isActive) {
                 localStorage.get("settings").then(settings => {
                     if (settings.workHours && settings.workHours.enableWorkHours === true) {
-                        isActive = isActive && isCurrentTimeBetweenTwoTimes(settings.workHours.startTime, settings.workHours.endTime);
+                        console.log("work hours", settings.workHours.days, isTodayOneOfTheseDays(settings.workHours.days));
+                        isActive = isActive && isTodayOneOfTheseDays(settings.workHours.days) &&  isCurrentTimeBetweenTwoTimes(settings.workHours.startTime, settings.workHours.endTime);
                     }
                     if (isActive) {
                         localStorage.get("sitesGroups").then(sitesGroups => {

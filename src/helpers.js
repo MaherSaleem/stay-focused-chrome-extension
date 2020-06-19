@@ -36,6 +36,17 @@ export const getHostNameFromStringUrl = url => {
 
 /**
  *
+ * @param days {string[]}
+ * @returns {boolean}
+ */
+export const isTodayOneOfTheseDays = (days) => {
+
+    let dayIndex = (new Date()).getDay(); // sunday is 0, saturday is 6
+    return days.includes(dayIndex.toString());
+}
+
+/**
+ *
  * @param startTime {string} // format "08:15 AM"
  * @param endTime {string} // format "08:15 AM"
  * @returns {boolean}

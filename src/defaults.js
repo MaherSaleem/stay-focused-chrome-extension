@@ -4,6 +4,7 @@ export let settingsDefault = {
     workHours: {
         startTime: "08:00 AM",
         endTime: "05:00 PM",
+        days: ["1", "2", "3", "4", "5"], // Monday to Tuesday
         enableWorkHours: false
     },
     allowFunnyGoBackImages: true,

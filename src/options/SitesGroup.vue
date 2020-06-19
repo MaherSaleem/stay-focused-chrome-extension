@@ -13,6 +13,12 @@
 
                 </md-card-header>
                 <md-card-content>
+                    <md-field class="enter-website-field">
+                        <label>Type your new website</label>
+                        <md-input @keyup.enter="handleEnterWebsite"
+                                  v-model="newSiteUrl"></md-input>
+                    </md-field>
+                    <span class="md-error" v-if="this.newSiteUrl !== '' && !isValidNewSiteUrl">Invalid Website</span>
                     <md-list class="md-dense">
                         <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
                             <md-switch class="md-primary"
@@ -34,16 +40,10 @@
                             </md-button>
                         </md-list-item>
                     </md-list>
-                    <md-field class="enter-website-field">
-                        <label>Type your new website</label>
-                        <md-input @keyup.enter="handleEnterWebsite"
-                                  v-model="newSiteUrl"></md-input>
-                    </md-field>
-                    <span class="md-error" v-if="this.newSiteUrl !== '' && !isValidNewSiteUrl">Invalid Website</span>
                 </md-card-content>
                 <md-divider></md-divider>
 
-                <md-card-actions class="md-alignment-left">
+                <md-card-actions class="md-alignment-right">
                     <md-button @click.native="$emit('delete-sites-group')" class="md-raised ">
                         Delete
                         Group
@@ -136,5 +136,6 @@
     .disabled {
         opacity: 0.5;
     }
+
 
 </style>

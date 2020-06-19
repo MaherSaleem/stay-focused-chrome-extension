@@ -1,8 +1,15 @@
 <template>
     <div class="page-container">
 
+        <md-progress-spinner
+                class="loader"
+                v-if="loading"
+                :md-diameter="100"
+                :md-stroke="10"
+                md-mode="indeterminate" />
+
         <unlock-page
-                v-if="this.isLocked"
+                v-else-if="this.isLocked"
                 v-on:unlock="handleUnlock"
         />
         <md-app v-else>
@@ -69,6 +76,7 @@
                 this.lockType = settings.lock.type;
                 this.isLocked = this.lockType !== 'none'
             });
+            this.loading = false;
         },
         data() {
             return {
@@ -76,6 +84,7 @@
                 active: false,
                 lockType: "none",
                 isLocked: false,
+                loading: true,
             }
         },
         methods: {
@@ -124,6 +133,15 @@
     /*/////////////*/
     .selected-tab {
         background-color: #e9e9e9;
+    }
+    .loader{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transform: -webkit-translate(-50%, -50%);
+        transform: -moz-translate(-50%, -50%);
+        transform: -ms-translate(-50%, -50%);
     }
 
 </style>

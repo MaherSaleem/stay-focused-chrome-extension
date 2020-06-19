@@ -91,6 +91,7 @@
                         addedFromPopupSiteGroup = getSiteGroupStructure("Added From Popup", true, [], "added-from-popup-uid");
                         sitesGroups.push(addedFromPopupSiteGroup);
                     }
+                    addedFromPopupSiteGroup.sitesList = [getSiteStructure(this.websiteName), ...addedFromPopupSiteGroup.sitesList]
                     addedFromPopupSiteGroup.sitesList.push(getSiteStructure(this.websiteName))
                     localStorage.set("sitesGroups", sitesGroups);
                     this.websiteIsAddedBefore = true;

@@ -1,9 +1,14 @@
 <template>
     <div>
-        <md-field class="add-new-website-field">
-            <label>Type your new Group of websites</label>
-            <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>
-        </md-field>
+        <div class="md-layout md-gutter">
+            <div class="enter-new-group-input md-layout-item md-size-40">
+                <md-field class="add-new-website-field">
+                    <label>Type the name of the new group of websites(ex: E-Commerce)</label>
+                    <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>
+                </md-field>
+            </div>
+        </div>
+
         <div class="sites-groups">
             <sites-group
                     v-for="(sitesGroup,groupIndex)  in sitesGroups"
@@ -55,14 +60,14 @@
             addNewSite(groupIndex, siteUrl) {
                 siteUrl = getHostNameFromStringUrl(siteUrl);
                 let group = this.sitesGroups[groupIndex];
-                group.sitesList.push(getSiteStructure(siteUrl));
+                group.sitesList = [getSiteStructure(siteUrl), ...group.sitesList]
                 this.storeWebsites();
             },
             changeGroupStatus(groupIndex) {
                 this.storeWebsites();
             },
             addNewGroup() {
-                this.sitesGroups.push(getSiteGroupStructure(this.newGroupName));
+                this.sitesGroups = [getSiteGroupStructure(this.newGroupName), ...this.sitesGroups]
                 this.newGroupName = "";
                 this.storeWebsites();
             },
@@ -86,6 +91,10 @@
     .sites-groups {
         display: flex;
         flex-flow: row wrap;
+    }
+    .enter-new-group-input{
+        position: relative;
+        left: 1%;
     }
 
 </style>

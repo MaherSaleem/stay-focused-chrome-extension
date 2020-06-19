@@ -42,7 +42,7 @@
                 </tooltip>
 
             </h4>
-            <p class="note">Note: You have to activate the tool too, to make it works in working hours/days)</p>
+            <p class="note">Note: You have to activate the tool too, to make it works in working hours/days</p>
             <md-switch v-model="settings.workHours.enableWorkHours"
                        class="md-menu-content-right-end">
                 Active?

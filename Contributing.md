@@ -15,7 +15,7 @@
 $ npm install
 
 # watch and auto re-build fils in dist folder
-$ npm run watch
+$ npm run watch:dev
 
 # build the extension for production use
 $ npm run build
@@ -24,6 +24,6 @@ $ npm run build
 
 #### Steps for development
 1) `npm install`
-2) `npm run watch`
+2) `npm run watch:dev`
 3) upload the dist folder to chrome extensions in development mode.
 check [here](https://developer.chrome.com/extensions/getstarted#manifest) for more details.

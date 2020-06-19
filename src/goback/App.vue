@@ -25,15 +25,20 @@
         data() {
             return {
                 imagesObjects: [
-                    {path: "images/mature_back_to_work.png", text: ""},
-
-
+                    {path: "images/access-blocked-websites.jpg", text: ""},
                     {path: "images/angry-monkey.jpg", text: "Go Back to work now!"},
                     {path: "images/Black-Girl-Wat.jpg", text: "WAT are you doing here? Go to work"},
                     {path: "images/troll.jpg", text: "you didn't learn your lesson right? Go to work"},
                     {path: "images/angry-white-monkey.jpg", text: "Goooooo!"},
                     {path: "images/coffin-dance.jpg", text: "Go to work or dance with us!"},
-                    {path: "images/spongebob.jpg", text: ""}
+                    {path: "images/spongebob.jpg", text: ""},
+                    {path: "images/baby.jpg", text: ""},
+                    {path: "images/can-you-please-just-go-away.png", text: ""},
+                    {path: "images/we-dont-do-that-here.png", text: "When you open a blocked websites instead of working."},
+                    {path: "images/Surprised-Joey.jpg", text: "When I see you trying to open a blocked website"},
+                    {path: "images/ross.jpg", text: "When I see you trying again and again to open a blocked website"},
+                    {path: "images/chandler-oh-my-god.jpg", text: "when you don't learn the lesson and break your work again"},
+                    {path: "images/chandler-laugh.jpg", text: "My face when I block a website for you"}
                 ],
 
                 selectedImageIndex: 0

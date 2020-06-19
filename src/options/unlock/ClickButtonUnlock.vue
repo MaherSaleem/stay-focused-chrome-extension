@@ -2,7 +2,7 @@
     <div>
         <div class="md-layout">
             <div :style="buttonPositionStyle" class="md-layout-item">
-                <md-button v-on:keydown.enter.prevent='' class="md-raised md-accent"
+                <md-button v-on:keydown.enter.prevent='' v-on:keydown.space.prevent class="md-raised md-accent"
                            @click.native="handleClick">{{clicksLeft}} clicks to unlock
                 </md-button>
             </div>

@@ -1,13 +1,11 @@
 <template>
     <div>
-        <div class="md-layout md-gutter">
-            <div class="enter-new-group-input md-layout-item md-size-40">
+        <md-column class="enter-new-group-input" :width="40">
                 <md-field class="add-new-website-field">
                     <label>Type the name of the new group of websites(ex: E-Commerce)</label>
                     <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>
                 </md-field>
-            </div>
-        </div>
+        </md-column>
 
         <div class="sites-groups">
             <sites-group
@@ -29,10 +27,11 @@
     import {getHostNameFromStringUrl} from "../helpers";
     import {localStorage} from "../chromeApiHelpers";
     import {getSiteGroupStructure, getSiteStructure} from "../dataHelpers/SitesGroup";
+    import MdColumn from "../sharedComponents/MdColumn";
 
     export default {
         name: "WebsitesTab",
-        components: {SitesGroup},
+        components: {MdColumn, SitesGroup},
         mounted() {
             this.loadWebsites();
         },

@@ -9,14 +9,14 @@
                 md-mode="indeterminate" />
 
         <unlock-page
-                v-else-if="this.isLocked"
+                v-else-if="isLocked"
                 v-on:unlock="handleUnlock"
         />
         <md-app v-else>
             <md-app-toolbar class="md-primary">
                 <span class="md-title">Stay Focused</span>
                 <div class="md-toolbar-section-end">
-                    <md-switch v-model="active" @change="changeActiveStatus">
+                    <md-switch v-model="active">
                         {{active? "Active": "Inactive"}}
                     </md-switch>
                 </div>
@@ -74,7 +74,7 @@
             });
             localStorage.get("settings").then(settings => {
                 this.lockType = settings.lock.type;
-                this.isLocked = this.lockType !== 'none'
+                this.isLocked = this.lockType !== 'none'  && (this.active === true || this.lockType === 'password');
             });
             this.loading = false;
         },
@@ -98,13 +98,20 @@
             isSelectedTab(tabName) {
                 return this.selectedTab === tabName;
             },
-            changeActiveStatus() {
-                localStorage.set("active", this.active);
-            },
             handleUnlock() {
                 this.isLocked = false;
                 this.active = false
-            }
+            },
+
+        },
+        computed:{
+
+        },
+        watch: {
+            active() {
+                localStorage.set("active", this.active);
+            },
+
         }
     };
 </script>

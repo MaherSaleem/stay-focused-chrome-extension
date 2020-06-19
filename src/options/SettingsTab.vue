@@ -2,6 +2,41 @@
     <div>
 
         <shared-card>
+            <h4>Lock type </h4>
+            <p class="note">Note: The idea behind this is to make deactivating the extension needs some time,
+                so you might prefer to
+                continue working instead of deactivating it.</p>
+            <md-radio v-model="settings.lock.type" value="none">None</md-radio>
+            <md-radio v-model="settings.lock.type" value="question">Answering a Question</md-radio>
+            <md-column v-if="settings.lock.type === 'question'">
+                <md-field>
+                    <label>Number of tries before showing answer</label>
+                    <md-input type="number" min="1"
+                              v-model="settings.lock.questionNumberOfTries"></md-input>
+                </md-field>
+            </md-column>
+            <md-radio v-model="settings.lock.type" value="password">Password
+                <tooltip>Notice that you have to enter the password each time you go to settings</tooltip>
+            </md-radio>
+            <md-column v-if="settings.lock.type === 'password'">
+                <md-field>
+                    <label>Password </label>
+                    <md-input type="password"
+                              v-model="settings.lock.password"></md-input>
+                </md-field>
+            </md-column>
+            <md-radio v-model="settings.lock.type" value="click-button">Click Button
+                <tooltip>This will make you click a button number of times to unlock</tooltip>
+            </md-radio>
+            <md-column v-if="settings.lock.type === 'click-button'">
+                <md-field>
+                    <label>Number of clicks to unlock</label>
+                    <md-input type="number" min="1" v-model="settings.lock.clickButtonCounts"></md-input>
+                </md-field>
+            </md-column>
+        </shared-card>
+
+        <shared-card>
             <h4>Working Days and Hours
                 <tooltip>Specifying working hours, so the websites will be blocked in these days/hours
                 </tooltip>
@@ -16,57 +51,30 @@
 
             <div>
 
-                <div class="md-layout md-gutter">
-                    <div class="md-layout-item md-size-50">
-                        <md-field>
-                            <label>Working Days</label>
-                            <md-select :disabled="!settings.workHours.enableWorkHours" v-model="settings.workHours.days" name="working-days" id="working-days" multiple>
-                                <md-option value="0">Sunday</md-option>
-                                <md-option value="1">Monday</md-option>
-                                <md-option value="2">Tuesday</md-option>
-                                <md-option value="3">Wednesday</md-option>
-                                <md-option value="4">Thursday</md-option>
-                                <md-option value="5">Friday</md-option>
-                                <md-option value="6">Saturday</md-option>
-                            </md-select>
-                        </md-field>
-                    </div>
-                </div>
-                From: <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
+                <md-column :width="50">
+                    <md-field>
+                        <label>Working Days</label>
+                        <md-select :disabled="!settings.workHours.enableWorkHours" v-model="settings.workHours.days"
+                                   name="working-days" id="working-days" multiple>
+                            <md-option value="0">Sunday</md-option>
+                            <md-option value="1">Monday</md-option>
+                            <md-option value="2">Tuesday</md-option>
+                            <md-option value="3">Wednesday</md-option>
+                            <md-option value="4">Thursday</md-option>
+                            <md-option value="5">Friday</md-option>
+                            <md-option value="6">Saturday</md-option>
+                        </md-select>
+                    </md-field>
+                </md-column>
+                From:
+                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
                                 v-model="settings.workHours.startTime"></vue-timepicker>
-                To:  <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
+                To:
+                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
                                 v-model="settings.workHours.endTime"></vue-timepicker>
             </div>
         </shared-card>
 
-        <shared-card>
-            <h4>Lock Type </h4>
-            <p class="note">Note: The idea behind this is to make deactivating the extension needs some time,
-                so you might prefer to
-                continue working instead of deactivating it.</p>
-            <md-radio v-model="settings.lock.type" value="none">None</md-radio>
-            <md-radio v-model="settings.lock.type" value="question">Answering a Question</md-radio>
-            <md-field v-if="settings.lock.type === 'question'">
-                <label>Number of tries before showing answer</label>
-                <md-input type="number" min="1"
-                          v-model="settings.lock.questionNumberOfTries"></md-input>
-            </md-field>
-            <md-radio v-model="settings.lock.type" value="password">Password</md-radio>
-            <md-field v-if="settings.lock.type === 'password'">
-                <label>Password</label>
-                <md-input type="password"
-                          v-model="settings.lock.password"></md-input>
-            </md-field>
-            <md-radio v-model="settings.lock.type" value="click-button">Click Button
-                <tooltip>This will make you click a button number of times to unlock</tooltip>
-            </md-radio>
-
-
-            <md-field v-if="settings.lock.type === 'click-button'">
-                <label>Number of clicks to unlock</label>
-                <md-input type="number" min="1" v-model="settings.lock.clickButtonCounts"></md-input>
-            </md-field>
-        </shared-card>
         <shared-card>
             <md-switch v-model="settings.allowFunnyGoBackImages"
                        class="md-menu-content-right-end">
@@ -95,6 +103,7 @@
     import {localStorage} from "../chromeApiHelpers";
     import SharedCard from "../sharedComponents/SharedCard";
     import Tooltip from "../sharedComponents/Tooltip";
+    import MdColumn from "../sharedComponents/MdColumn";
 
     export default {
         name: "SettingsTab",
@@ -128,6 +137,7 @@
 
         },
         components: {
+            MdColumn,
             Tooltip,
             SharedCard,
             VueTimepicker

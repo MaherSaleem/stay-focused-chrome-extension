@@ -92,7 +92,6 @@
                         sitesGroups.push(addedFromPopupSiteGroup);
                     }
                     addedFromPopupSiteGroup.sitesList = [getSiteStructure(this.websiteName), ...addedFromPopupSiteGroup.sitesList]
-                    addedFromPopupSiteGroup.sitesList.push(getSiteStructure(this.websiteName))
                     localStorage.set("sitesGroups", sitesGroups);
                     this.websiteIsAddedBefore = true;
                 });

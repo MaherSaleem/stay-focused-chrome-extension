@@ -1,7 +1,7 @@
 {
   "name": "stay-focused",
   "version": "1.0.0",
-  "description": "focusing",
+  "description": "Block list of websites, to keep you focusing in your work.",
   "author": "Maher Khdeir <maher.khdeir@gmail.com>",
   "engines": {
     "node": ">=10"

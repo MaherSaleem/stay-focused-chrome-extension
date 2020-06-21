@@ -25,7 +25,7 @@
                               v-model="settings.lock.password"></md-input>
                 </md-field>
             </md-column>
-            <md-radio v-model="settings.lock.type" value="click-button">Click Button
+            <md-radio v-model="settings.lock.type" value="click-button">Click a Button
                 <tooltip>This will make you click a button number of times to unlock</tooltip>
             </md-radio>
             <md-column v-if="settings.lock.type === 'click-button'">

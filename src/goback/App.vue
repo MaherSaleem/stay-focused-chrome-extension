@@ -34,7 +34,7 @@
                     {path: "images/spongebob.jpg", text: ""},
                     {path: "images/baby.jpg", text: ""},
                     {path: "images/can-you-please-just-go-away.png", text: ""},
-                    {path: "images/we-dont-do-that-here.png", text: "When you open a blocked websites instead of working."},
+                    {path: "images/we-dont-do-that-here.png", text: "When you open a blocked website instead of working."},
                     {path: "images/Surprised-Joey.jpg", text: "When I see you trying to open a blocked website"},
                     {path: "images/ross.jpg", text: "When I see you trying again and again to open a blocked website"},
                     {path: "images/chandler-oh-my-god.jpg", text: "when you don't learn the lesson and break your work again"},

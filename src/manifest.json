@@ -1,7 +1,7 @@
 {
   "name": "Stay Focused",
   "description": "Block list of websites, to keep you focusing in your work.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "manifest_version": 2,
   "icons": {
     "48": "icons/icon_48_inactive.ico",

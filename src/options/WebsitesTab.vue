@@ -75,9 +75,13 @@
                 this.storeWebsites();
             },
             deleteSite(groupIndex, siteIndex) {
-                let group = this.sitesGroups[groupIndex];
-                group.sitesList.splice(siteIndex, 1);
-                this.storeWebsites();
+
+                //FIXME fix that work around. It was disabling the item below it
+                setTimeout(() => {
+                    let group = this.sitesGroups[groupIndex];
+                    group.sitesList.splice(siteIndex, 1);
+                    this.storeWebsites();
+                }, 10)
             },
             toggleSiteEnable() {
                 this.storeWebsites();

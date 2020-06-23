@@ -3,9 +3,9 @@
 
         <shared-card>
             <h4>Lock type </h4>
-            <p class="note">Note: The idea behind this is to make deactivating the extension needs some time,
-                so you might prefer to
-                continue working instead of deactivating it.</p>
+            <note-block>
+                Note: The idea behind this is to make deactivating the extension needs some time, so you might prefer to continue working instead of deactivating it.
+            </note-block>
             <md-radio v-model="settings.lock.type" value="none">None</md-radio>
             <md-radio v-model="settings.lock.type" value="question">Answering a Question</md-radio>
             <md-column v-if="settings.lock.type === 'question'">
@@ -42,7 +42,9 @@
                 </tooltip>
 
             </h4>
-            <p class="note">Note: You have to activate the tool too, to make it works in working hours/days</p>
+            <note-block type="warning">
+                Note: You have to activate the tool too, to make it works in working hours/days
+            </note-block>
             <md-switch v-model="settings.workHours.enableWorkHours"
                        class="md-menu-content-right-end">
                 Active?
@@ -104,6 +106,7 @@
     import SharedCard from "../sharedComponents/SharedCard";
     import Tooltip from "../sharedComponents/Tooltip";
     import MdColumn from "../sharedComponents/MdColumn";
+    import NoteBlock from "../sharedComponents/NoteBlock";
 
     export default {
         name: "SettingsTab",
@@ -132,11 +135,13 @@
             },
             onResetConfirm() {
                 resetChromeStorageData();
+                this.$emit('reload-data');
                 this.loadSettings();
             }
 
         },
         components: {
+            NoteBlock,
             MdColumn,
             Tooltip,
             SharedCard,

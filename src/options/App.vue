@@ -49,7 +49,7 @@
 
             <md-app-content>
                 <div>
-                    <component :is="selectedTab"></component>
+                    <component @reload-data="loadData" :is="selectedTab"></component>
                 </div>
 
             </md-app-content>
@@ -69,13 +69,7 @@
         components: {UnlockPage, AboutTab, SettingsTab, WebsitesTab},
 
         mounted() {
-            localStorage.get("active").then(active => {
-                this.active = active;
-            });
-            localStorage.get("settings").then(settings => {
-                this.lockType = settings.lock.type;
-                this.isLocked = this.lockType !== 'none'  && (this.active === true || this.lockType === 'password');
-            });
+            this.loadData();
             this.loading = false;
         },
         data() {
@@ -102,6 +96,15 @@
                 this.isLocked = false;
                 this.active = false
             },
+            loadData(){
+                localStorage.get("active").then(active => {
+                    this.active = active;
+                });
+                localStorage.get("settings").then(settings => {
+                    this.lockType = settings.lock.type;
+                    this.isLocked = this.lockType !== 'none'  && (this.active === true || this.lockType === 'password');
+                });
+            }
 
         },
         computed:{

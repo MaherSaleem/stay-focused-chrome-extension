@@ -4,7 +4,7 @@
                 <md-card-header class="card-header">
                     <div class="md-title">{{sitesGroup.groupName}}
                     </div>
-                    <md-switch class="enable-group-switch md-primary"
+                    <md-switch class="enable-group-switch "
                                v-model="sitesGroup.groupEnabled"
                                @change="$emit('store-websites')"
                     >
@@ -21,10 +21,7 @@
                     <span class="md-error" v-if="this.newSiteUrl !== '' && !isValidNewSiteUrl">Invalid Website</span>
                     <md-list class="md-dense">
                         <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
-                            <md-switch class="md-primary"
-                                       v-model="site.enabled"
-                                       @change="$emit('store-websites')"
-                            >
+                            <md-switch  v-model="site.enabled" @change="$emit('store-websites')">
                             <span :class="{'website-disabled': !site.enabled}">
                               <span>
                                   <span>{{truncateSiteUrl(site.url)}}</span>
@@ -34,8 +31,8 @@
                               </span>
                             </span>
                             </md-switch>
-                            <md-button class="md-icon-button md-accent">
-                                <md-icon @click.native="$emit('delete-site', siteIndex)">delete
+                            <md-button @click.native="$emit('delete-site', siteIndex)" class="md-icon-button md-accent">
+                                <md-icon >delete
                                 </md-icon>
                             </md-button>
                         </md-list-item>

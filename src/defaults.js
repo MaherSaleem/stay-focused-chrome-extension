@@ -9,10 +9,10 @@ export let settingsDefault = {
     },
     allowFunnyGoBackImages: true,
     lock: {
-        type: "none", /*types are: question,click-button, password, none*/
+        type: "click-button", /*types are: question,click-button, password, none*/
         password: "",
         questionNumberOfTries: 3,
-        clickButtonCounts: 5, // how many times the user has to click the button to unlock
+        clickButtonCounts: 8, // how many times the user has to click the button to unlock
     }
 };
 

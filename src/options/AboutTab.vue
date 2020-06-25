@@ -5,7 +5,7 @@
             <p>Stay focused is an open source chrome extension to help you to block distraction websites like social
                 media.</p>
 
-            <p>The idea behinds this, that sometimes you are working, and suddenly you find yourself setting on social
+            <p>The idea behinds this, that sometimes you are working, and suddenly you find yourself sitting on social
                 media
                 like Facebook, and you spend there like 30 minutes without noticing that. So this chrome extension will
                 show

@@ -1,4 +1,4 @@
-#Stay Focused Chrome Extension
+# Stay Focused Chrome Extension
 
 * [Introduction](#introduction)
 * [Installation](#installation)

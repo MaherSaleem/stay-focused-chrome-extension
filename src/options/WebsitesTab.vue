@@ -1,6 +1,6 @@
 <template>
     <div>
-        <md-column class="enter-new-group-input" :width="40">
+        <md-column class="enter-new-group-input" :width="50">
                 <md-field class="add-new-website-field">
                     <label>Type the name of the new group of websites(ex: E-Commerce)</label>
                     <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>

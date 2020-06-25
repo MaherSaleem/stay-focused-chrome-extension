@@ -23,7 +23,7 @@ Moreover, it has locking mechanisms to make disabling the tool needs some
 
 ## Installation
 
-Download the extension from [chrome web store]().
+Download the extension from [chrome web store](https://chrome.google.com/webstore/detail/stay-focused/nnlgodiccogbpcfnhmclaicljjgfmekd).
 
 ## Functionalities:
 * Block entering websites.  

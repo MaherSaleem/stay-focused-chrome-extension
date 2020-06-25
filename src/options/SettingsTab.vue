@@ -53,10 +53,17 @@
 
             <div>
 
+
+                From:
+                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
+                                v-model="settings.workHours.startTime"></vue-timepicker>
+                To:
+                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
+                                v-model="settings.workHours.endTime"></vue-timepicker>
                 <md-column :width="50">
                     <md-field>
                         <label>Working Days</label>
-                        <md-select :disabled="!settings.workHours.enableWorkHours" v-model="settings.workHours.days"
+                        <md-select  v-model="settings.workHours.days"
                                    name="working-days" id="working-days" multiple>
                             <md-option value="0">Sunday</md-option>
                             <md-option value="1">Monday</md-option>
@@ -68,12 +75,6 @@
                         </md-select>
                     </md-field>
                 </md-column>
-                From:
-                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
-                                v-model="settings.workHours.startTime"></vue-timepicker>
-                To:
-                <vue-timepicker :disabled="!settings.workHours.enableWorkHours" format="hh:mm A"
-                                v-model="settings.workHours.endTime"></vue-timepicker>
             </div>
         </shared-card>
 

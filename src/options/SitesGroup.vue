@@ -21,7 +21,7 @@
                     <span class="md-error" v-if="this.newSiteUrl !== '' && !isValidNewSiteUrl">Invalid Website</span>
                     <md-list class="md-dense">
                         <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
-                            <md-switch  v-model="site.enabled" @change="$emit('store-websites')">
+                            <md-switch class="md-primary" v-model="site.enabled" @change="$emit('store-websites')">
                             <span :class="{'website-disabled': !site.enabled}">
                               <span>
                                   <span>{{truncateSiteUrl(site.url)}}</span>

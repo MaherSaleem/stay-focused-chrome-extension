@@ -137,7 +137,7 @@
     }
 
     .page-container {
-        height: 755px;
+        height: 100%;
     }
 
     /*/////////////*/

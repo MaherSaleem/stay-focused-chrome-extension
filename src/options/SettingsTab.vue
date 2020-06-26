@@ -46,7 +46,7 @@
                 Note: You have to activate the tool too, to make it works in working hours/days
             </note-block>
             <md-switch v-model="settings.workHours.enableWorkHours"
-                       class="md-menu-content-right-end">
+                       class="md-menu-content-right-end md-primary">
                 Active?
             </md-switch>
 
@@ -80,7 +80,7 @@
 
         <shared-card>
             <md-switch v-model="settings.allowFunnyGoBackImages"
-                       class="md-menu-content-right-end">
+                       class="md-menu-content-right-end md-primary">
                 Show funny images to go back to work
             </md-switch>
         </shared-card>

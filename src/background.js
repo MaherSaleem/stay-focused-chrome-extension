@@ -2,7 +2,7 @@ import {
     getFlatEnabledListOfWebsites,
     isCurrentTimeBetweenTwoTimes,
     isTodayOneOfTheseDays,
-    isValidURL,
+    isValidURL, regexMatch,
     resetChromeStorageData as setDefaultStorageData,
     setIcon
 } from "./helpers";
@@ -16,6 +16,15 @@ const chooseIconColor = () => {
         setIcon(active);
     });
 }
+
+const checkIfMatch = (blockItem, url) => {
+    switch (blockItem.blockType) {
+        case "regex":
+            return regexMatch(url, blockItem.url);
+        default:
+            return url.includes(blockItem.url)
+    }
+}
 const checkIfCanEnterWebsite = info => {
     if (info.frameId === 0 && isValidURL(info.url)) {
         localStorage.get("active").then(isActive => {
@@ -23,12 +32,12 @@ const checkIfCanEnterWebsite = info => {
                 localStorage.get("settings").then(settings => {
                     if (settings.workHours && settings.workHours.enableWorkHours === true) {
                         console.log("work hours", settings.workHours.days, isTodayOneOfTheseDays(settings.workHours.days));
-                        isActive = isActive && isTodayOneOfTheseDays(settings.workHours.days) &&  isCurrentTimeBetweenTwoTimes(settings.workHours.startTime, settings.workHours.endTime);
+                        isActive = isActive && isTodayOneOfTheseDays(settings.workHours.days) && isCurrentTimeBetweenTwoTimes(settings.workHours.startTime, settings.workHours.endTime);
                     }
                     if (isActive) {
                         localStorage.get("sitesGroups").then(sitesGroups => {
                             let blockedWebsites = getFlatEnabledListOfWebsites(sitesGroups);
-                            let mustGoBack = blockedWebsites.some(website => info.url.includes(website.url));
+                            let mustGoBack = blockedWebsites.some(website => checkIfMatch(website, info.url));
                             if (mustGoBack) {
                                 chrome.tabs.update(info.tabId, {"url": "goback/goback.html"});
                             }

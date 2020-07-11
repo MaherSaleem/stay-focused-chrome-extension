@@ -13,11 +13,14 @@
 
                 </md-card-header>
                 <md-card-content>
-                    <add-block-item-to-list v-on:add-new-website="newSiteUrl => $emit('add-new-website', newSiteUrl)" />
+                    <add-block-item-to-list v-on:add-new-website="data => $emit('add-new-website', data)" />
                     <md-list class="md-dense">
                         <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
                             <md-switch class="md-primary" v-model="site.enabled" @change="$emit('store-websites')">
                             <span :class="{'website-disabled': !site.enabled}">
+                                  <tooltip :icon-text="site.blockType.substr(0,2)">
+                                    {{getBlockedItemType(site.blockType)}}
+                                  </tooltip>
                               <span>
                                   <span>{{truncateSiteUrl(site.url)}}</span>
                                   <md-tooltip>
@@ -48,9 +51,11 @@
 <script>
     import {truncateText} from "../helpers";
     import AddBlockItemToList from "./AddBlockItemToList";
+    import Tooltip from "../sharedComponents/Tooltip";
+    import {blockTypes} from "../constants";
     export default {
         name: "SitesGroup",
-        components: {AddBlockItemToList},
+        components: {Tooltip, AddBlockItemToList},
         props: ['sitesGroup'],
 
         computed: {
@@ -59,6 +64,9 @@
             {
                 truncateSiteUrl(siteUrl){
                     return truncateText(siteUrl, 15);
+                },
+                getBlockedItemType(blockType){
+                    return blockTypes[blockType];
                 }
             }
 

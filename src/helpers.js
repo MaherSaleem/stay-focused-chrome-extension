@@ -102,6 +102,10 @@ export function truncateText(value, charsLength = 30) {
         value : value.substring(0, charsLength) + "...";
 }
 
+export function regexMatch(stringToTest, regexString) {
+    let re = new RegExp(regexString);
+    return !!re.test(stringToTest)
+}
 export function versionCompare(v1, v2, options) {
     let lexicographical = options && options.lexicographical;
     let zeroExtend = options && options.zeroExtend;
@@ -146,3 +150,5 @@ export function versionCompare(v1, v2, options) {
 
     return 0;
 }
+
+

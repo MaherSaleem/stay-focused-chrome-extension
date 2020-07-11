@@ -13,7 +13,7 @@
                     :key="sitesGroup.uid"
                     :sitesGroup="sitesGroup"
                     v-on:store-websites="storeWebsites"
-                    v-on:add-new-website="newSiteUrl => {addNewSite(groupIndex, newSiteUrl)}"
+                    v-on:add-new-website="siteData => {addNewSite(groupIndex, siteData)}"
                     v-on:delete-sites-group="deleteGroup(groupIndex)"
                     v-on:delete-site="siteIndex => deleteSite(groupIndex, siteIndex)"
             ></sites-group>
@@ -56,10 +56,13 @@
             storeWebsites() {
                 localStorage.set("sitesGroups", this.sitesGroups)
             },
-            addNewSite(groupIndex, siteUrl) {
-                siteUrl = getHostNameFromStringUrl(siteUrl);
+            addNewSite(groupIndex, siteData) {
+                let {siteUrl, blockType} = siteData;
+                if(blockType === 'website'){//TODO maybe this should be moved to addBlockItemToList
+                    siteUrl = getHostNameFromStringUrl(siteUrl);
+                }
                 let group = this.sitesGroups[groupIndex];
-                group.sitesList = [getSiteStructure(siteUrl), ...group.sitesList]
+                group.sitesList = [getSiteStructure(siteUrl, true, blockType), ...group.sitesList]
                 this.storeWebsites();
             },
             changeGroupStatus(groupIndex) {

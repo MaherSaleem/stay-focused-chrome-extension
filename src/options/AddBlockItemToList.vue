@@ -3,17 +3,17 @@
         <md-field class="enter-website-field">
             <label>Type your new website</label>
             <md-input @keyup.enter="handleEnterWebsite"
-                      v-model="newSiteUrl"></md-input>
+                      v-model="siteData.siteUrl"></md-input>
         </md-field>
         <md-field class="enter-website-field">
             <label>Block Type</label>
-            <md-select v-model="blockType">
+            <md-select v-model="siteData.blockType">
                 <md-option v-for="(blockSiteValue, blockSiteKey) in blockTypes" :value="blockSiteKey">
                     {{blockSiteValue}}
                 </md-option>
             </md-select>
         </md-field>
-        <span class="md-error" v-if="this.newSiteUrl !== '' && !isValidBlockItem">Invalid Website</span>
+        <span class="md-error" v-if="siteData.siteUrl !== '' && !isValidBlockItem">Invalid Website</span>
 
     </div>
 </template>
@@ -26,8 +26,10 @@
         name: "AddBlockItemToList",
         data() {
             return {
-                newSiteUrl: "",
-                blockType: "website"
+                siteData: {
+                    siteUrl: "",
+                    blockType: "website"
+                }
             }
         },
         computed: {
@@ -35,9 +37,9 @@
                 return blockTypes;
             },
             isValidBlockItem() {
-                switch (this.blockType) {
+                switch (this.siteData.blockType) {
                     case "website":
-                        return isValidURL(this.newSiteUrl);
+                        return isValidURL(this.siteData.siteUrl);
                     default:
                         return true;
                 }
@@ -45,9 +47,10 @@
         },
         methods: {
             handleEnterWebsite() {
-                if (this.newSiteUrl !== "" && this.isValidBlockItem) {
-                    this.$emit('add-new-website', this.newSiteUrl);
-                    this.newSiteUrl = ''
+
+                if (this.siteData.siteUrl !== "" && this.isValidBlockItem) {
+                    this.$emit('add-new-website', this.siteData);
+                    this.siteData.siteUrl = ''
                 }
             }
         }

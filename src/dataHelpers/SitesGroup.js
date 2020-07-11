@@ -10,9 +10,10 @@ export const getSiteGroupStructure = (groupName = "", enabled = true , siteLists
     };
 }
 
-export const getSiteStructure = (url = "", enabled = true) => {
+export const getSiteStructure = (url = "", enabled = true, blockType = 'website') => {
     return {
         url,
-        enabled
+        enabled,
+        blockType
     }
 }

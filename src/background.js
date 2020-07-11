@@ -9,6 +9,7 @@ import {
 
 global.browser = require('webextension-polyfill');
 import {localStorage} from "./chromeApiHelpers";
+import {handle103To104Upgrade} from "./Migration/upgrades";
 
 const chooseIconColor = () => {
     localStorage.get("active").then(active => {
@@ -46,7 +47,7 @@ chrome.webNavigation.onCommitted.addListener(chooseIconColor);
 //handle installation of extension
 chrome.runtime.onInstalled.addListener((details) => {
     const currentVersion = chrome.runtime.getManifest().version
-    const previousVersion = details.previousVersion
+    const previousVersion = details.previousVersion;
     localStorage.set('version', currentVersion);
     const reason = details.reason;
     switch (reason) {
@@ -55,6 +56,7 @@ chrome.runtime.onInstalled.addListener((details) => {
             console.log("installed Successfully");
             break;
         case 'update':
+            handle103To104Upgrade(previousVersion, currentVersion);
             console.log("Updated Successfully");
             break;
     }

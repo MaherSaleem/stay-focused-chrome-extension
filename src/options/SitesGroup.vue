@@ -13,12 +13,7 @@
 
                 </md-card-header>
                 <md-card-content>
-                    <md-field class="enter-website-field">
-                        <label>Type your new website</label>
-                        <md-input @keyup.enter="handleEnterWebsite"
-                                  v-model="newSiteUrl"></md-input>
-                    </md-field>
-                    <span class="md-error" v-if="this.newSiteUrl !== '' && !isValidNewSiteUrl">Invalid Website</span>
+                    <add-block-item-to-list v-on:add-new-website="newSiteUrl => $emit('add-new-website', newSiteUrl)" />
                     <md-list class="md-dense">
                         <md-list-item v-for="(site, siteIndex) in sitesGroup.sitesList">
                             <md-switch class="md-primary" v-model="site.enabled" @change="$emit('store-websites')">
@@ -51,29 +46,17 @@
 </template>
 
 <script>
-    import {isValidURL, truncateText} from "../helpers";
-
+    import {truncateText} from "../helpers";
+    import AddBlockItemToList from "./AddBlockItemToList";
     export default {
         name: "SitesGroup",
+        components: {AddBlockItemToList},
         props: ['sitesGroup'],
-        data() {
-            return {
-                newSiteUrl: "",
-            }
-        },
+
         computed: {
-            isValidNewSiteUrl(){
-                return isValidURL(this.newSiteUrl);
-            }
         },
         methods:
             {
-                handleEnterWebsite() {
-                    if (this.newSiteUrl !== "" && this.isValidNewSiteUrl) {
-                        this.$emit('add-new-website', this.newSiteUrl);
-                        this.newSiteUrl = ''
-                    }
-                },
                 truncateSiteUrl(siteUrl){
                     return truncateText(siteUrl, 15);
                 }
@@ -105,12 +88,6 @@
         }
     }
 
-
-    .enter-website-field {
-        margin: 2px auto;
-        width: 90%;
-    }
-
     .add-new-website-field {
         left: 1%;
         width: 26%;
@@ -118,13 +95,6 @@
     .buttons-content {
         min-height: 5%
     }
-
-    .md-error {
-        margin-left: 5%;
-        font-size: smaller;
-        color: #ff1744;
-    }
-
     .website-disabled {
         text-decoration: line-through;
         opacity: 0.5;

@@ -64,7 +64,7 @@ chrome.runtime.onInstalled.addListener((details) => {
             console.log("installed Successfully");
             break;
         case 'update':
-            // alert(`prev version: ${previousVersion}, current version: ${currentVersion}`);
+            console.log(`prev version: ${previousVersion}, current version: ${currentVersion}`);
             handle103To104Upgrade(previousVersion, currentVersion);
             console.log("Updated Successfully");
             break;

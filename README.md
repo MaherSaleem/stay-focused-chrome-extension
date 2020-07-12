@@ -26,7 +26,10 @@ Moreover, it has locking mechanisms to make disabling the tool needs some
 Download the extension from [chrome web store](https://chrome.google.com/webstore/detail/stay-focused/nnlgodiccogbpcfnhmclaicljjgfmekd).
 
 ## Functionalities:
-* Block entering websites.  
+* Block entering websites by three methods:
+    * Block by websites
+    * Block by a word
+    * Block by regex
 * Group block websites in groups (like social media, videos, etc)
 * Showing funny images to tell you to go back to work.
 * specify working hours(to only block websites during your working hours)

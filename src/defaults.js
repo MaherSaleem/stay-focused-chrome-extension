@@ -28,6 +28,10 @@ export let websitesListDefault = [
         getSiteStructure("netflix.com"),
         getSiteStructure("dailymotion.com"),
     ]),
+    getSiteGroupStructure("Blocked By Word", true, [], 'word'),
+    getSiteGroupStructure("Blocked By Regex", true, [], 'regex'),
+
+
 ];
 
 export let activeDefault = false

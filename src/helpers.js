@@ -81,7 +81,7 @@ export const getFlatEnabledListOfWebsites = groupsList =>
 export const getFlatListOfWebsites = groupsList => {
     let flatList = [];
     groupsList.forEach(siteGroup => {
-        flatList.push(...siteGroup.sitesList.map(site => ({...site, groupEnabled: siteGroup.groupEnabled})));
+        flatList.push(...siteGroup.sitesList.map(site => ({...site, groupEnabled: siteGroup.groupEnabled, blockType: siteGroup.blockType})));
     });
     return flatList
 }

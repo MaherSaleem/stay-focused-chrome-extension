@@ -31,7 +31,6 @@ const checkIfCanEnterWebsite = info => {
             if (isActive) {
                 localStorage.get("settings").then(settings => {
                     if (settings.workHours && settings.workHours.enableWorkHours === true) {
-                        console.log("work hours", settings.workHours.days, isTodayOneOfTheseDays(settings.workHours.days));
                         isActive = isActive && isTodayOneOfTheseDays(settings.workHours.days) && isCurrentTimeBetweenTwoTimes(settings.workHours.startTime, settings.workHours.endTime);
                     }
                     if (isActive) {
@@ -65,6 +64,7 @@ chrome.runtime.onInstalled.addListener((details) => {
             console.log("installed Successfully");
             break;
         case 'update':
+            // alert(`prev version: ${previousVersion}, current version: ${currentVersion}`);
             handle103To104Upgrade(previousVersion, currentVersion);
             console.log("Updated Successfully");
             break;

@@ -1,16 +1,17 @@
 import {versionCompare} from "../helpers";
 import {localStorage} from "../chromeApiHelpers";
+import {getSiteGroupStructure} from "../dataHelpers/SitesGroup";
 
 export const handle103To104Upgrade = (previousVersion, currentVersion) => {
 
     const addWebsiteAsDefaultBlockType = () => {
         localStorage.get("sitesGroups").then(sitesGroups => {
             let newSitesGroups = sitesGroups.map(sg => {
-                sg.sitesList = sg.sitesList.map(site => {
-                    return {...site, blockType: "website"};
-                });
+                sg.blockType = 'website'
                 return sg;
             });
+            newSitesGroups.push(getSiteGroupStructure("Blocked By Word", true, [], 'word'));
+            newSitesGroups.push(getSiteGroupStructure("Blocked By Regex", true, [], 'regex'));
             localStorage.set("sitesGroups", newSitesGroups);
         });
     }

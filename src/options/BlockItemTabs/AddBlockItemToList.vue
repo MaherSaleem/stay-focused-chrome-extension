@@ -5,22 +5,14 @@
             <md-input @keyup.enter="handleEnterWebsite"
                       v-model="siteData.siteUrl"></md-input>
         </md-field>
-        <md-field class="enter-website-field">
-            <label>Block Type</label>
-            <md-select v-model="siteData.blockType">
-                <md-option v-for="(blockSiteValue, blockSiteKey) in blockTypes" :value="blockSiteKey">
-                    {{blockSiteValue}}
-                </md-option>
-            </md-select>
-        </md-field>
         <span class="md-error" v-if="siteData.siteUrl !== '' && !isValidBlockItem">Invalid Website</span>
 
     </div>
 </template>
 
 <script>
-    import {blockTypes} from '../constants'
-    import {isValidURL} from "../helpers";
+    import {blockTypes} from '../../constants'
+    import {isValidURL} from "../../helpers";
 
     export default {
         name: "AddBlockItemToList",
@@ -28,8 +20,13 @@
             return {
                 siteData: {
                     siteUrl: "",
-                    blockType: "website"
                 }
+            }
+        },
+        props: {
+            blockType: {
+                type: String,
+                required: true
             }
         },
         computed: {

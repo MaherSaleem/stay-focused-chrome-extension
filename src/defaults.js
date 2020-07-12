@@ -4,7 +4,7 @@ export let settingsDefault = {
     workHours: {
         startTime: "08:00 AM",
         endTime: "05:00 PM",
-        days: ["1", "2", "3", "4", "5"], // Monday to Tuesday
+        days: ["1", "2", "3", "4", "5"], // Monday to Thursday
         enableWorkHours: false
     },
     allowFunnyGoBackImages: true,
@@ -28,5 +28,10 @@ export let websitesListDefault = [
         getSiteStructure("netflix.com"),
         getSiteStructure("dailymotion.com"),
     ]),
-]
+    getSiteGroupStructure("Blocked By Word", true, [], 'word'),
+    getSiteGroupStructure("Blocked By Regex", true, [], 'regex'),
+
+
+];
+
 export let activeDefault = false

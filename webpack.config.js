@@ -90,6 +90,8 @@ const config = {
           jsonContent.version = version;
 
           if (config.mode === 'development') {
+            jsonContent.name = `DEV - ${jsonContent.name}`;
+            console.log(jsonContent.name);
             jsonContent['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
           }
 

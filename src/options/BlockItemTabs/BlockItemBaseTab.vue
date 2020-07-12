@@ -1,11 +1,9 @@
 <template>
     <div>
-        <div>
-            <note-block v-if="hasNote">
+            <note-block class="note" v-if="hasNote" type="warning">
                 <slot name="note">
                 </slot>
             </note-block>
-        </div>
         <md-column v-if="allowCreateNewGroups" class="enter-new-group-input" :width="50">
             <md-field class="add-new-website-field">
                 <label>Type the name of the new group of websites(ex: E-Commerce)</label>
@@ -135,6 +133,10 @@
     .enter-new-group-input {
         position: relative;
         left: 1%;
+    }
+    .note{
+        margin-bottom: 10px;
+        margin-left: 1%;
     }
 
 </style>

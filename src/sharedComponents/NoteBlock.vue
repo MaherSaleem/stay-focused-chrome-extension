@@ -28,7 +28,7 @@
         overflow: hidden;
         border-left: 4px solid #ffab40;
         background-color: #eee;
-        display: inline;
+        display: block;
     }
 
     .warning {

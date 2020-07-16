@@ -33,6 +33,7 @@
                 </div>
             </shared-card>
 
+            <social-media-share :show-text="false" />
         </main>
 
         <footer></footer>
@@ -48,9 +49,10 @@
     } from "../chromeApiHelpers";
     import SharedCard from "../sharedComponents/SharedCard";
     import {getSiteGroupStructure, getSiteStructure} from "../dataHelpers/SitesGroup";
+    import SocialMediaShare from "../sharedComponents/SocialMediaShare";
 
     export default {
-        components: {SharedCard},
+        components: {SocialMediaShare, SharedCard},
         mounted() {
             localStorage.get("active").then(active => {
                 this.active = active

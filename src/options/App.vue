@@ -58,6 +58,8 @@
             </md-app-drawer>
 
             <md-app-content>
+                <social-media-share></social-media-share>
+
                 <div>
                     <component @reload-data="loadData" :is="selectedTab"></component>
                 </div>
@@ -75,10 +77,13 @@
     import BlockByRegexTab from "./BlockItemTabs/BlockByRegexTab";
     import {localStorage} from "../chromeApiHelpers";
     import UnlockPage from "./unlock/UnlockPage";
+    import SocialMediaShare from "../sharedComponents/SocialMediaShare";
 
     export default {
         name: "App",
-        components: {UnlockPage, AboutTab, SettingsTab, BlockByWebsiteTab, BlockByWordTab, BlockByRegexTab},
+        components: {
+            SocialMediaShare,
+            UnlockPage, AboutTab, SettingsTab, BlockByWebsiteTab, BlockByWordTab, BlockByRegexTab},
 
         mounted() {
             this.loadData();

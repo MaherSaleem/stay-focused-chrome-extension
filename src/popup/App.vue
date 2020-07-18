@@ -32,8 +32,11 @@
 
                 </div>
             </shared-card>
-
-            <social-media-share :show-text="false" />
+            <shared-card>
+                <div class="main-row">
+                    <social-media-share :show-text="false"/>
+                </div>
+            </shared-card>
         </main>
 
         <footer></footer>
@@ -89,7 +92,7 @@
                 localStorage.get("sitesGroups").then(sitesGroups => {
 
                     let addedFromPopupSiteGroup = sitesGroups.find(sg => sg.uid === "added-from-popup-uid");
-                    if (!addedFromPopupSiteGroup){
+                    if (!addedFromPopupSiteGroup) {
                         addedFromPopupSiteGroup = getSiteGroupStructure("Added From Popup", true, [], "added-from-popup-uid");
                         sitesGroups.push(addedFromPopupSiteGroup);
                     }

@@ -10,14 +10,17 @@ import {
 global.browser = require('webextension-polyfill');
 import {localStorage} from "./chromeApiHelpers";
 import {handle103To104Upgrade} from "./Migration/upgrades";
+import {skippedUrls} from "./constants";
 
 const chooseIconColor = () => {
     localStorage.get("active").then(active => {
         setIcon(active);
     });
 }
-
 const checkIfMatch = (blockItem, url) => {
+    if (skippedUrls.some(skippedUrl => url.includes(skippedUrl))) {
+        return false;
+    }
     switch (blockItem.blockType) {
         case "regex":
             return regexMatch(url, blockItem.url);

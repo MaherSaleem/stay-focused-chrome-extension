@@ -1,7 +1,9 @@
 <template>
     <div>
-        <shared-card>
+        <p>
             Do you like the extension? share it with others!
+        </p>
+        <div class="social-media-btns">
             <facebook-button
                     v-bind="btnTextProp"
                     class="share-button--circle share-button--outline"
@@ -20,8 +22,7 @@
                     :description="description"
                     :url="url"
             />
-
-        </shared-card>
+        </div>
     </div>
 </template>
 
@@ -48,11 +49,11 @@
         props: {
             showText: {type: Boolean, default: true}
         },
-        computed:{
-            btnTextProp(){
-                if(this.showText){
+        computed: {
+            btnTextProp() {
+                if (this.showText) {
                     return {}
-                }else{
+                } else {
                     return {btnText: ""}
                 }
 
@@ -62,5 +63,7 @@
 </script>
 
 <style scoped>
-
+    .social-media-btns{
+        margin-top: 5px;
+    }
 </style>

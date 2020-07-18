@@ -58,8 +58,6 @@
             </md-app-drawer>
 
             <md-app-content>
-                <social-media-share></social-media-share>
-
                 <div>
                     <component @reload-data="loadData" :is="selectedTab"></component>
                 </div>

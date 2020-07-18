@@ -18,6 +18,9 @@
             <a target="_blank" href="https://www.linkedin.com/in/maher-khdeir/">LinkedIn</a>
         </shared-card>
         <shared-card>
+            <social-media-share/>
+        </shared-card>
+        <shared-card>
             <h4>Want to contribute?</h4>
             Check the open source <a target="_blank"
                                      href="https://github.com/MaherSaleem/stay-focused-chrome-extension">Github
@@ -29,10 +32,11 @@
 
 <script>
     import SharedCard from "../sharedComponents/SharedCard";
+    import SocialMediaShare from "../sharedComponents/SocialMediaShare";
 
     export default {
         name: "AboutTab",
-        components: {SharedCard}
+        components: {SocialMediaShare, SharedCard}
     }
 </script>
 

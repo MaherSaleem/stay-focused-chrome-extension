@@ -9,6 +9,7 @@ export const skippedUrls = [
     "twitter.com/share",
     "facebook.com/sharer/sharer.php",
     "linkedin.com/shareArticle"
-
 ]
+
+export const googleAnalyticsId = 'UA-170213723-1';
 

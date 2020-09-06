@@ -8,7 +8,13 @@ import App from './App'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css';
 import 'vue-material/dist/theme/default.css';
+import {googleAnalyticsId} from "../constants";
+import VueAnalytics from "vue-analytics";
+
 Vue.use(VueMaterial);
+Vue.use(VueAnalytics, {
+  id: googleAnalyticsId
+});
 
 /* eslint-disable no-new */
 new Vue({

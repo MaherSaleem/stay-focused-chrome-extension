@@ -1,7 +1,7 @@
 {
   "name": "stay-focused",
   "version": "1.0.5",
-  "description": "A Chrome extension to block list of websites, to keep you focusing in your work.",
+  "description": "Block distracting websites and get funny images to go back to work.",
   "author": "Maher Khdeir <maher.khdeir@gmail.com>",
   "engines": {
     "node": ">=10"
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "vue": "^2.6.10",
+    "vue-analytics": "^5.22.1",
     "vue-material": "^1.0.0-beta-13",
     "vue-share-buttons": "^1.1.0",
     "vue2-timepicker": "^1.0.8",

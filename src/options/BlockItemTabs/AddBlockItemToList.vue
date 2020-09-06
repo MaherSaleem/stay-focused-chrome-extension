@@ -34,7 +34,7 @@
                 return blockTypes;
             },
             isValidBlockItem() {
-                switch (this.siteData.blockType) {
+                switch (this.blockType) {
                     case "website":
                         return isValidURL(this.siteData.siteUrl);
                     default:

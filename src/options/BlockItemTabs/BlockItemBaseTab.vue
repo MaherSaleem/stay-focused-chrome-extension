@@ -9,9 +9,7 @@
       :width="50"
     >
       <md-field class="add-new-website-field">
-        <label
-          >Type the name of the new group of websites(ex: E-Commerce)</label
-        >
+        <label>Enter a name for the new website group(ex: E-Commerce)</label>
         <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>
       </md-field>
     </md-column>

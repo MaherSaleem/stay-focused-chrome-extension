@@ -37,14 +37,14 @@
             @click="selectTab('block-by-word-tab')"
           >
             <md-icon>sticky_note_2</md-icon>
-            <span class="md-list-item-text">Block By Word</span>
+            <span class="md-list-item-text">Block Using a Word</span>
           </md-list-item>
           <md-list-item
             :class="{ 'selected-tab': isSelectedTab('block-by-regex-tab') }"
             @click="selectTab('block-by-regex-tab')"
           >
             <md-icon>spellcheck</md-icon>
-            <span class="md-list-item-text">Block By Regex</span>
+            <span class="md-list-item-text">Block Using Regex</span>
           </md-list-item>
 
           <md-list-item

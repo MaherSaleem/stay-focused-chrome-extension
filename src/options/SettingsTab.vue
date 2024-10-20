@@ -1,11 +1,10 @@
 <template>
   <div>
     <shared-card>
-      <h4>Lock type</h4>
+      <h4>Deactivation Settings</h4>
       <note-block>
-        Note: The idea behind this is to make deactivating the extension needs
-        some time, so you might prefer to continue working instead of
-        deactivating it.
+        Note: This feature is designed to make deactivation take some effort,
+        encouraging you to stay focused and keep working
       </note-block>
       <md-radio v-model="settings.lock.type" value="none">None</md-radio>
       <md-radio v-model="settings.lock.type" value="question"
@@ -24,8 +23,8 @@
       <md-radio v-model="settings.lock.type" value="password"
         >Password
         <tooltip
-          >Notice that you have to enter the password each time you go to
-          settings</tooltip
+          >You’ll need to enter the password each time you access the
+          settings.</tooltip
         >
       </md-radio>
       <md-column v-if="settings.lock.type === 'password'">
@@ -37,12 +36,13 @@
       <md-radio v-model="settings.lock.type" value="click-button"
         >Click a Button
         <tooltip
-          >This will make you click a button number of times to unlock</tooltip
+          >Requires clicking a button multiple times to unlock the
+          extension.</tooltip
         >
       </md-radio>
       <md-column v-if="settings.lock.type === 'click-button'">
         <md-field>
-          <label>Number of clicks to unlock</label>
+          <label>Number of clicks required to unlock</label>
           <md-input
             type="number"
             min="1"
@@ -54,15 +54,14 @@
 
     <shared-card>
       <h4>
-        Working Days and Hours
+        Work Schedule
         <tooltip
-          >Specifying working hours, so the websites will be blocked in these
-          days/hours
+          >Blocks websites during the specified working days and hours.
         </tooltip>
       </h4>
       <note-block type="warning">
-        Note: You have to activate the tool too, to make it works in working
-        hours/days
+        Note: To enable this setting, activate the tool and set your preferred
+        working hours/days.
       </note-block>
       <md-switch
         v-model="settings.workHours.enableWorkHours"

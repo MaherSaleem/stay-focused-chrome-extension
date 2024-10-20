@@ -20,20 +20,20 @@ export let settingsDefault = {
 };
 
 export let websitesListDefault = [
-  getSiteGroupStructure("Social Media", true, [
+  getSiteGroupStructure("Social Media Sites", true, [
     getSiteStructure("facebook.com"),
     getSiteStructure("twitter.com"),
     getSiteStructure("x.com"),
     getSiteStructure("instagram.com"),
     getSiteStructure("linkedin.com")
   ]),
-  getSiteGroupStructure("Videos Websites", false, [
+  getSiteGroupStructure("Videos Sites", false, [
     getSiteStructure("youtube.com"),
     getSiteStructure("netflix.com"),
     getSiteStructure("dailymotion.com")
   ]),
-  getSiteGroupStructure("Blocked By Word", true, [], "word"),
-  getSiteGroupStructure("Blocked By Regex", true, [], "regex")
+  getSiteGroupStructure("Blocked Using a Word", true, [], "word"),
+  getSiteGroupStructure("Blocked Using Regex", true, [], "regex")
 ];
 
 export let activeDefault = false;

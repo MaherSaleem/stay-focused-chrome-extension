@@ -92,7 +92,10 @@ const config = {
           if (config.mode === 'development') {
             jsonContent.name = `DEV - ${jsonContent.name}`;
             console.log(jsonContent.name);
-            jsonContent['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+            jsonContent['content_security_policy'] =
+                {
+                  extension_pages: "script-src 'self'; object-src 'self';"
+                }
           }
 
           return JSON.stringify(jsonContent, null, 2);

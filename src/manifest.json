@@ -1,7 +1,7 @@
 {
   "name": "Stay Focused",
   "description": "Block distracting websites and get funny images to go back to work.",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "manifest_version": 3,
   "icons": {
     "16": "icons/icon_16.png",

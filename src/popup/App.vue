@@ -116,6 +116,7 @@ export default {
             "Added From Popup",
             true,
             [],
+            "website",
             "added-from-popup-uid"
           );
           sitesGroups.push(addedFromPopupSiteGroup);

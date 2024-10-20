@@ -32,24 +32,37 @@ const checkIfMatch = (blockItem, url) => {
 
 // Define the function to check if access to a website is allowed
 const checkIfCanEnterWebsite = async (info) => {
-    if (info.frameId === 0 && isValidURL(info.url)) {
-        let isActive = await localStorage.get("active");
-        if (isActive) {
-            const settings = await localStorage.get("settings");
-            if (settings.workHours && settings.workHours.enableWorkHours === true) {
-                isActive = isActive &&
-                    isTodayOneOfTheseDays(settings.workHours.days) &&
-                    isCurrentTimeBetweenTwoTimes(settings.workHours.startTime, settings.workHours.endTime);
-            }
-            if (isActive) {
-                const sitesGroups = await localStorage.get("sitesGroups");
-                let blockedWebsites = getFlatEnabledListOfWebsites(sitesGroups);
-                let mustGoBack = blockedWebsites.some(website => checkIfMatch(website, info.url));
-                if (mustGoBack) {
-                    chrome.tabs.update(info.tabId, {"url": "goback/goback.html"});
-                }
-            }
+    // Check if it's the main frame and URL is valid
+    if (info.frameId !== 0 || !isValidURL(info.url)) {
+        return;
+    }
+
+    // Check if the extension is active
+    let isExtensionActive = await localStorage.get("active");
+    if (!isExtensionActive) {
+        return;
+    }
+
+    // Get settings from local storage
+    const settings = await localStorage.get("settings");
+
+    // Check if work hours are enabled and if the current day and time match
+    if (settings.workHours?.enableWorkHours) {
+        const isWorkDay = isTodayOneOfTheseDays(settings.workHours.days);
+        const isWithinWorkTime = isCurrentTimeBetweenTwoTimes(settings.workHours.startTime, settings.workHours.endTime);
+
+        if (!(isWorkDay && isWithinWorkTime)) {
+            return;
         }
+    }
+
+    // Get blocked websites list and check if the current URL is in it
+    const sitesGroups = await localStorage.get("sitesGroups");
+    const blockedWebsites = getFlatEnabledListOfWebsites(sitesGroups);
+
+    const isBlocked = blockedWebsites.some(website => checkIfMatch(website, info.url));
+    if (isBlocked) {
+        await chrome.tabs.update(info.tabId, {"url": "goback/goback.html"});
     }
 };
 

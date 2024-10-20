@@ -20,6 +20,7 @@ export let websitesListDefault = [
     getSiteGroupStructure("Social Media", true, [
         getSiteStructure("facebook.com"),
         getSiteStructure("twitter.com"),
+        getSiteStructure("x.com"),
         getSiteStructure("instagram.com"),
         getSiteStructure("linkedin.com"),
     ]),

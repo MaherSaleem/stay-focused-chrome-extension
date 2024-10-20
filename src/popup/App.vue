@@ -18,7 +18,7 @@
           </md-button>
         </div>
         <div class="main-row" v-else>
-          <p><b>Focus Mode enabled?</b></p>
+          <p><b>Activate Focus Mode?</b></p>
           <p>
             <md-switch v-model="active" @change="saveActive"></md-switch>
           </p>

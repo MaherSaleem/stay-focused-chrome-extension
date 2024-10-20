@@ -3,19 +3,19 @@
     <shared-card>
       <h4>About The Extension</h4>
       <p>
-        Stay focused is an open source chrome extension to help you to block
-        distraction websites like social media.
+        Stay Focused is an open-source Chrome extension designed to block
+        distracting websites, such as social media platforms.
       </p>
 
       <p>
-        The idea behinds this, that sometimes you are working, and suddenly you
-        find yourself sitting on social media like Facebook, and you spend there
-        like 30 minutes without noticing that. So this chrome extension will
-        show an image to remind you to back to work.
+        The concept is simple: you might start working, only to find yourself
+        scrolling through social media like Facebook for 30 minutes without
+        realizing it. This extension displays a reminder image to help you get
+        back to work.
       </p>
     </shared-card>
     <shared-card>
-      <h4>Credits</h4>
+      <h4>Developed By</h4>
       <p>Maher Khdeir</p>
       <a target="_blank" href="https://www.linkedin.com/in/maher-khdeir/"
         >LinkedIn</a
@@ -25,8 +25,8 @@
       <social-media-share />
     </shared-card>
     <shared-card>
-      <h4>Want to contribute?</h4>
-      Check the open source
+      <h4>Interested in contributing?</h4>
+      Visit our open-source GitHub repository.
       <a
         target="_blank"
         href="https://github.com/MaherSaleem/stay-focused-chrome-extension"

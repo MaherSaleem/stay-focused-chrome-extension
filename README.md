@@ -2,55 +2,45 @@
 
 * [Introduction](#introduction)
 * [Installation](#installation)
-* [Functionalities](#functionalities)
+* [Features](#features)
+* [Contributing](#contributing)
 * [Credits](#credits)
 * [License](#license)
 
-
 ## Introduction
-Stay focused is an open source chrome extension 
-to help you to block distraction websites like social media.
 
-It's built using VueJs framework.
+Stay Focused is an open-source Chrome extension designed to help you block distracting websites, such as social media. Built using the Vue.js framework, its purpose is to enhance productivity by keeping you on task.
 
-The idea behinds this, that sometimes you are working, and suddenly you
-find yourself setting on social media like Facebook, and you 
-spend there like 30 minutes without noticing that.
-So this chrome extension will show an image to remind you to back to work.
-
-Moreover, it has locking mechanisms to make disabling the tool needs some
- time, so you will prefer to continue working instead of disabling it
+The extension works by displaying a reminder image when you find yourself mindlessly scrolling through sites like Facebook, often for longer than intended. Additionally, it includes locking mechanisms that make it harder to disable the extension quickly, encouraging you to stay focused rather than turn it off.
 
 ## Installation
 
-Download the extension from [chrome web store](https://chrome.google.com/webstore/detail/stay-focused/nnlgodiccogbpcfnhmclaicljjgfmekd).
+You can download the extension from the [Chrome Web Store](https://chrome.google.com/webstore/detail/stay-focused/nnlgodiccogbpcfnhmclaicljjgfmekd).
 
-## Functionalities:
-* Block entering websites by three methods:
-    * Block by websites
-    * Block by a word
-    * Block by regex
-* Group block websites in groups (like social media, videos, etc)
-* Showing funny images to tell you to go back to work.
-* specify working hours(to only block websites during your working hours)
-* Using Lock mechanism to delay you from disabling the tool immediately:
-  * **Lock By Password**: To prevent others from entering the settings and unlock the tool
-  * **Lock By Questions** You have to answer a question to unlock the tool
-  * **Clicking a button** You have to click on a moving button for number of times to unlock the tool
- 
+## Features
 
+* Block websites using three methods:
+  * **By Website**: Block specific websites.
+  * **By Word**: Block websites containing certain words.
+  * **By Regex**: Block websites using regular expressions.
+* Group websites into categories (e.g., Social Media, Videos) for easier management.
+* Display motivational images to remind you to refocus.
+* Set working hours to block websites only during your specified work times.
+* Lock mechanisms to prevent immediate deactivation:
+  * **Password Lock**: Requires a password to access settings or disable the extension.
+  * **Question Lock**: Requires answering a question to disable the extension.
+  * **Button Click Lock**: Requires clicking a moving button a certain number of times to disable the extension.
 
+## Contributing
 
-## Want to contribute?
-Contributions are so welcomed.
-Please make sure to read the [Contributing Guide](Contributing.md) before making a pull request.
-
+Contributions are welcome! Please read the [Contributing Guide](Contributing.md) before submitting a pull request.
 
 ## Credits
+
 Maher Khdeir  
-[Linked In](https://www.linkedin.com/in/maher-khdeir/)  
+[LinkedIn](https://www.linkedin.com/in/maher-khdeir/)  
 Email: maher.khdeir@gmail.com
 
 ## License
 
-The GNU General Public License v3.0. Please see [License File](LICENSE) for more information.
+This project is licensed under the GNU General Public License v3.0. See the [License File](LICENSE) for more details.

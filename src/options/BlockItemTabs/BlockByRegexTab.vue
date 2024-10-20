@@ -5,7 +5,8 @@
     :allow-delete-groups="false"
   >
     <template v-slot:note>
-      Note: If you don't know what is Regex, just ignore this page.
+      Note: If you're unfamiliar with Regex (Regular Expressions), you can skip
+      this page.
     </template>
   </block-item-base-tab>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      Do you like the extension? share it with others!
+      Enjoy using Stay Focused? Share it with your friends!
     </p>
     <div class="social-media-btns">
       <facebook-button

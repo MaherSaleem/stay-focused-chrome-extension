@@ -5,8 +5,8 @@
     :allow-delete-groups="false"
   >
     <template v-slot:note>
-      Note: Don't use short words, for example the letter 'a', since this will
-      block any site that has letter 'a'
+      Note: Avoid using single letters or short words (e.g., 'a'), as this will
+      block all websites containing the letter 'a'.
     </template>
   </block-item-base-tab>
 </template>

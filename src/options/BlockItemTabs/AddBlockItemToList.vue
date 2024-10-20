@@ -1,7 +1,7 @@
 <template>
   <div>
     <md-field class="enter-website-field">
-      <label>Type your new website</label>
+      <label>Add a new item to block</label>
       <md-input
         @keyup.enter="handleEnterWebsite"
         v-model="siteData.siteUrl"

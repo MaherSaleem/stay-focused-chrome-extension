@@ -22,6 +22,9 @@
       >
     </shared-card>
     <shared-card>
+      <buy-me-a-coffee align="left" />
+    </shared-card>
+    <shared-card>
       <social-media-share />
     </shared-card>
     <shared-card>
@@ -39,10 +42,11 @@
 <script>
 import SharedCard from "../sharedComponents/SharedCard";
 import SocialMediaShare from "../sharedComponents/SocialMediaShare";
+import BuyMeACoffee from "../sharedComponents/BuyMeACoffee.vue";
 
 export default {
   name: "AboutTab",
-  components: { SocialMediaShare, SharedCard }
+  components: { BuyMeACoffee, SocialMediaShare, SharedCard }
 };
 </script>
 

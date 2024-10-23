@@ -1,6 +1,6 @@
 {
   "name": "stay-focused",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A Chrome extension to block list of websites, to keep you focusing in your work.",
   "author": "Maher Khdeir <maher.khdeir@gmail.com>",
   "engines": {

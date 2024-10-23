@@ -1,12 +1,19 @@
 <template>
-  <card-with-logo>
-    <component
-      v-if="this.lockSettings.type"
-      v-on:unlock="handleUnlock"
-      :lock-settings="lockSettings"
-      :is="lockComponentName"
-    />
-  </card-with-logo>
+  <div>
+    <card-with-logo>
+      <component
+        v-if="this.lockSettings.type"
+        v-on:unlock="handleUnlock"
+        :lock-settings="lockSettings"
+        :is="lockComponentName"
+      />
+    </card-with-logo>
+    <div class="buy-me-coffee">
+      <shared-card>
+        <buy-me-a-coffee align="left" />
+      </shared-card>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -15,10 +22,14 @@ import QuestionUnlock from "./QuestionUnlock";
 import PasswordUnlock from "./PasswordUnlock";
 import CardWithLogo from "../../sharedComponents/CardWithLogo";
 import ClickButtonUnlock from "./ClickButtonUnlock";
+import BuyMeACoffee from "../../sharedComponents/BuyMeACoffee.vue";
+import SharedCard from "../../sharedComponents/SharedCard.vue";
 
 export default {
   name: "UnlockPage",
   components: {
+    SharedCard,
+    BuyMeACoffee,
     CardWithLogo,
     PasswordUnlock,
     QuestionUnlock,
@@ -49,4 +60,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.buy-me-coffee {
+  margin-top: 5rem;
+  width: 40%;
+  margin-left: 30%;
+}
+</style>

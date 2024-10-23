@@ -44,7 +44,7 @@
       </shared-card>
       <shared-card>
         <div class="main-row">
-          <social-media-share :show-text="false" />
+          <buy-me-a-coffee />
         </div>
       </shared-card>
     </main>
@@ -71,9 +71,10 @@ import {
   getSiteStructure
 } from "../dataHelpers/SitesGroup";
 import SocialMediaShare from "../sharedComponents/SocialMediaShare";
+import BuyMeACoffee from "../sharedComponents/BuyMeACoffee.vue";
 
 export default {
-  components: { SocialMediaShare, SharedCard },
+  components: { BuyMeACoffee, SocialMediaShare, SharedCard },
   mounted() {
     localStorage.get("active").then(active => {
       this.active = active;

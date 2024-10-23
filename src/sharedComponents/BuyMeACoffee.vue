@@ -32,7 +32,7 @@ export default {
   },
   props: {
     showEmoji: { type: Boolean, default: true },
-    align: { type: String, default: "center" } // New prop to set alignment
+    align: { type: String, default: "center" }
   }
 };
 </script>

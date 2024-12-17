@@ -7,13 +7,13 @@ export const resetChromeStorageData = () => {
   localStorage.set("active", defaults.activeDefault);
 };
 
-export const isValidURL = str => {
+export const isValidURL = (str) => {
   const pattern = new RegExp(
     "^(https?:\\/\\/)?" + // protocol
-    "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-    "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-    "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-    "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+      "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+      "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+      "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+      "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
       "(\\#[-a-z\\d_]*)?$",
     "i"
   ); // fragment locator
@@ -23,7 +23,7 @@ export const isValidURL = str => {
  * @param url {string}
  * @returns {string}
  */
-export const getHostNameFromStringUrl = url => {
+export const getHostNameFromStringUrl = (url) => {
   let a = document.createElement("a");
   if (!url.startsWith("http")) {
     url = "http://" + url;
@@ -41,7 +41,7 @@ export const getHostNameFromStringUrl = url => {
  * @param days {string[]}
  * @returns {boolean}
  */
-export const isTodayOneOfTheseDays = days => {
+export const isTodayOneOfTheseDays = (days) => {
   let dayIndex = new Date().getDay(); // sunday is 0, saturday is 6
   return days.includes(dayIndex.toString());
 };
@@ -54,7 +54,7 @@ export const isTodayOneOfTheseDays = days => {
  */
 export const isCurrentTimeBetweenTwoTimes = (startTime, endTime) => {
   let currentDate = new Date();
-  const convertTimeToDate = timeString => {
+  const convertTimeToDate = (timeString) => {
     let timeAsDate = new Date(currentDate.getTime());
     timeAsDate.setHours(timeString.substring(0, 2));
     timeAsDate.setMinutes(timeString.substring(3, 5));
@@ -70,26 +70,26 @@ export const isCurrentTimeBetweenTwoTimes = (startTime, endTime) => {
 
   return startTimeAsDate < currentDate && endTimeAsDate > currentDate;
 };
-export const setIcon = isActive => {
+export const setIcon = (isActive) => {
   let iconPath = isActive
     ? "/icons/icon_48_active.ico"
     : "/icons/icon_48_inactive.ico";
   setExtensionIcon(iconPath);
 };
 
-export const getFlatEnabledListOfWebsites = groupsList =>
+export const getFlatEnabledListOfWebsites = (groupsList) =>
   getFlatListOfWebsites(groupsList).filter(
-    site => site.groupEnabled && site.enabled === true
+    (site) => site.groupEnabled && site.enabled === true
   );
 
-export const getFlatListOfWebsites = groupsList => {
+export const getFlatListOfWebsites = (groupsList) => {
   let flatList = [];
-  groupsList.forEach(siteGroup => {
+  groupsList.forEach((siteGroup) => {
     flatList.push(
-      ...siteGroup.sitesList.map(site => ({
+      ...siteGroup.sitesList.map((site) => ({
         ...site,
         groupEnabled: siteGroup.groupEnabled,
-        blockType: siteGroup.blockType
+        blockType: siteGroup.blockType,
       }))
     );
   });

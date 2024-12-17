@@ -1,0 +1,143 @@
+{
+  "message": {
+    "stayFocused": "Rimani concentrato",
+    "unlock": {
+      "question": {
+        "answerLabel": "Risposta",
+        "wrongAnswer": "Risposta errata!",
+        "showAnswer": "Mostra risposta"
+      },
+      "password": {
+        "noPassword": "Non hai ancora impostato una password! Vai alle impostazioni per impostarla.",
+        "goToSettings": "Vai alle impostazioni",
+        "enterPassword": "Inserisci la password",
+        "wrongPassword": "Password errata!"
+      },
+      "click": "clic per sbloccare"
+    },
+    "blockItems": {
+      "regexNote": "Nota: Se non hai familiarità con Regex (espressioni regolari), puoi saltare questa pagina.",
+      "wordNote": "Nota: Evita di usare lettere singole o parole brevi (es. 'a'), poiché bloccherà tutti i siti web contenenti la lettera 'a'.",
+      "groupLabel": "Inserisci un nome per il nuovo gruppo di siti web (es: E-Commerce)",
+      "addNewItem": "Aggiungi sito web",
+      "removeGroup": "Rimuovi gruppo",
+      "invalidWebsite": "Rimuovi sito web"
+    },
+    "options": {
+      "active": "Attivo",
+      "inactive": "Inattivo",
+      "blockByWebsite": "Blocca per sito web",
+      "blockByWord": "Blocca con una parola",
+      "blockByRegex": "Blocca con Regex",
+      "settings": "Impostazioni",
+      "about": "Informazioni",
+      "settingsTab": {
+        "deactivation": {
+          "title": "Impostazioni di disattivazione",
+          "note": "Nota: Questa funzione è progettata per rendere la disattivazione più difficile, incoraggiandoti a rimanere concentrato e continuare a lavorare.",
+          "radio": {
+            "none": "Nessuno",
+            "question": "Rispondere a una domanda",
+            "questionLabel": "Numero di tentativi prima di mostrare la risposta",
+            "password": "Password",
+            "passwordTooltip": "Dovrai inserire la password ogni volta che accedi alle impostazioni.",
+            "click": "Cliccare un pulsante",
+            "clickTooltip": "Richiede di cliccare più volte su un pulsante per sbloccare l'estensione.",
+            "clickLabel": "Numero di clic richiesti per sbloccare"
+          }
+        },
+        "schedule": {
+          "title": "Orario di lavoro",
+          "titleTooltip": "Blocca i siti web durante i giorni e le ore di lavoro specificati.",
+          "note": "Nota: Per abilitare questa impostazione, attiva lo strumento e imposta le tue ore/giorni di lavoro preferiti.",
+          "isActive": "Attivo?",
+          "from": "Da:",
+          "to": "A:",
+          "daysLabel": "Giorni",
+          "days": {
+            "sunday": "Domenica",
+            "monday": "Lunedì",
+            "tuesday": "Martedì",
+            "wednesday": "Mercoledì",
+            "thursday": "Giovedì",
+            "friday": "Venerdì",
+            "saturday": "Sabato"
+          }
+        },
+        "showImages": "Mostra immagini",
+        "resetData": "Reimposta dati"
+      },
+      "aboutTab": {
+        "title": "Informazioni sull'estensione",
+        "description1": "Stay Focused è un'estensione open-source per Chrome progettata per bloccare siti web distraenti, come le piattaforme di social media.",
+        "description2": "Il concetto è semplice: potresti iniziare a lavorare, solo per trovarti a scorrere i social media come Facebook per 30 minuti senza accorgertene. Questa estensione mostra un'immagine promemoria per aiutarti a tornare al lavoro.",
+        "developedBy": "Sviluppato da",
+        "contributing": "Interessato a contribuire?",
+        "visitGithub": "Visita il nostro repository GitHub open-source.",
+        "githubRepo": "Repository GitHub"
+      },
+      "resetData": {
+        "title": "Sei sicuro di voler reimpostare i dati?",
+        "content": "Questo farà tornare tutte le tue impostazioni e siti web ai valori iniziali.",
+        "confirm": "Sì",
+        "cancel": "No"
+      }
+    },
+    "popup": {
+      "focusModeEnabled": "La modalità di concentrazione è attiva e hai impostato un meccanismo di blocco per sbloccarla.",
+      "activateFocusMode": "Attivare la modalità di concentrazione?",
+      "website": "Sito web:",
+      "button": {
+        "unlock": "Sblocca",
+        "addWebsite": "Aggiungi sito web"
+      },
+      "alreadyAdded": "Già aggiunto"
+    },
+    "shared": {
+      "socialMediaShare": "Ti piace usare Stay Focused? Condividilo con i tuoi amici!",
+      "buyMeACoffee": "Ami rimanere concentrato? Offrimi un caffè per supportare gli aggiornamenti e mantenerti in carreggiata!",
+      "keepMeFocused": "Mantenimi concentrato"
+    },
+    "defaults": {
+      "socialMediaSites": "Siti di Social Media",
+      "videoSites": "Siti di Video",
+      "blockedByWord": "Bloccato utilizzando una parola",
+      "blockedByRegex": "Bloccato utilizzando Regex"
+    },
+    "images": {
+      "text1": "",
+      "text2": "Torna al lavoro ora!",
+      "text3": "COSA stai facendo qui? Vai al lavoro",
+      "text4": "Non hai imparato la tua lezione, vero? Vai al lavoro",
+      "text5": "Dai!",
+      "text6": "Vai al lavoro o balla con noi!",
+      "text7": "",
+      "text8": "",
+      "text9": "",
+      "text10": "Quando apri un sito web bloccato invece di lavorare.",
+      "text11": "Quando ti vedo cercare di aprire un sito web bloccato",
+      "text12": "Quando ti vedo cercare ancora e ancora di aprire un sito web bloccato",
+      "text13": "quando non impari la lezione e interrompi di nuovo il tuo lavoro",
+      "text14": "La mia faccia quando blocco un sito web per te"
+    },
+    "questions": {
+      "text1": "Quanti mesi ci sono in un anno? (solo il numero)",
+      "text2": "Quanti giorni ci sono in una settimana? (solo il numero)",
+      "text3": "Quanti giorni ci sono in un anno? (solo il numero)",
+      "text4": "Quanti colori ci sono in un arcobaleno?",
+      "text5": "Quanti lati ha un triangolo? (solo il numero)",
+      "text6": "Quanto fa 2+2?",
+      "text7": "Quanto fa 10+15?",
+      "text8": "Quanto fa 10 x 9?",
+      "text9": "Quanto fa 1+1+1+1+1+1?",
+      "text10": "Quanto fa 2x2 + 1?",
+      "text11": "Quanto fa 123 - 33?",
+      "text12": "Quanto fa 10 x (5-3)?",
+      "text13": "Quanto fa 350 * 0?",
+      "text14": "Quando è iniziata la Prima Guerra Mondiale?",
+      "text15": "Quando è finita la Prima Guerra Mondiale?",
+      "text16": "Quando è iniziata la Seconda Guerra Mondiale?",
+      "text17": "Quando è iniziata la Seconda Guerra Mondiale?"
+    }
+  }
+}

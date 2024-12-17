@@ -9,7 +9,7 @@
       :width="50"
     >
       <md-field class="add-new-website-field">
-        <label>Enter a name for the new website group(ex: E-Commerce)</label>
+        <label>{{ $t("message.blockItems.groupLabel") }}</label>
         <md-input @keyup.enter="addNewGroup" v-model="newGroupName"></md-input>
       </md-field>
     </md-column>
@@ -22,12 +22,12 @@
         :allow-delete="allowDeleteGroups"
         v-on:store-websites="storeWebsites"
         v-on:add-new-website="
-          siteData => {
+          (siteData) => {
             addNewSite(sitesGroup.uid, siteData);
           }
         "
         v-on:delete-sites-group="deleteGroup(sitesGroup.uid)"
-        v-on:delete-site="siteIndex => deleteSite(sitesGroup.uid, siteIndex)"
+        v-on:delete-site="(siteIndex) => deleteSite(sitesGroup.uid, siteIndex)"
       ></sites-group>
     </div>
   </div>
@@ -40,7 +40,7 @@ import { getHostNameFromStringUrl } from "../../helpers";
 import { localStorage } from "../../chromeApiHelpers";
 import {
   getSiteGroupStructure,
-  getSiteStructure
+  getSiteStructure,
 } from "../../dataHelpers/SitesGroup";
 import MdColumn from "../../sharedComponents/MdColumn";
 import NoteBlock from "../../sharedComponents/NoteBlock";
@@ -54,41 +54,41 @@ export default {
   props: {
     allowCreateNewGroups: {
       type: Boolean,
-      default: true
+      default: true,
     },
     blockTypeToShow: {
       type: String,
-      required: true
+      required: true,
     },
     allowDeleteGroups: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
       sitesGroups: websitesListDefault,
-      newGroupName: ""
+      newGroupName: "",
     };
   },
   computed: {
     toShowSitesGroups() {
       return this.sitesGroups.filter(
-        sg => this.blockTypeToShow === sg.blockType
+        (sg) => this.blockTypeToShow === sg.blockType
       );
     },
     hasNote() {
       return !!this.$slots.note;
-    }
+    },
   },
   methods: {
     findGroupIndexByUid(uid) {
-      return this.sitesGroups.findIndex(sg => sg.uid === uid);
+      return this.sitesGroups.findIndex((sg) => sg.uid === uid);
     },
     loadWebsites() {
       localStorage
         .get("sitesGroups")
-        .then(sitesGroups => {
+        .then((sitesGroups) => {
           this.sitesGroups = sitesGroups;
         })
         .catch(() => {
@@ -108,7 +108,7 @@ export default {
       let group = this.sitesGroups[groupIndex];
       group.sitesList = [
         getSiteStructure(siteUrl, true, blockType),
-        ...group.sitesList
+        ...group.sitesList,
       ];
       this.storeWebsites();
     },
@@ -118,7 +118,7 @@ export default {
     addNewGroup() {
       this.sitesGroups = [
         getSiteGroupStructure(this.newGroupName),
-        ...this.sitesGroups
+        ...this.sitesGroups,
       ];
       this.newGroupName = "";
       this.storeWebsites();
@@ -139,8 +139,8 @@ export default {
     },
     toggleSiteEnable() {
       this.storeWebsites();
-    }
-  }
+    },
+  },
 };
 </script>
 

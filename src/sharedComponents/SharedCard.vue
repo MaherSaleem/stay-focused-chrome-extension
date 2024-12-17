@@ -22,8 +22,8 @@ export default {
     },
     hasActionsSlot() {
       return !!this.$slots.actions;
-    }
-  }
+    },
+  },
 };
 </script>
 

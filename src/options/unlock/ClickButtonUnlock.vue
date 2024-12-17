@@ -7,7 +7,7 @@
           v-on:keydown.space.prevent
           class="md-raised md-accent"
           @click.native="handleClick"
-          >{{ clicksLeft }} clicks to unlock
+          >{{ clicksLeft }} {{ $t("message.unlock.click") }}
         </md-button>
       </div>
     </div>
@@ -23,8 +23,8 @@ export default {
     return {
       clicksLeft: this.lockSettings.clickButtonCounts,
       buttonPositionStyle: {
-        textAlign: "center"
-      }
+        textAlign: "center",
+      },
     };
   },
   methods: {
@@ -41,8 +41,8 @@ export default {
         availablePositions[
           Math.floor(Math.random() * availablePositions.length)
         ];
-    }
-  }
+    },
+  },
 };
 </script>
 

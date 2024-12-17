@@ -7,7 +7,10 @@
 ## Development Setup
 
 #### Prerequisites
-1) [NodeJs](https://nodejs.org/en/) Installed.
+1) [NodeJs](https://nodejs.org/en/) - v18.20.4
+2) npm - v10.9.0
+3) Python - v2.7.18
+
 
 #### Commonly used NPM scripts
 ``` bash

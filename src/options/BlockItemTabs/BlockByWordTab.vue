@@ -5,8 +5,7 @@
     :allow-delete-groups="false"
   >
     <template v-slot:note>
-      Note: Avoid using single letters or short words (e.g., 'a'), as this will
-      block all websites containing the letter 'a'.
+      {{ $t("message.blockItems.wordNote") }}
     </template>
   </block-item-base-tab>
 </template>
@@ -16,7 +15,7 @@ import BlockItemBaseTab from "./BlockItemBaseTab";
 
 export default {
   name: "BlockByWordTab",
-  components: { BlockItemBaseTab }
+  components: { BlockItemBaseTab },
 };
 </script>
 

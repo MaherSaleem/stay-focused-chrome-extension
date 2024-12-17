@@ -6,7 +6,7 @@ export const localStorage = {
    */
   async get(key) {
     return new Promise((resolve, reject) => {
-      chrome.storage.local.get(key, data => {
+      chrome.storage.local.get(key, (data) => {
         if (data[key] !== undefined) {
           resolve(data[key]);
         } else {
@@ -22,7 +22,7 @@ export const localStorage = {
    */
   async set(key, value) {
     chrome.storage.local.set({ [key]: value });
-  }
+  },
 };
 
 /**
@@ -30,8 +30,8 @@ export const localStorage = {
  * @returns {Promise}
  */
 export const getChromeActiveTab = async () => {
-  return new Promise(resolve => {
-    chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
+  return new Promise((resolve) => {
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       resolve(tabs[0]);
     });
   });
@@ -41,7 +41,7 @@ export const getChromeActiveTab = async () => {
  * Open a new tab with a specific URL
  * @param url {string}
  */
-export const openChromeNewTab = url => {
+export const openChromeNewTab = (url) => {
   chrome.tabs.create({ url: url });
 };
 
@@ -49,6 +49,6 @@ export const openChromeNewTab = url => {
  * Set the extension icon
  * @param iconPath {string}
  */
-export const setExtensionIcon = iconPath => {
+export const setExtensionIcon = (iconPath) => {
   chrome.action.setIcon({ path: iconPath });
 };

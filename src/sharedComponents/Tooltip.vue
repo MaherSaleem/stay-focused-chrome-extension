@@ -14,17 +14,17 @@ export default {
   props: {
     delay: {
       type: Number,
-      default: 100
+      default: 100,
     },
     direction: {
       type: String,
-      default: "right" /*left, right, top, bottom*/
+      default: "right" /*left, right, top, bottom*/,
     },
     iconText: {
       type: String,
-      default: "?"
-    }
-  }
+      default: "?",
+    },
+  },
 };
 </script>
 

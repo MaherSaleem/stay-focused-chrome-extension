@@ -1,0 +1,143 @@
+{
+  "message": {
+    "stayFocused": "Stay Focused",
+    "unlock": {
+      "question": {
+        "answerLabel": "Answer",
+        "wrongAnswer": "Wrong answer!",
+        "showAnswer": "Show answer"
+      },
+      "password": {
+        "noPassword": "You haven't set a password yet! go to setting to set it.",
+        "goToSettings": "Go to Settings",
+        "enterPassword": "Enter Password",
+        "wrongPassword": "Wrong Password!"
+      },
+      "click": "clicks to unlock"
+    },
+    "blockItems": {
+      "regexNote": "Note: If you're unfamiliar with Regex (Regular Expressions), you can skip this page.",
+      "wordNote": "Note: Avoid using single letters or short words (e.g., 'a'), as this will block all websites containing the letter 'a'.",
+      "groupLabel": "Enter a name for the new website group(ex: E-Commerce)",
+      "addNewItem": "Add Website",
+      "removeGroup": "Remove Group",
+      "invalidWebsite": "Remove Website"
+    },
+    "options": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "blockByWebsite": "Block By Website",
+      "blockByWord": "Block Using a Word",
+      "blockByRegex": "Block Using Regex",
+      "settings": "Settings",
+      "about": "About",
+      "settingsTab": {
+        "deactivation": {
+          "title": "Deactivation Settings",
+          "note": "Note: This feature is designed to make deactivation take some effort, encouraging you to stay focused and keep working",
+          "radio": {
+            "none": "None",
+            "question": "Answering a Question",
+            "questionLabel": "Number of tries before showing answer",
+            "password": "Password",
+            "passwordTooltip": "You’ll need to enter the password each time you access the settings.",
+            "click": "Click a Button",
+            "clickTooltip": "Requires clicking a button multiple times to unlock the extension.",
+            "clickLabel": "Number of clicks required to unlock"
+          }
+        },
+        "schedule": {
+          "title": "Work Schedule",
+          "titleTooltip": "Blocks websites during the specified working days and hours.",
+          "note": "Note: To enable this setting, activate the tool and set your preferred working hours/days.",
+          "isActive": "Active?",
+          "from": "From:",
+          "to": "To:",
+          "daysLabel": "Days",
+          "days": {
+            "sunday": "Sunday",
+            "monday": "Monday",
+            "tuesday": "Tuesday",
+            "wednesday": "Wednesday",
+            "thursday": "Thursday",
+            "friday": "Friday",
+            "saturday": "Saturday"
+          }
+        },
+        "showImages": "Show Images",
+        "resetData": "Reset Data"
+      },
+      "aboutTab": {
+        "title": "About The Extension",
+        "description1": "Stay Focused is an open-source Chrome extension designed to block distracting websites, such as social media platforms.",
+        "description2": "The concept is simple: you might start working, only to find yourself scrolling through social media like Facebook for 30 minutes without realizing it. This extension displays a reminder image to help you get back to work.",
+        "developedBy": "Developed By",
+        "contributing": "Interested in contributing?",
+        "visitGithub": "Visit our open-source GitHub repository.",
+        "githubRepo": "Github Repository"
+      },
+      "resetData": {
+        "title": "Are you sure you want to reset the data?",
+        "content": "This will make all your settings and websites return to their initial values.",
+        "confirm": "Yes",
+        "cancel": "No"
+      }
+    },
+    "popup": {
+      "focusModeEnabled": "Focus mode is enabled, and you have set lock mechanism to unlock",
+      "activateFocusMode": "Activate Focus Mode?",
+      "website": "Website:",
+      "button": {
+        "unlock": "Unlock",
+        "addWebsite": "Add Website"
+      },
+      "alreadyAdded": "Already Added"
+    },
+    "shared": {
+      "socialMediaShare": "Enjoy using Stay Focused? Share it with your friends!",
+      "buyMeACoffee": "Love staying focused? Buy me a coffee to support updates and keep you on track!",
+      "keepMeFocused": "Keep Me Focused"
+    },
+    "defaults": {
+      "socialMediaSites": "Social Media Sites",
+      "videoSites": "Video Sites",
+      "blockedByWord": "Blocked Using a Word",
+      "blockedByRegex": "Blocked Using Regex"
+    },
+    "images": {
+      "text1": "",
+      "text2": "Go Back to work now!",
+      "text3": "WAT are you doing here? Go to work",
+      "text4": "you didn't learn your lesson right? Go to work",
+      "text5": "Goooooo!",
+      "text6": "Go to work or dance with us!",
+      "text7": "",
+      "text8": "",
+      "text9": "",
+      "text10": "When you open a blocked website instead of working.",
+      "text11": "When I see you trying to open a blocked website",
+      "text12": "When I see you trying again and again to open a blocked website",
+      "text13": "when you don't learn the lesson and break your work again",
+      "text14": "My face when I block a website for you"
+    },
+    "questions": {
+      "text1": "How many months do we have in a year? (the number only)",
+      "text2": "How many days do we have in a week? (the number only)",
+      "text3": "How many days are there in a year? (the number only)",
+      "text4": "How many colors are there in a rainbow?",
+      "text5": "How many sides does a triangle have? (the number only)",
+      "text6": "What is 2+2?",
+      "text7": "What is 10+15?",
+      "text8": "What is 10 x 9?",
+      "text9": "What is 1+1+1+1+1+1?",
+      "text10": "What is 2x2 + 1?",
+      "text11": "What is 123 - 33?",
+      "text12": "What is 10 x (5-3)?",
+      "text13": "What is 350 * 0?",
+      "text14": "When did World War I start?",
+      "text15": "When did World War I finish?",
+      "text16": "When did World War II start?",
+      "text17": "When did World War II start?"
+    }
+  }
+}

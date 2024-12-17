@@ -4,8 +4,8 @@ import { getSiteGroupStructure } from "../dataHelpers/SitesGroup";
 
 export const handle103To104Upgrade = (previousVersion, currentVersion) => {
   const addWebsiteAsDefaultBlockType = () => {
-    localStorage.get("sitesGroups").then(sitesGroups => {
-      let newSitesGroups = sitesGroups.map(sg => {
+    localStorage.get("sitesGroups").then((sitesGroups) => {
+      let newSitesGroups = sitesGroups.map((sg) => {
         sg.blockType = "website";
         return sg;
       });

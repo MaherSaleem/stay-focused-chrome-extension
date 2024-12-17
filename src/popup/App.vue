@@ -8,17 +8,19 @@
       <shared-card>
         <div class="main-row center" v-if="isLocked && active">
           <p>
-            Focus mode is enabled, and you have set lock mechanism to unlock
+            {{ $t("message.popup.focusModeEnabled") }}
           </p>
           <md-button
             id="unlock-btn"
             class="md-raised md-accent"
             @click.native="openOptionsPage"
-            >Unlock
+            >{{ $t("message.popup.button.unlock") }}
           </md-button>
         </div>
         <div class="main-row" v-else>
-          <p><b>Activate Focus Mode?</b></p>
+          <p>
+            <b>{{ $t("message.popup.activateFocusMode") }}</b>
+          </p>
           <p>
             <md-switch v-model="active" @change="saveActive"></md-switch>
           </p>
@@ -26,19 +28,21 @@
       </shared-card>
       <shared-card v-if="isValidUrl">
         <div class="main-row">
-          <div><b>Website: </b>{{ this.websiteName }}</div>
+          <div>
+            <b>{{ $t("message.popup.website") }}</b> {{ this.websiteName }}
+          </div>
           <div v-if="!websiteIsAddedBefore">
             <md-button
               @click.native="addCurrentWebsite"
               class="md-raised md-accent"
             >
-              Add Website
+              {{ $t("message.popup.button.addWebsite") }}
             </md-button>
           </div>
           <md-badge
             v-else
             class="md-square md-primary"
-            md-content="Already Added"
+            :md-content="$t('message.popup.alreadyAdded')"
           />
         </div>
       </shared-card>
@@ -58,17 +62,17 @@ import {
   getFlatListOfWebsites,
   getHostNameFromStringUrl,
   isValidURL,
-  setIcon
+  setIcon,
 } from "../helpers";
 import {
   getChromeActiveTab,
   localStorage,
-  openChromeNewTab
+  openChromeNewTab,
 } from "../chromeApiHelpers";
 import SharedCard from "../sharedComponents/SharedCard";
 import {
   getSiteGroupStructure,
-  getSiteStructure
+  getSiteStructure,
 } from "../dataHelpers/SitesGroup";
 import SocialMediaShare from "../sharedComponents/SocialMediaShare";
 import BuyMeACoffee from "../sharedComponents/BuyMeACoffee.vue";
@@ -76,11 +80,11 @@ import BuyMeACoffee from "../sharedComponents/BuyMeACoffee.vue";
 export default {
   components: { BuyMeACoffee, SocialMediaShare, SharedCard },
   mounted() {
-    localStorage.get("active").then(active => {
+    localStorage.get("active").then((active) => {
       this.active = active;
     });
     if (this.active) {
-      localStorage.get("settings").then(settings => {
+      localStorage.get("settings").then((settings) => {
         this.isLocked = settings.lock.type !== "none";
       });
     }
@@ -91,13 +95,13 @@ export default {
       active: true,
       websiteName: "",
       isLocked: false,
-      websiteIsAddedBefore: false
+      websiteIsAddedBefore: false,
     };
   },
   computed: {
     isValidUrl() {
       return isValidURL(this.websiteName);
-    }
+    },
   },
   methods: {
     openOptionsPage() {
@@ -108,9 +112,9 @@ export default {
       setIcon(this.active);
     },
     addCurrentWebsite() {
-      localStorage.get("sitesGroups").then(sitesGroups => {
+      localStorage.get("sitesGroups").then((sitesGroups) => {
         let addedFromPopupSiteGroup = sitesGroups.find(
-          sg => sg.uid === "added-from-popup-uid"
+          (sg) => sg.uid === "added-from-popup-uid"
         );
         if (!addedFromPopupSiteGroup) {
           addedFromPopupSiteGroup = getSiteGroupStructure(
@@ -124,24 +128,24 @@ export default {
         }
         addedFromPopupSiteGroup.sitesList = [
           getSiteStructure(this.websiteName),
-          ...addedFromPopupSiteGroup.sitesList
+          ...addedFromPopupSiteGroup.sitesList,
         ];
         localStorage.set("sitesGroups", sitesGroups);
         this.websiteIsAddedBefore = true;
       });
     },
     setWebsiteName() {
-      getChromeActiveTab().then(tab => {
+      getChromeActiveTab().then((tab) => {
         this.websiteName = getHostNameFromStringUrl(tab.url);
         //TODO enhance that, localStorage.get("sitesGroups") is used twice
-        localStorage.get("sitesGroups").then(sitesGroups => {
+        localStorage.get("sitesGroups").then((sitesGroups) => {
           this.websiteIsAddedBefore = getFlatListOfWebsites(sitesGroups).some(
-            site => site.url === this.websiteName
+            (site) => site.url === this.websiteName
           );
         });
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

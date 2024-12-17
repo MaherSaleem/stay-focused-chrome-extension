@@ -12,13 +12,13 @@ export const getSiteGroupStructure = (
     sitesList: siteLists,
     uid: uid,
     groupEnabled: enabled,
-    blockType
+    blockType,
   };
 };
 
 export const getSiteStructure = (url = "", enabled = true) => {
   return {
     url,
-    enabled
+    enabled,
   };
 };

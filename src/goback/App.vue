@@ -1,7 +1,7 @@
 <template>
   <card-with-logo>
     <template v-slot:header>
-      <div class="md-title">{{ randomImage.text }}</div>
+      <div class="md-title">{{ $t(randomImage.text) }}</div>
     </template>
     <template v-slot:media>
       <img id="go-back-image" :src="randomImage.path" />
@@ -22,66 +22,52 @@ export default {
   data() {
     return {
       imagesObjects: [
-        { path: "images/access-blocked-websites.jpg", text: "" },
-        { path: "images/angry-monkey.jpg", text: "Go Back to work now!" },
         {
-          path: "images/Black-Girl-Wat.jpg",
-          text: "WAT are you doing here? Go to work"
+          path: "images/access-blocked-websites.jpg",
+          text: "message.images.text1",
         },
+        { path: "images/angry-monkey.jpg", text: "message.images.text2" },
+        { path: "images/Black-Girl-Wat.jpg", text: "message.images.text3" },
+        { path: "images/troll.jpg", text: "message.images.text4" },
+        { path: "images/angry-white-monkey.jpg", text: "message.images.text5" },
+        { path: "images/coffin-dance.jpg", text: "message.images.text6" },
+        { path: "images/spongebob.jpg", text: "message.images.text7" },
+        { path: "images/baby.jpg", text: "message.images.text8" },
         {
-          path: "images/troll.jpg",
-          text: "you didn't learn your lesson right? Go to work"
+          path: "images/can-you-please-just-go-away.png",
+          text: "message.images.text9",
         },
-        { path: "images/angry-white-monkey.jpg", text: "Goooooo!" },
-        {
-          path: "images/coffin-dance.jpg",
-          text: "Go to work or dance with us!"
-        },
-        { path: "images/spongebob.jpg", text: "" },
-        { path: "images/baby.jpg", text: "" },
-        { path: "images/can-you-please-just-go-away.png", text: "" },
         {
           path: "images/we-dont-do-that-here.png",
-          text: "When you open a blocked website instead of working."
+          text: "message.images.text10",
         },
-        {
-          path: "images/Surprised-Joey.jpg",
-          text: "When I see you trying to open a blocked website"
-        },
-        {
-          path: "images/ross.jpg",
-          text:
-            "When I see you trying again and again to open a blocked website"
-        },
+        { path: "images/Surprised-Joey.jpg", text: "message.images.text11" },
+        { path: "images/ross.jpg", text: "message.images.text12" },
         {
           path: "images/chandler-oh-my-god.jpg",
-          text: "when you don't learn the lesson and break your work again"
+          text: "message.images.text13",
         },
-        {
-          path: "images/chandler-laugh.jpg",
-          text: "My face when I block a website for you"
-        }
+        { path: "images/chandler-laugh.jpg", text: "message.images.text14" },
       ],
-
-      selectedImageIndex: 0
+      selectedImageIndex: 0,
     };
   },
   computed: {
     randomImage() {
       return this.imagesObjects[this.selectedImageIndex];
-    }
+    },
   },
   methods: {
     getRandomImage() {
-      localStorage.get("settings").then(settings => {
+      localStorage.get("settings").then((settings) => {
         if (settings.allowFunnyGoBackImages) {
           this.selectedImageIndex = Math.floor(
             Math.random() * this.imagesObjects.length
           );
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

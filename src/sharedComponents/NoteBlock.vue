@@ -15,9 +15,9 @@ export default {
   props: {
     type: {
       type: String,
-      default: "" /*Options warning*/
-    }
-  }
+      default: "" /*Options warning*/,
+    },
+  },
 };
 </script>
 

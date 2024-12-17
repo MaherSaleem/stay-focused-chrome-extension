@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      Enjoy using Stay Focused? Share it with your friends!
+      {{ $t("message.shared.socialMediaShare") }}
     </p>
     <div class="social-media-btns">
       <facebook-button
@@ -38,18 +38,17 @@ export default {
     SharedCard,
     FacebookButton,
     TwitterButton,
-    LinkedinButton
+    LinkedinButton,
   },
   data() {
     return {
-      url:
-        "https://chrome.google.com/webstore/detail/stay-focused/nnlgodiccogbpcfnhmclaicljjgfmekd",
+      url: "https://chrome.google.com/webstore/detail/stay-focused/nnlgodiccogbpcfnhmclaicljjgfmekd",
       description:
-        "Block distracting websites and get funny images to go back to work"
+        "Block distracting websites and get funny images to go back to work",
     };
   },
   props: {
-    showText: { type: Boolean, default: true }
+    showText: { type: Boolean, default: true },
   },
   computed: {
     btnTextProp() {
@@ -58,8 +57,8 @@ export default {
       } else {
         return { btnText: "" };
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

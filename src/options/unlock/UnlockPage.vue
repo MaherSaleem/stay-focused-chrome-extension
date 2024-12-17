@@ -33,15 +33,15 @@ export default {
     CardWithLogo,
     PasswordUnlock,
     QuestionUnlock,
-    ClickButtonUnlock
+    ClickButtonUnlock,
   },
   data() {
     return {
-      lockSettings: {}
+      lockSettings: {},
     };
   },
   mounted() {
-    localStorage.get("settings").then(settings => {
+    localStorage.get("settings").then((settings) => {
       this.lockSettings = settings.lock;
     });
   },
@@ -49,14 +49,14 @@ export default {
     handleUnlock() {
       localStorage.set("active", false);
       this.$emit("unlock");
-    }
+    },
   },
   computed: {
     lockComponentName() {
       console.log(this.lockSettings);
       return this.lockSettings.type + "-unlock";
-    }
-  }
+    },
+  },
 };
 </script>
 

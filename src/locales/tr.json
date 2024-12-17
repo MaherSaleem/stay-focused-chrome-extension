@@ -1,0 +1,143 @@
+{
+  "message": {
+    "stayFocused": "Odaklan",
+    "unlock": {
+      "question": {
+        "answerLabel": "Cevap",
+        "wrongAnswer": "Yanlış cevap!",
+        "showAnswer": "Cevabı göster"
+      },
+      "password": {
+        "noPassword": "Henüz bir şifre belirlemediniz! Ayarlara giderek bir şifre belirleyin.",
+        "goToSettings": "Ayarlar'a Git",
+        "enterPassword": "Şifreyi Girin",
+        "wrongPassword": "Yanlış şifre!"
+      },
+      "click": "tıklama ile kilidi aç"
+    },
+    "blockItems": {
+      "regexNote": "Not: Regex (Düzenli İfadeler) ile tanışık değilseniz, bu sayfayı atlayabilirsiniz.",
+      "wordNote": "Not: Tek harfler veya kısa kelimeler (örn. 'a') kullanmaktan kaçının, çünkü bu, içinde 'a' harfi geçen tüm siteleri engelleyecektir.",
+      "groupLabel": "Yeni web sitesi grubu için bir ad girin (örn: E-Ticaret)",
+      "addNewItem": "Web Sitesi Ekle",
+      "removeGroup": "Grubu Kaldır",
+      "invalidWebsite": "Web Sitesini Kaldır"
+    },
+    "options": {
+      "active": "Aktif",
+      "inactive": "Pasif",
+      "blockByWebsite": "Web Sitesine Göre Engelle",
+      "blockByWord": "Kelime Kullanarak Engelle",
+      "blockByRegex": "Regex Kullanarak Engelle",
+      "settings": "Ayarlar",
+      "about": "Hakkında",
+      "settingsTab": {
+        "deactivation": {
+          "title": "Devre Dışı Bırakma Ayarları",
+          "note": "Not: Bu özellik, devre dışı bırakmayı biraz zorlaştırmak için tasarlanmıştır ve böylece odaklanmanıza ve çalışmaya devam etmenize yardımcı olur.",
+          "radio": {
+            "none": "Hiçbiri",
+            "question": "Bir Soruyu Yanıtla",
+            "questionLabel": "Cevap gösterilmeden önceki deneme sayısı",
+            "password": "Şifre",
+            "passwordTooltip": "Ayarları her açışınızda şifre girmeniz gerekecek.",
+            "click": "Bir Düğmeye Tıkla",
+            "clickTooltip": "Eklentiyi kilidini açmak için bir düğmeye birden fazla kez tıklamanız gerekiyor.",
+            "clickLabel": "Kilit açmak için gereken tıklama sayısı"
+          }
+        },
+        "schedule": {
+          "title": "Çalışma Programı",
+          "titleTooltip": "Belirtilen çalışma günleri ve saatlerinde web sitelerini engeller.",
+          "note": "Not: Bu ayarı etkinleştirmek için aracı aktif hale getirip tercih ettiğiniz çalışma saatlerini/günlerini ayarlayın.",
+          "isActive": "Aktif mi?",
+          "from": "Başlangıç:",
+          "to": "Bitiş:",
+          "daysLabel": "Günler",
+          "days": {
+            "sunday": "Pazar",
+            "monday": "Pazartesi",
+            "tuesday": "Salı",
+            "wednesday": "Çarşamba",
+            "thursday": "Perşembe",
+            "friday": "Cuma",
+            "saturday": "Cumartesi"
+          }
+        },
+        "showImages": "Görüntüleri Göster",
+        "resetData": "Verileri Sıfırla"
+      },
+      "aboutTab": {
+        "title": "Eklenti Hakkında",
+        "description1": "Stay Focused, sosyal medya platformları gibi dikkat dağıtan web sitelerini engellemek için tasarlanmış açık kaynaklı bir Chrome uzantısıdır.",
+        "description2": "Kavram basit: Çalışmaya başlar ve kendinizi 30 dakika boyunca Facebook gibi sosyal medyada gezinirken bulabilirsiniz. Bu uzantı, işe dönmenize yardımcı olacak bir hatırlatma görseli gösterir.",
+        "developedBy": "Geliştiren",
+        "contributing": "Katkıda bulunmak ister misiniz?",
+        "visitGithub": "Açık kaynak GitHub depomuzu ziyaret edin.",
+        "githubRepo": "GitHub Deposu"
+      },
+      "resetData": {
+        "title": "Verileri sıfırlamak istediğinizden emin misiniz?",
+        "content": "Bu, tüm ayarlarınızı ve web sitelerinizi varsayılan değerlerine geri döndürecektir.",
+        "confirm": "Evet",
+        "cancel": "Hayır"
+      }
+    },
+    "popup": {
+      "focusModeEnabled": "Odak modu etkin ve kilidi açmak için bir mekanizma belirlediniz.",
+      "activateFocusMode": "Odak Modunu Etkinleştir?",
+      "website": "Web sitesi:",
+      "button": {
+        "unlock": "Kilidi Aç",
+        "addWebsite": "Web Sitesi Ekle"
+      },
+      "alreadyAdded": "Zaten Eklendi"
+    },
+    "shared": {
+      "socialMediaShare": "Stay Focused kullanmaktan keyif alıyor musunuz? Arkadaşlarınızla paylaşın!",
+      "buyMeACoffee": "Odaklanmayı seviyor musunuz? Güncellemeleri desteklemek ve sizi odakta tutmak için bana bir kahve ısmarlayın!",
+      "keepMeFocused": "Beni Odakta Tut"
+    },
+    "defaults": {
+      "socialMediaSites": "Sosyal Medya Siteleri",
+      "videoSites": "Video Siteleri",
+      "blockedByWord": "Bir Kelime Kullanılarak Engellendi",
+      "blockedByRegex": "Regex Kullanılarak Engellendi"
+    },
+    "images": {
+      "text1": "",
+      "text2": "Şimdi işe geri dön!",
+      "text3": "NE yapıyorsun burada? İşe git",
+      "text4": "Dersini doğru öğrenmedin mi? İşe git",
+      "text5": "Hadi ama!",
+      "text6": "İşe git veya bizimle dans et!",
+      "text7": "",
+      "text8": "",
+      "text9": "",
+      "text10": "Çalışmak yerine engellenmiş bir web sitesini açtığında.",
+      "text11": "Engellenmiş bir web sitesini açmaya çalıştığını gördüğümde",
+      "text12": "Engellenmiş bir web sitesini açmaya tekrar tekrar çalıştığını gördüğümde",
+      "text13": "dersi öğrenmiyor ve tekrar işini bozuyorsun",
+      "text14": "Senin için bir web sitesini engellediğimde yüzüm"
+    },
+    "questions": {
+      "text1": "Bir yılda kaç ay var? (sadece sayı)",
+      "text2": "Bir haftada kaç gün var? (sadece sayı)",
+      "text3": "Bir yılda kaç gün var? (sadece sayı)",
+      "text4": "Bir gökkuşağında kaç renk var?",
+      "text5": "Bir üçgenin kaç kenarı var? (sadece sayı)",
+      "text6": "2+2 nedir?",
+      "text7": "10+15 nedir?",
+      "text8": "10 x 9 nedir?",
+      "text9": "1+1+1+1+1+1 nedir?",
+      "text10": "2x2 + 1 nedir?",
+      "text11": "123 - 33 nedir?",
+      "text12": "10 x (5-3) nedir?",
+      "text13": "350 * 0 nedir?",
+      "text14": "Birinci Dünya Savaşı ne zaman başladı?",
+      "text15": "Birinci Dünya Savaşı ne zaman bitti?",
+      "text16": "İkinci Dünya Savaşı ne zaman başladı?",
+      "text17": "İkinci Dünya Savaşı ne zaman başladı?"
+    }
+  }
+}

@@ -1,10 +1,7 @@
 <template>
   <div>
     <p>
-      <b
-        >Love staying focused? Buy me a coffee to support updates and keep you
-        on track!</b
-      >
+      <b>{{ $t("message.shared.buyMeACoffee") }}</b>
     </p>
     <div :class="['buy-coffee-btn', { 'left-align': align === 'left' }]">
       <a
@@ -26,14 +23,14 @@ export default {
   data() {
     return {
       bmcUrl: "https://www.buymeacoffee.com/maherkhdeir",
-      buttonText: "Keep Me Focused",
-      emoji: "☕"
+      buttonText: this.$t("message.shared.keepMeFocused"),
+      emoji: "☕",
     };
   },
   props: {
     showEmoji: { type: Boolean, default: true },
-    align: { type: String, default: "center" }
-  }
+    align: { type: String, default: "center" },
+  },
 };
 </script>
 

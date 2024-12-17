@@ -12,9 +12,9 @@ export default {
   props: {
     width: {
       type: Number,
-      default: 30
-    }
-  }
+      default: 30,
+    },
+  },
 };
 </script>
 

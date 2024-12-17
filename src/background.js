@@ -5,7 +5,7 @@ import {
   isValidURL,
   regexMatch,
   resetChromeStorageData as setDefaultStorageData,
-  setIcon
+  setIcon,
 } from "./helpers";
 import { localStorage } from "./chromeApiHelpers";
 import { handle103To104Upgrade } from "./Migration/upgrades";
@@ -19,7 +19,7 @@ const chooseIconColor = async () => {
 
 // Define the function to check if the URL matches blocked sites
 const checkIfMatch = (blockItem, url) => {
-  if (skippedUrls.some(skippedUrl => url.includes(skippedUrl))) {
+  if (skippedUrls.some((skippedUrl) => url.includes(skippedUrl))) {
     return false;
   }
   switch (blockItem.blockType) {
@@ -31,7 +31,7 @@ const checkIfMatch = (blockItem, url) => {
 };
 
 // Define the function to check if access to a website is allowed
-const checkIfCanEnterWebsite = async info => {
+const checkIfCanEnterWebsite = async (info) => {
   // Check if it's the main frame and URL is valid
   if (info.frameId !== 0 || !isValidURL(info.url)) {
     return;
@@ -63,7 +63,7 @@ const checkIfCanEnterWebsite = async info => {
   const sitesGroups = await localStorage.get("sitesGroups");
   const blockedWebsites = getFlatEnabledListOfWebsites(sitesGroups);
 
-  const isBlocked = blockedWebsites.some(website =>
+  const isBlocked = blockedWebsites.some((website) =>
     checkIfMatch(website, info.url)
   );
   if (isBlocked) {
@@ -76,7 +76,7 @@ chrome.webNavigation.onCommitted.addListener(checkIfCanEnterWebsite);
 chrome.webNavigation.onCommitted.addListener(chooseIconColor);
 
 // Handle extension installation and update
-chrome.runtime.onInstalled.addListener(async details => {
+chrome.runtime.onInstalled.addListener(async (details) => {
   const currentVersion = chrome.runtime.getManifest().version;
   const previousVersion = details.previousVersion;
   await localStorage.set("version", currentVersion);

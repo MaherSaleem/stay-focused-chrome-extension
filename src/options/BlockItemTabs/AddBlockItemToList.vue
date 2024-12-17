@@ -1,14 +1,16 @@
 <template>
   <div>
     <md-field class="enter-website-field">
-      <label>Add a new item to block</label>
+      <label>{{ $t("message.blockItems.addNewItem") }}</label>
       <md-input
         @keyup.enter="handleEnterWebsite"
         v-model="siteData.siteUrl"
       ></md-input>
     </md-field>
-    <span class="md-error" v-if="siteData.siteUrl !== '' && !isValidBlockItem"
-      >Invalid Website</span
+    <span
+      class="md-error"
+      v-if="siteData.siteUrl !== '' && !isValidBlockItem"
+      >{{ $t("message.blockItems.invalidWebsite") }}</span
     >
   </div>
 </template>
@@ -22,15 +24,15 @@ export default {
   data() {
     return {
       siteData: {
-        siteUrl: ""
-      }
+        siteUrl: "",
+      },
     };
   },
   props: {
     blockType: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     blockTypes() {
@@ -43,7 +45,7 @@ export default {
         default:
           return true;
       }
-    }
+    },
   },
   methods: {
     handleEnterWebsite() {
@@ -51,8 +53,8 @@ export default {
         this.$emit("add-new-website", this.siteData);
         this.siteData.siteUrl = "";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

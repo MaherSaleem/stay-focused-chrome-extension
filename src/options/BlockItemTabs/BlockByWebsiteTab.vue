@@ -10,7 +10,7 @@ import BlockItemBaseTab from "./BlockItemBaseTab";
 
 export default {
   name: "BlockByWebsiteTab",
-  components: { BlockItemBaseTab }
+  components: { BlockItemBaseTab },
 };
 </script>
 

@@ -40,11 +40,30 @@ const config = {
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass')
+            }
+          }
+        ],
       },
       {
         test: /\.sass$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader?indentedSyntax'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              implementation: require('sass'),
+              indentedSyntax: true
+            }
+          }
+        ],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg|ico)$/,
@@ -93,9 +112,9 @@ const config = {
             jsonContent.name = `DEV - ${jsonContent.name}`;
             console.log(jsonContent.name);
             jsonContent['content_security_policy'] =
-                {
-                  extension_pages: "script-src 'self'; object-src 'self';"
-                }
+            {
+              extension_pages: "script-src 'self'; object-src 'self';"
+            }
           }
 
           return JSON.stringify(jsonContent, null, 2);

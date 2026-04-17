@@ -35,7 +35,7 @@ function findGroupIndexByUid(uid: string): number {
 }
 
 function loadWebsites() {
-  storage
+  chromeStorage
     .get<SiteGroup[]>("sitesGroups")
     .then((data) => {
       sitesGroups.value = data;

@@ -30,8 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed, onMounted, h, type Component } from "vue";
-import { NIcon } from "naive-ui";
+import { ref, watch, computed, onMounted, type Component } from "vue";
 import { chromeStorage } from "~/utils/storage";
 import type { Settings } from "~/utils/types";
 
@@ -47,39 +46,12 @@ const active = ref(false);
 const isLocked = ref(false);
 const selectedTab = ref("block-by-website");
 
-function renderIcon(iconName: string) {
-  return () =>
-    h(NIcon, null, {
-      default: () => h("span", { class: "material-icons", style: "font-size: 20px" }, iconName),
-    });
-}
-
 const menuOptions = [
-  {
-    label: "Block By Website",
-    key: "block-by-website",
-    icon: renderIcon("move_to_inbox"),
-  },
-  {
-    label: "Block Using a Word",
-    key: "block-by-word",
-    icon: renderIcon("sticky_note_2"),
-  },
-  {
-    label: "Block Using Regex",
-    key: "block-by-regex",
-    icon: renderIcon("spellcheck"),
-  },
-  {
-    label: "Settings",
-    key: "settings",
-    icon: renderIcon("settings"),
-  },
-  {
-    label: "About",
-    key: "about",
-    icon: renderIcon("info"),
-  },
+  { label: "Block By Website", key: "block-by-website" },
+  { label: "Block Using a Word", key: "block-by-word" },
+  { label: "Block Using Regex", key: "block-by-regex" },
+  { label: "Settings", key: "settings" },
+  { label: "About", key: "about" },
 ];
 
 const tabComponents: Record<string, Component> = {

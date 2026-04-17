@@ -1,6 +1,7 @@
 <template>
-  <n-dialog-provider>
-    <div class="page-container">
+  <n-message-provider>
+    <n-dialog-provider>
+      <div class="page-container">
       <n-spin v-if="loading" :size="80" class="loader" />
 
       <UnlockPage v-else-if="isLocked" @unlock="handleUnlock" />
@@ -27,8 +28,9 @@
           </div>
         </n-layout>
       </n-layout>
-    </div>
-  </n-dialog-provider>
+      </div>
+    </n-dialog-provider>
+  </n-message-provider>
 </template>
 
 <script setup lang="ts">

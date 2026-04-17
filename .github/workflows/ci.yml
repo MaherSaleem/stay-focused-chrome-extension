@@ -23,6 +23,9 @@ jobs:
 
       - run: pnpm install
 
+      - name: Type check
+        run: pnpm wxt prepare && npx tsc --noEmit
+
       - name: Run tests
         run: pnpm test
 

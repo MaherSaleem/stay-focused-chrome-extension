@@ -29,7 +29,6 @@ WXT discovers entry points from the `entrypoints/` directory and generates the m
 ### Shared code
 
 - **`utils/`** — TypeScript utility modules (auto-imported by WXT): `types.ts` (interfaces), `storage.ts` (`chromeStorage` wrapper), `helpers.ts`, `defaults.ts`, `constants.ts`, `migration.ts`.
-- **`composables/`** — Vue 3 composables (auto-imported): `useStorage.ts` provides a reactive `ref` backed by `chrome.storage.local`.
 - **`components/`** — shared Vue 3 SFCs (auto-imported): `CardWithLogo.vue`, `BuyMeACoffee.vue`, `SocialMediaShare.vue`.
 
 ### Storage model

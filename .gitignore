@@ -4,3 +4,4 @@ node_modules
 .output
 dist/
 dist-zip/
+.DS_Store

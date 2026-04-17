@@ -60,6 +60,28 @@ describe("isCurrentTimeBetweenTwoTimes", () => {
       expect(isCurrentTimeBetweenTwoTimes("12:00 AM", "12:01 AM")).toBe(false);
     }
   });
+
+  it("handles 12:00 PM correctly (noon, not midnight)", () => {
+    const now = new Date();
+    const hour = now.getHours();
+    // If it's between 11 AM and 1 PM, 12:00 PM start should include us
+    if (hour >= 11 && hour <= 13) {
+      expect(isCurrentTimeBetweenTwoTimes("11:00 AM", "01:00 PM")).toBe(true);
+    }
+    // 12:00 PM to 12:01 PM is a 1-minute window at noon — should NOT match at midnight
+    if (hour === 0) {
+      expect(isCurrentTimeBetweenTwoTimes("12:00 PM", "12:01 PM")).toBe(false);
+    }
+  });
+
+  it("handles 12:00 AM correctly (midnight, not noon)", () => {
+    const now = new Date();
+    const hour = now.getHours();
+    // 12:00 AM is midnight (hour 0). If we're at noon, this range should NOT match
+    if (hour >= 11 && hour <= 13) {
+      expect(isCurrentTimeBetweenTwoTimes("12:00 AM", "12:30 AM")).toBe(false);
+    }
+  });
 });
 
 describe("getFlatListOfWebsites", () => {
@@ -181,6 +203,13 @@ describe("regexMatch", () => {
 
   it("supports complex regex", () => {
     expect(regexMatch("https://news.ycombinator.com", "^https://news\\.")).toBe(true);
+  });
+
+  it("returns false for invalid regex instead of throwing", () => {
+    // Malformed regex patterns should not crash the block list
+    expect(regexMatch("https://example.com", "[unclosed")).toBe(false);
+    expect(regexMatch("https://example.com", "(invalid")).toBe(false);
+    expect(regexMatch("https://example.com", "*bad")).toBe(false);
   });
 });
 

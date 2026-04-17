@@ -36,13 +36,14 @@ export function isCurrentTimeBetweenTwoTimes(startTime: string, endTime: string)
   const currentDate = new Date();
   const convertTimeToDate = (timeString: string): Date => {
     const timeAsDate = new Date(currentDate.getTime());
-    timeAsDate.setHours(parseInt(timeString.substring(0, 2)));
-    timeAsDate.setMinutes(parseInt(timeString.substring(3, 5)));
-    timeAsDate.setSeconds(0);
+    let hours = parseInt(timeString.substring(0, 2));
+    const minutes = parseInt(timeString.substring(3, 5));
     const isPM = timeString.substring(6, 8) === "PM";
-    if (isPM) {
-      timeAsDate.setHours(timeAsDate.getHours() + 12);
-    }
+    if (isPM && hours !== 12) hours += 12;
+    if (!isPM && hours === 12) hours = 0;
+    timeAsDate.setHours(hours);
+    timeAsDate.setMinutes(minutes);
+    timeAsDate.setSeconds(0);
     return timeAsDate;
   };
   const startTimeAsDate = convertTimeToDate(startTime);
@@ -91,8 +92,11 @@ export function truncateText(value: string, charsLength = 30): string {
 }
 
 export function regexMatch(stringToTest: string, regexString: string): boolean {
-  const re = new RegExp(regexString);
-  return re.test(stringToTest);
+  try {
+    return new RegExp(regexString).test(stringToTest);
+  } catch {
+    return false;
+  }
 }
 
 export function versionCompare(v1: string, v2: string): number {

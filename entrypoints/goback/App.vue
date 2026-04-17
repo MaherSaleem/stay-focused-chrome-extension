@@ -65,49 +65,98 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="goback-container">
+  <div class="goback-page">
+    <div class="goback-hero">
+      <div class="hero-icon">🚫</div>
+      <h1 class="hero-title">This site is blocked</h1>
+      <p class="hero-subtitle">Stay Focused is keeping you productive</p>
+    </div>
+
     <div class="goback-card">
-      <img class="logo" src="/images/logo-red.png" alt="Stay Focused" />
-      <h2 v-if="randomImage.text">{{ randomImage.text }}</h2>
-      <img class="goback-image" :src="randomImage.path" alt="Go back to work" />
+      <img
+        class="goback-image"
+        :src="randomImage.path"
+        alt="Go back to work"
+      />
+      <p v-if="randomImage.text" class="image-caption">{{ randomImage.text }}</p>
+    </div>
+
+    <div class="goback-footer">
+      <p>Want to unblock? Open the extension settings.</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-.goback-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.goback-page {
   min-height: 100vh;
-  background-color: #f5f5f5;
-  font-family: system-ui, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.goback-hero {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.hero-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.hero-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  font-weight: 400;
 }
 
 .goback-card {
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   padding: 24px;
+  max-width: 500px;
+  width: 100%;
   text-align: center;
-  max-width: 600px;
-  width: 90%;
-}
-
-.logo {
-  width: 180px;
-  margin-bottom: 16px;
 }
 
 .goback-image {
-  width: 95%;
-  border-radius: 4px;
-  margin-top: 16px;
+  width: 100%;
+  border-radius: 12px;
+  display: block;
 }
 
-h2 {
+.image-caption {
+  margin: 16px 0 0 0;
+  font-size: 16px;
+  font-weight: 600;
   color: #333;
-  font-weight: 500;
-  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.goback-footer {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.goback-footer p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  margin: 0;
 }
 </style>

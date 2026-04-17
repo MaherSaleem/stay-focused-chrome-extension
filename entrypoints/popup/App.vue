@@ -10,6 +10,7 @@ import {
 import { chromeStorage, getChromeActiveTab, openChromeNewTab } from "~/utils/storage";
 import { makeSiteGroup, makeSite } from "~/utils/defaults";
 import type { SiteGroup, Settings } from "~/utils/types";
+import BuyMeACoffee from "~/components/BuyMeACoffee.vue";
 
 const active = ref(false);
 const websiteName = ref("");

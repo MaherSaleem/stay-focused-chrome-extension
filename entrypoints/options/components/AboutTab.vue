@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { NCard } from "naive-ui";
+import BuyMeACoffee from "~/components/BuyMeACoffee.vue";
+import SocialMediaShare from "~/components/SocialMediaShare.vue";
 </script>
 
 <template>

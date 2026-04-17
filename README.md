@@ -9,7 +9,7 @@
 
 ## Introduction
 
-Stay Focused is an open-source Chrome extension designed to help you block distracting websites, such as social media. Built using the Vue.js framework, its purpose is to enhance productivity by keeping you on task.
+Stay Focused is an open-source Chrome extension designed to help you block distracting websites, such as social media. Built with WXT, Vue 3, TypeScript, and Naive UI, its purpose is to enhance productivity by keeping you on task.
 
 The extension works by displaying a reminder image when you find yourself mindlessly scrolling through sites like Facebook, often for longer than intended. Additionally, it includes locking mechanisms that make it harder to disable the extension quickly, encouraging you to stay focused rather than turn it off.
 

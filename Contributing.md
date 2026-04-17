@@ -1,4 +1,4 @@
-## Steps: 
+## Steps:
 1) Fork the project
 2) Create new branch
 3) Make a pull request :D
@@ -7,23 +7,28 @@
 ## Development Setup
 
 #### Prerequisites
-1) [NodeJs](https://nodejs.org/en/) Installed.
+1) [Node.js](https://nodejs.org/en/) installed (v18+).
+2) [pnpm](https://pnpm.io/) installed (`npm install -g pnpm`).
 
-#### Commonly used NPM scripts
+#### Commonly used scripts
 ``` bash
-# to install node modules
-$ npm install
+# install dependencies
+$ pnpm install
 
-# watch and auto re-build fils in dist folder
-$ npm run watch:dev
+# start dev server with HMR (auto-loads extension in Chrome)
+$ pnpm dev
 
-# build the extension for production use
-$ npm run build
+# production build
+$ pnpm build
 
+# build + zip for Chrome Web Store
+$ pnpm zip
+
+# format code
+$ pnpm format
 ```
 
 #### Steps for development
-1) `npm install`
-2) `npm run watch:dev`
-3) upload the dist folder to chrome extensions in development mode.
-check [here](https://developer.chrome.com/extensions/getstarted#manifest) for more details.
+1) `pnpm install`
+2) `pnpm dev`
+3) WXT will automatically open Chrome with the extension loaded. If not, load `.output/chrome-mv3/` as an unpacked extension in `chrome://extensions`.

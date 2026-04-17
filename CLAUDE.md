@@ -4,48 +4,52 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Stay Focused is a Chrome extension (Manifest V3) built with Vue 2 + Vue Material that blocks distracting websites. It ships to the Chrome Web Store; there are no tests.
+Stay Focused is a Chrome extension (Manifest V3) built with WXT + Vue 3 + TypeScript + Naive UI that blocks distracting websites. It ships to the Chrome Web Store; there are no tests.
 
 ## Commands
 
 ```bash
-npm install             # install deps (Node >=10; volta pins node 14.21.3)
-npm run watch:dev       # dev build + HMR via webpack-extension-reloader (load dist/ unpacked in chrome://extensions)
-npm run build:dev       # one-off dev build
-npm run build           # production build
-npm run build-zip       # package dist/ into dist-zip/stay-focused-v<version>.zip (run after build)
-npm run prettier:write  # format src/**/*.{js,vue}
+pnpm install            # install deps
+pnpm dev                # dev build + HMR (WXT loads extension in Chrome automatically)
+pnpm build              # production build (output in .output/chrome-mv3/)
+pnpm zip                # production build + zip for Chrome Web Store upload
+pnpm format             # format code with prettier
+pnpm format:check       # check formatting without writing
 ```
-
-Dev builds prefix the extension name with `DEV - ` and relax CSP; see [webpack.config.js](webpack.config.js#L92-L99).
 
 ## Architecture
 
-Webpack has four independent entry points, each emitted as a separate bundle ([webpack.config.js:12-21](webpack.config.js#L12-L21)):
+WXT discovers entry points from the `entrypoints/` directory and generates the manifest automatically from [wxt.config.ts](wxt.config.ts).
 
-- **`background.js`** — MV3 service worker. Listens on `chrome.webNavigation.onCommitted` and, if the extension is active (and within configured work hours), checks the URL against the user's block list and redirects the tab to `goback/goback.html`. Also sets the toolbar icon color and runs the install/upgrade handler.
-- **`popup/`** — toolbar popup (Vue app). Toggles active state and quick-adds the current tab's hostname to a special `added-from-popup-uid` group.
-- **`options/`** — full-page options UI (Vue app). Four tabs drive block-list editing (website/word/regex) plus settings (work hours, lock type). Settings changes are read/written against `chrome.storage.local`.
-- **`goback/`** — the redirect target page that shows a random "go back to work" image.
+- **`entrypoints/background.ts`** — MV3 service worker. Listens on `chrome.webNavigation.onCommitted` and, if the extension is active (and within configured work hours), checks the URL against the user's block list and redirects the tab to `/goback/index.html`. Also sets the toolbar icon color and runs the install/upgrade handler.
+- **`entrypoints/popup/`** — toolbar popup (Vue 3 app). Toggles active state and quick-adds the current tab's hostname to a special `added-from-popup-uid` group.
+- **`entrypoints/options/`** — full-page options UI (Vue 3 app). Five tabs: block-by-website, block-by-word, block-by-regex, settings, about. Uses Naive UI components (`n-layout`, `n-menu`, `n-switch`, `n-card`, etc.). Settings changes are read/written against `chrome.storage.local`.
+- **`entrypoints/goback/`** — unlisted page (redirect target) that shows a random "go back to work" image.
+
+### Shared code
+
+- **`utils/`** — TypeScript utility modules (auto-imported by WXT): `types.ts` (interfaces), `storage.ts` (`chromeStorage` wrapper), `helpers.ts`, `defaults.ts`, `constants.ts`, `migration.ts`.
+- **`composables/`** — Vue 3 composables (auto-imported): `useStorage.ts` provides a reactive `ref` backed by `chrome.storage.local`.
+- **`components/`** — shared Vue 3 SFCs (auto-imported): `CardWithLogo.vue`, `BuyMeACoffee.vue`, `SocialMediaShare.vue`.
 
 ### Storage model
 
-Everything persists in `chrome.storage.local` under three keys, wrapped by the promise API in [src/chromeApiHelpers.js](src/chromeApiHelpers.js):
+Everything persists in `chrome.storage.local` under three keys, wrapped by the typed promise API in [utils/storage.ts](utils/storage.ts):
 
 - `active` (boolean) — master on/off.
-- `sitesGroups` — array of groups. Each group has a `blockType` (`"website" | "word" | "regex"`) that applies to every site in it; a site is blocked only when both `groupEnabled` and `enabled` are true. Use the `getSiteGroupStructure` / `getSiteStructure` factories in [src/dataHelpers/SitesGroup.js](src/dataHelpers/SitesGroup.js) rather than building these objects by hand.
+- `sitesGroups` — array of `SiteGroup` objects (see [utils/types.ts](utils/types.ts)). Each group has a `blockType` (`"website" | "word" | "regex"`); a site is blocked only when both `groupEnabled` and `enabled` are true. Use the `makeSiteGroup` / `makeSite` factories in [utils/defaults.ts](utils/defaults.ts).
 - `settings` — `workHours`, `allowFunnyGoBackImages`, and `lock` (types: `none | password | question | click-button`).
 
-Important: `localStorage.get` rejects (not resolves to `undefined`) when a key is missing — see [src/chromeApiHelpers.js:12](src/chromeApiHelpers.js#L12). Components rely on this to detect first-run and seed defaults from [src/defaults.js](src/defaults.js).
+Important: `chromeStorage.get()` rejects (not resolves to `undefined`) when a key is missing. Components rely on this to detect first-run and seed defaults from [utils/defaults.ts](utils/defaults.ts).
 
 ### Block matching
 
-[src/background.js:21-31](src/background.js#L21-L31) — `regex` groups go through `RegExp.test`; all other types use `url.includes`. URLs in [src/constants.js](src/constants.js) `skippedUrls` are always allowed (used to whitelist share URLs so the extension doesn't break its own social share buttons).
+[entrypoints/background.ts](entrypoints/background.ts) — `regex` groups go through `RegExp.test`; all other types use `url.includes`. URLs in [utils/constants.ts](utils/constants.ts) `skippedUrls` are always allowed (whitelists share URLs so the extension doesn't block its own social share buttons).
 
 ### Version migrations
 
-When the extension updates, [src/Migration/upgrades.js](src/Migration/upgrades.js) runs via `chrome.runtime.onInstalled` with `reason === "update"`. Schema-changing releases add a new handler here and guard it with `versionCompare` from [src/helpers.js:120](src/helpers.js#L120). The manifest's version is overwritten at build time from `package.json` ([webpack.config.js:88-91](webpack.config.js#L88-L91)), so bump `package.json` — not `src/manifest.json` — when releasing.
+When the extension updates, [utils/migration.ts](utils/migration.ts) runs via `chrome.runtime.onInstalled` with `reason === "update"`. Schema-changing releases add a new handler here and guard it with `versionCompare` from [utils/helpers.ts](utils/helpers.ts). WXT injects the version from `package.json` into the manifest at build time, so bump `package.json` when releasing.
 
 ### Vue stack
 
-Vue 2.6 + Vue Material. Shared UI primitives live in [src/sharedComponents/](src/sharedComponents/). Options-page tabs under [src/options/BlockItemTabs/](src/options/BlockItemTabs/) all extend `BlockItemBaseTab.vue`, which centralizes load/store/add/delete logic against `sitesGroups`; new block-type tabs should compose it rather than duplicate the CRUD code.
+Vue 3 with Composition API (`<script setup lang="ts">`). Naive UI provides the component library (switches, cards, inputs, layout, time picker, etc.). Options-page tabs under [entrypoints/options/components/](entrypoints/options/components/) all compose `BlockItemBaseTab.vue`, which centralizes load/store/add/delete logic against `sitesGroups`; new block-type tabs should compose it rather than duplicate the CRUD code.

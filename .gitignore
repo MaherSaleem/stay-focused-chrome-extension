@@ -3,3 +3,5 @@
 /dist
 /dist-zip
 /.idea/
+/.wxt/
+/.output/

@@ -35,7 +35,7 @@ export const websitesListDefault: SiteGroup[] = [
   makeSiteGroup("Social Media Sites", true, [
     makeSite("facebook.com"),
     makeSite("twitter.com"),
-    makeSite("x.com"),
+    makeSite("://x.com"),
     makeSite("instagram.com"),
     makeSite("linkedin.com"),
   ]),

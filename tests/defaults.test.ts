@@ -81,7 +81,7 @@ describe("defaults", () => {
     const urls = social.sitesList.map((s) => s.url);
     expect(urls).toContain("facebook.com");
     expect(urls).toContain("twitter.com");
-    expect(urls).toContain("x.com");
+    expect(urls).toContain("://x.com");
     expect(urls).toContain("instagram.com");
     expect(urls).toContain("linkedin.com");
   });

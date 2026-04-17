@@ -2,32 +2,36 @@
   <n-message-provider>
     <n-dialog-provider>
       <div class="page-container">
-      <n-spin v-if="loading" :size="80" class="loader" />
+        <n-spin v-if="loading" :size="80" class="loader" />
 
-      <UnlockPage v-else-if="isLocked" @unlock="handleUnlock" />
+        <UnlockPage v-else-if="isLocked" @unlock="handleUnlock" />
 
-      <n-layout v-else has-sider class="main-layout">
-        <n-layout-sider bordered :width="240" content-style="display: flex; flex-direction: column; background-color: #fafafa;">
-          <div class="sider-logo">
-            <img src="/images/logo-red.png" alt="Stay Focused" class="logo-img" />
-          </div>
-          <n-menu :value="selectedTab" :options="menuOptions" @update:value="selectTab" />
-        </n-layout-sider>
-
-        <n-layout>
-          <div class="header-bar">
-            <span class="header-title">Stay Focused</span>
-            <div class="header-actions">
-              <span class="active-label">{{ active ? "Active" : "Inactive" }}</span>
-              <n-switch v-model:value="active" />
+        <n-layout v-else has-sider class="main-layout">
+          <n-layout-sider
+            bordered
+            :width="240"
+            content-style="display: flex; flex-direction: column; background-color: #fafafa;"
+          >
+            <div class="sider-logo">
+              <img src="/images/logo-red.png" alt="Stay Focused" class="logo-img" />
             </div>
-          </div>
+            <n-menu :value="selectedTab" :options="menuOptions" @update:value="selectTab" />
+          </n-layout-sider>
 
-          <div class="content-area">
-            <component :is="currentTabComponent" @reload-data="loadData" />
-          </div>
+          <n-layout>
+            <div class="header-bar">
+              <span class="header-title">Stay Focused</span>
+              <div class="header-actions">
+                <span class="active-label">{{ active ? "Active" : "Inactive" }}</span>
+                <n-switch v-model:value="active" />
+              </div>
+            </div>
+
+            <div class="content-area">
+              <component :is="currentTabComponent" @reload-data="loadData" />
+            </div>
+          </n-layout>
         </n-layout>
-      </n-layout>
       </div>
     </n-dialog-provider>
   </n-message-provider>

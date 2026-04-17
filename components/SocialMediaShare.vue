@@ -69,7 +69,9 @@ const shareLinks = [
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.3px;
-  transition: opacity 0.2s, box-shadow 0.2s;
+  transition:
+    opacity 0.2s,
+    box-shadow 0.2s;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 

@@ -23,7 +23,16 @@ function truncateSiteUrl(siteUrl: string): string {
 
 <template>
   <div :class="['site-group', sitesGroup.groupEnabled ? '' : 'disabled']">
-    <NCard style="width: 320px; margin: 8px; display: inline-block; vertical-align: top; border: 1px solid #e0e0e0; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);">
+    <NCard
+      style="
+        width: 320px;
+        margin: 8px;
+        display: inline-block;
+        vertical-align: top;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+      "
+    >
       <template #header>
         <div class="card-header">
           <div class="group-title">{{ sitesGroup.groupName }}</div>
@@ -46,7 +55,11 @@ function truncateSiteUrl(siteUrl: string): string {
       />
 
       <div class="sites-list">
-        <div v-for="(site, siteIndex) in sitesGroup.sitesList" :key="site.url + '-' + siteIndex" class="site-item">
+        <div
+          v-for="(site, siteIndex) in sitesGroup.sitesList"
+          :key="site.url + '-' + siteIndex"
+          class="site-item"
+        >
           <NSwitch
             :value="site.enabled"
             @update:value="

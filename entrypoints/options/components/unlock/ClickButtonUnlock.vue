@@ -73,6 +73,8 @@ h3 {
 
 .moving-btn {
   position: absolute;
-  transition: top 0.15s, left 0.15s;
+  transition:
+    top 0.15s,
+    left 0.15s;
 }
 </style>

@@ -73,11 +73,7 @@ onMounted(async () => {
     </div>
 
     <div class="goback-card">
-      <img
-        class="goback-image"
-        :src="randomImage.path"
-        alt="Go back to work"
-      />
+      <img class="goback-image" :src="randomImage.path" alt="Go back to work" />
       <p v-if="randomImage.text" class="image-caption">{{ randomImage.text }}</p>
     </div>
   </div>
@@ -92,7 +88,10 @@ onMounted(async () => {
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
 }
 
 .goback-hero {
@@ -144,5 +143,4 @@ onMounted(async () => {
   color: #333;
   line-height: 1.4;
 }
-
 </style>

@@ -48,7 +48,9 @@ defineProps<{
   font-size: 15px;
   font-weight: 600;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
-  transition: background-color 0.2s, box-shadow 0.2s;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .bmc-button:hover {

@@ -19,7 +19,7 @@ const websiteIsAddedBefore = ref(false);
 const isValidUrl = computed(() => isValidURL(websiteName.value));
 
 function openOptionsPage() {
-  openChromeNewTab("options/index.html");
+  openChromeNewTab("options.html");
 }
 
 async function saveActive() {

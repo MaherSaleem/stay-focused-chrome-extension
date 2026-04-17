@@ -71,7 +71,7 @@ export default defineBackground({
         const blockedWebsites = getFlatEnabledListOfWebsites(sitesGroups);
         const isBlocked = blockedWebsites.some((website) => checkIfMatch(website, info.url));
         if (isBlocked) {
-          await chrome.tabs.update(info.tabId, { url: "/goback/index.html" });
+          await chrome.tabs.update(info.tabId, { url: "/goback.html" });
         }
       } catch {
         // No sites configured

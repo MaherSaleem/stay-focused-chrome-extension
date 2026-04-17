@@ -1,5 +1,7 @@
-/node_modules
-/*.log
-/dist
-/dist-zip
-/.idea/
+node_modules
+*.log
+.wxt
+.output
+dist/
+dist-zip/
+.DS_Store

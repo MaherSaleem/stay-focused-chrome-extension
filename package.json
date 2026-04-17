@@ -9,8 +9,8 @@
     "build": "wxt build",
     "zip": "wxt zip",
     "postinstall": "wxt prepare",
-    "format": "prettier --write \"entrypoints/**/*.{ts,vue,css,html}\" \"utils/**/*.ts\" \"composables/**/*.ts\" \"components/**/*.vue\"",
-    "format:check": "prettier --check \"entrypoints/**/*.{ts,vue,css,html}\" \"utils/**/*.ts\" \"composables/**/*.ts\" \"components/**/*.vue\"",
+    "format": "prettier --write \"entrypoints/**/*.{ts,vue,css,html}\" \"utils/**/*.ts\" \"components/**/*.vue\"",
+    "format:check": "prettier --check \"entrypoints/**/*.{ts,vue,css,html}\" \"utils/**/*.ts\" \"components/**/*.vue\"",
     "test": "vitest run",
     "test:watch": "vitest"
   },

@@ -6,7 +6,7 @@
       <UnlockPage v-else-if="isLocked" @unlock="handleUnlock" />
 
       <n-layout v-else has-sider class="main-layout">
-        <n-layout-sider bordered :width="240" content-style="display: flex; flex-direction: column;">
+        <n-layout-sider bordered :width="240" content-style="display: flex; flex-direction: column; background-color: #fafafa;">
           <div class="sider-logo">
             <img src="/images/logo-red.png" alt="Stay Focused" class="logo-img" />
           </div>
@@ -49,11 +49,11 @@ const isLocked = ref(false);
 const selectedTab = ref("block-by-website");
 
 const menuOptions = [
-  { label: "Block By Website", key: "block-by-website" },
-  { label: "Block Using a Word", key: "block-by-word" },
-  { label: "Block Using Regex", key: "block-by-regex" },
-  { label: "Settings", key: "settings" },
-  { label: "About", key: "about" },
+  { label: "🌐  Block By Website", key: "block-by-website" },
+  { label: "📝  Block Using a Word", key: "block-by-word" },
+  { label: "🔍  Block Using Regex", key: "block-by-regex" },
+  { label: "⚙️  Settings", key: "settings" },
+  { label: "ℹ️  About", key: "about" },
 ];
 
 const tabComponents: Record<string, Component> = {
@@ -133,28 +133,50 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
+  padding: 14px 28px;
   background-color: #fff;
-  border-bottom: 1px solid #efeff5;
+  border-bottom: 2px solid #e8e8ec;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
 .header-title {
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
+  color: #1a1a1a;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .active-label {
   font-size: 14px;
-  color: #666;
+  font-weight: 500;
+  color: #555;
 }
 
 .content-area {
-  padding: 24px;
+  padding: 28px;
+  max-width: 960px;
+}
+</style>
+
+<style>
+/* Active menu item left accent border */
+.n-menu-item-content--selected::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background-color: #d32f2f;
+  border-radius: 0 2px 2px 0;
+}
+
+.n-menu-item-content {
+  position: relative;
 }
 </style>

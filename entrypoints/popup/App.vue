@@ -150,20 +150,21 @@ header img {
 main {
   display: flex;
   flex-direction: column;
-  padding: 8px 5%;
-  gap: 8px;
+  padding: 12px 5%;
+  gap: 10px;
 }
 
 .main-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 36px;
 }
 
 .main-row.center {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  gap: 8px;
+  gap: 10px;
 }
 </style>

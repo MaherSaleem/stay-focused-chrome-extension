@@ -80,10 +80,6 @@ onMounted(async () => {
       />
       <p v-if="randomImage.text" class="image-caption">{{ randomImage.text }}</p>
     </div>
-
-    <div class="goback-footer">
-      <p>Want to unblock? Open the extension settings.</p>
-    </div>
   </div>
 </template>
 
@@ -149,14 +145,4 @@ onMounted(async () => {
   line-height: 1.4;
 }
 
-.goback-footer {
-  margin-top: 24px;
-  text-align: center;
-}
-
-.goback-footer p {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 14px;
-  margin: 0;
-}
 </style>

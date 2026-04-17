@@ -118,11 +118,9 @@ onMounted(async () => {
         </div>
       </n-card>
 
-      <n-card size="small">
-        <div class="main-row">
-          <BuyMeACoffee />
-        </div>
-      </n-card>
+      <div class="bmc-row">
+        <BuyMeACoffee compact />
+      </div>
     </main>
   </div>
 </template>
@@ -167,5 +165,11 @@ main {
   justify-content: center;
   text-align: center;
   gap: 10px;
+}
+
+.bmc-row {
+  display: flex;
+  justify-content: center;
+  padding: 2px 0 4px;
 }
 </style>

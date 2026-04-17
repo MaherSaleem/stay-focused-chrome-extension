@@ -1,5 +1,5 @@
 import { ref, watch, type Ref } from "vue";
-import { chromeStorage } from "~/utils/chromeStorage";
+import { chromeStorage } from "~/utils/storage";
 
 export function useStorage<T>(key: string, fallback: T): Ref<T> {
   const data = ref<T>(fallback) as Ref<T>;

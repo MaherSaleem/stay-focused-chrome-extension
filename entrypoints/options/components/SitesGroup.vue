@@ -46,7 +46,7 @@ function truncateSiteUrl(siteUrl: string): string {
       />
 
       <div class="sites-list">
-        <div v-for="(site, siteIndex) in sitesGroup.sitesList" :key="siteIndex" class="site-item">
+        <div v-for="(site, siteIndex) in sitesGroup.sitesList" :key="site.url + '-' + siteIndex" class="site-item">
           <NSwitch
             :value="site.enabled"
             @update:value="

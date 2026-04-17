@@ -14,7 +14,7 @@ import {
   NSpace,
   useDialog,
 } from "naive-ui";
-import { storage } from "~/utils/storage";
+import { chromeStorage } from "~/utils/storage";
 import { settingsDefault, websitesListDefault, activeDefault } from "~/utils/defaults";
 import type { Settings, LockType } from "~/utils/types";
 
@@ -53,7 +53,7 @@ const endTimeMs = ref<number | null>(timeStringToMs(settings.value.workHours.end
 
 async function loadSettings() {
   try {
-    const stored = await storage.get<Settings>("settings");
+    const stored = await chromeStorage.get<Settings>("settings");
     settings.value = stored;
     startTimeMs.value = timeStringToMs(stored.workHours.startTime);
     endTimeMs.value = timeStringToMs(stored.workHours.endTime);
@@ -65,7 +65,7 @@ async function loadSettings() {
 }
 
 function saveSettings() {
-  return storage.set("settings", settings.value);
+  return chromeStorage.set("settings", settings.value);
 }
 
 function onStartTimeChange(ms: number | null) {
@@ -89,9 +89,9 @@ function handleResetData() {
     positiveText: "Yes",
     negativeText: "No",
     onPositiveClick: async () => {
-      await storage.set("sitesGroups", websitesListDefault);
-      await storage.set("settings", structuredClone(settingsDefault));
-      await storage.set("active", activeDefault);
+      await chromeStorage.set("sitesGroups", websitesListDefault);
+      await chromeStorage.set("settings", structuredClone(settingsDefault));
+      await chromeStorage.set("active", activeDefault);
       emit("reload-data");
       loaded.value = false;
       await loadSettings();

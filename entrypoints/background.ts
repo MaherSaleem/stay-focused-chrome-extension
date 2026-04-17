@@ -1,4 +1,4 @@
-import { storage } from "~/utils/storage";
+import { chromeStorage } from "~/utils/storage";
 import { skippedUrls } from "~/utils/constants";
 import {
   getFlatEnabledListOfWebsites,
@@ -16,7 +16,7 @@ export default defineBackground({
   main() {
     const chooseIconColor = async () => {
       try {
-        const active = await storage.get<boolean>("active");
+        const active = await chromeStorage.get<boolean>("active");
         setIcon(active);
       } catch {
         setIcon(false);
@@ -42,7 +42,7 @@ export default defineBackground({
 
       let isExtensionActive: boolean;
       try {
-        isExtensionActive = await storage.get<boolean>("active");
+        isExtensionActive = await chromeStorage.get<boolean>("active");
       } catch {
         return;
       }
@@ -51,7 +51,7 @@ export default defineBackground({
       }
 
       try {
-        const settings = await storage.get<Settings>("settings");
+        const settings = await chromeStorage.get<Settings>("settings");
         if (settings.workHours?.enableWorkHours) {
           const isWorkDay = isTodayOneOfTheseDays(settings.workHours.days);
           const isWithinWorkTime = isCurrentTimeBetweenTwoTimes(
@@ -67,7 +67,7 @@ export default defineBackground({
       }
 
       try {
-        const sitesGroups = await storage.get<SiteGroup[]>("sitesGroups");
+        const sitesGroups = await chromeStorage.get<SiteGroup[]>("sitesGroups");
         const blockedWebsites = getFlatEnabledListOfWebsites(sitesGroups);
         const isBlocked = blockedWebsites.some((website) => checkIfMatch(website, info.url));
         if (isBlocked) {
@@ -84,13 +84,13 @@ export default defineBackground({
     chrome.runtime.onInstalled.addListener(async (details) => {
       const currentVersion = chrome.runtime.getManifest().version;
       const previousVersion = details.previousVersion;
-      await storage.set("version", currentVersion);
+      await chromeStorage.set("version", currentVersion);
 
       switch (details.reason) {
         case "install":
-          await storage.set("sitesGroups", websitesListDefault);
-          await storage.set("settings", settingsDefault);
-          await storage.set("active", activeDefault);
+          await chromeStorage.set("sitesGroups", websitesListDefault);
+          await chromeStorage.set("settings", settingsDefault);
+          await chromeStorage.set("active", activeDefault);
           console.log("Installed Successfully");
           break;
         case "update":

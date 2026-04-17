@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, useSlots } from "vue";
 import { NInput, NAlert } from "naive-ui";
-import { storage } from "~/utils/storage";
+import { chromeStorage } from "~/utils/storage";
 import { getHostNameFromStringUrl } from "~/utils/helpers";
 import { websitesListDefault, makeSiteGroup, makeSite } from "~/utils/defaults";
 import type { SiteGroup } from "~/utils/types";
@@ -46,7 +46,7 @@ function loadWebsites() {
 }
 
 function storeWebsites() {
-  storage.set("sitesGroups", sitesGroups.value);
+  chromeStorage.set("sitesGroups", sitesGroups.value);
 }
 
 function addNewSite(groupUid: string, siteData: { siteUrl: string; blockType: string }) {

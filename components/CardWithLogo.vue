@@ -2,7 +2,7 @@
 
 <template>
   <div class="card-with-logo">
-    <img class="logo" src="~/assets/images/logo-red.png" alt="Stay Focused" />
+    <img class="logo" src="/images/logo-red.png" alt="Stay Focused" />
     <div class="card-header">
       <slot name="header" />
     </div>

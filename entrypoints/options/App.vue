@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import { ref, watch, computed, onMounted, h, type Component } from "vue";
 import { NIcon } from "naive-ui";
-import { storage } from "~/utils/storage";
+import { chromeStorage } from "~/utils/storage";
 import type { Settings } from "~/utils/types";
 
 import BlockByWebsiteTab from "./components/BlockByWebsiteTab.vue";
@@ -103,13 +103,13 @@ function handleUnlock() {
 
 async function loadData() {
   try {
-    active.value = await storage.get<boolean>("active");
+    active.value = await chromeStorage.get<boolean>("active");
   } catch {
     // key missing — first run, default false
   }
 
   try {
-    const settings = await storage.get<Settings>("settings");
+    const settings = await chromeStorage.get<Settings>("settings");
     const lockType = settings.lock.type;
     isLocked.value = lockType !== "none" && (active.value === true || lockType === "password");
   } catch {
@@ -118,7 +118,7 @@ async function loadData() {
 }
 
 watch(active, (newVal) => {
-  storage.set("active", newVal);
+  chromeStorage.set("active", newVal);
 });
 
 onMounted(async () => {

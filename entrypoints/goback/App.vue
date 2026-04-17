@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { storage } from "~/utils/storage";
+import { chromeStorage } from "~/utils/storage";
 import type { Settings } from "~/utils/types";
 
 interface GoBackImage {
@@ -53,7 +53,7 @@ const randomImage = ref<GoBackImage>(imagesObjects[0]);
 
 onMounted(async () => {
   try {
-    const settings = await storage.get<Settings>("settings");
+    const settings = await chromeStorage.get<Settings>("settings");
     if (settings.allowFunnyGoBackImages) {
       const index = Math.floor(Math.random() * imagesObjects.length);
       randomImage.value = imagesObjects[index];
@@ -67,7 +67,7 @@ onMounted(async () => {
 <template>
   <div class="goback-container">
     <div class="goback-card">
-      <img class="logo" src="~/assets/images/logo-red.png" alt="Stay Focused" />
+      <img class="logo" src="/images/logo-red.png" alt="Stay Focused" />
       <h2 v-if="randomImage.text">{{ randomImage.text }}</h2>
       <img class="goback-image" :src="randomImage.path" alt="Go back to work" />
     </div>

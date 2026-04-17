@@ -7,7 +7,7 @@ import {
   isValidURL,
   setIcon,
 } from "~/utils/helpers";
-import { storage, getChromeActiveTab, openChromeNewTab } from "~/utils/storage";
+import { chromeStorage, getChromeActiveTab, openChromeNewTab } from "~/utils/storage";
 import { makeSiteGroup, makeSite } from "~/utils/defaults";
 import type { SiteGroup, Settings } from "~/utils/types";
 
@@ -23,12 +23,12 @@ function openOptionsPage() {
 }
 
 async function saveActive() {
-  await storage.set("active", active.value);
+  await chromeStorage.set("active", active.value);
   setIcon(active.value);
 }
 
 async function addCurrentWebsite() {
-  const sitesGroups = await storage.get<SiteGroup[]>("sitesGroups");
+  const sitesGroups = await chromeStorage.get<SiteGroup[]>("sitesGroups");
   let addedFromPopupSiteGroup = sitesGroups.find((sg) => sg.uid === "added-from-popup-uid");
   if (!addedFromPopupSiteGroup) {
     addedFromPopupSiteGroup = makeSiteGroup(
@@ -44,7 +44,7 @@ async function addCurrentWebsite() {
     makeSite(websiteName.value),
     ...addedFromPopupSiteGroup.sitesList,
   ];
-  await storage.set("sitesGroups", sitesGroups);
+  await chromeStorage.set("sitesGroups", sitesGroups);
   websiteIsAddedBefore.value = true;
 }
 
@@ -53,7 +53,7 @@ async function setWebsiteName() {
   if (tab?.url) {
     websiteName.value = getHostNameFromStringUrl(tab.url);
     try {
-      const sitesGroups = await storage.get<SiteGroup[]>("sitesGroups");
+      const sitesGroups = await chromeStorage.get<SiteGroup[]>("sitesGroups");
       websiteIsAddedBefore.value = getFlatListOfWebsites(sitesGroups).some(
         (site) => site.url === websiteName.value,
       );
@@ -65,13 +65,13 @@ async function setWebsiteName() {
 
 onMounted(async () => {
   try {
-    active.value = await storage.get<boolean>("active");
+    active.value = await chromeStorage.get<boolean>("active");
   } catch {
     // First run
   }
   if (active.value) {
     try {
-      const settings = await storage.get<Settings>("settings");
+      const settings = await chromeStorage.get<Settings>("settings");
       isLocked.value = settings.lock.type !== "none";
     } catch {
       // No settings yet
@@ -84,7 +84,7 @@ onMounted(async () => {
 <template>
   <div class="popup">
     <header>
-      <img src="~/assets/images/logo-red-white.png" alt="Stay Focused" />
+      <img src="/images/logo-red-white.png" alt="Stay Focused" />
       <button class="settings-btn" @click="openOptionsPage" aria-label="Settings">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
           <path

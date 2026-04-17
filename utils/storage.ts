@@ -1,4 +1,4 @@
-export const storage = {
+export const chromeStorage = {
   async get<T>(key: string): Promise<T> {
     return new Promise((resolve, reject) => {
       chrome.storage.local.get(key, (data) => {

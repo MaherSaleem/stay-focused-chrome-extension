@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { storage } from "~/utils/storage";
+import { chromeStorage } from "~/utils/storage";
 import type { Settings, LockSettings } from "~/utils/types";
 import PasswordUnlock from "./PasswordUnlock.vue";
 import QuestionUnlock from "./QuestionUnlock.vue";
@@ -11,7 +11,7 @@ const lockSettings = ref<LockSettings | null>(null);
 
 onMounted(async () => {
   try {
-    const settings = await storage.get<Settings>("settings");
+    const settings = await chromeStorage.get<Settings>("settings");
     lockSettings.value = settings.lock;
   } catch {
     /* first-run: no settings yet */
@@ -19,7 +19,7 @@ onMounted(async () => {
 });
 
 async function handleUnlock() {
-  await storage.set("active", false);
+  await chromeStorage.set("active", false);
   emit("unlock");
 }
 </script>

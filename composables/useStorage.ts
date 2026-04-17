@@ -1,18 +1,18 @@
 import { ref, watch, type Ref } from "vue";
-import { storage } from "~/utils/storage";
+import { chromeStorage } from "~/utils/chromeStorage";
 
 export function useStorage<T>(key: string, fallback: T): Ref<T> {
   const data = ref<T>(fallback) as Ref<T>;
   let skipNextWatch = false;
 
-  storage
+  chromeStorage
     .get<T>(key)
     .then((value) => {
       skipNextWatch = true;
       data.value = value;
     })
     .catch(() => {
-      // Key not in storage — use fallback (first-run scenario)
+      // Key not in chromeStorage — use fallback (first-run scenario)
     });
 
   watch(
@@ -22,7 +22,7 @@ export function useStorage<T>(key: string, fallback: T): Ref<T> {
         skipNextWatch = false;
         return;
       }
-      storage.set(key, newValue);
+      chromeStorage.set(key, newValue);
     },
     { deep: true },
   );

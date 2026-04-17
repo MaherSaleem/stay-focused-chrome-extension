@@ -8,15 +8,18 @@
     "dev": "wxt",
     "build": "wxt build",
     "zip": "wxt zip",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "format": "prettier --write \"entrypoints/**/*.{ts,vue,css,html}\" \"utils/**/*.ts\" \"composables/**/*.ts\" \"components/**/*.vue\"",
+    "format:check": "prettier --check \"entrypoints/**/*.{ts,vue,css,html}\" \"utils/**/*.ts\" \"composables/**/*.ts\" \"components/**/*.vue\""
   },
   "dependencies": {
-    "vue": "^3.5.13",
-    "naive-ui": "^2.40.3"
+    "naive-ui": "^2.40.3",
+    "vue": "^3.5.13"
   },
   "devDependencies": {
-    "wxt": "^0.20.5",
     "@wxt-dev/module-vue": "^1.0.3",
-    "typescript": "^5.7.3"
+    "prettier": "^3.8.3",
+    "typescript": "^5.7.3",
+    "wxt": "^0.20.5"
   }
 }

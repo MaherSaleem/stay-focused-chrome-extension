@@ -6,22 +6,19 @@ import { NCard } from "naive-ui";
   <div class="about-tab">
     <NCard class="about-card" title="About The Extension">
       <p>
-        Stay Focused is an open-source Chrome extension designed to block
-        distracting websites, such as social media platforms.
+        Stay Focused is an open-source Chrome extension designed to block distracting websites, such
+        as social media platforms.
       </p>
       <p>
-        The concept is simple: you might start working, only to find yourself
-        scrolling through social media like Facebook for 30 minutes without
-        realizing it. This extension displays a reminder image to help you get
-        back to work.
+        The concept is simple: you might start working, only to find yourself scrolling through
+        social media like Facebook for 30 minutes without realizing it. This extension displays a
+        reminder image to help you get back to work.
       </p>
     </NCard>
 
     <NCard class="about-card" title="Developed By">
       <p>Maher Khdeir</p>
-      <a target="_blank" href="https://www.linkedin.com/in/maher-khdeir/"
-        >LinkedIn</a
-      >
+      <a target="_blank" href="https://www.linkedin.com/in/maher-khdeir/">LinkedIn</a>
     </NCard>
 
     <NCard class="about-card">
@@ -34,9 +31,7 @@ import { NCard } from "naive-ui";
 
     <NCard class="about-card" title="Interested in contributing?">
       Visit our open-source GitHub repository.
-      <a
-        target="_blank"
-        href="https://github.com/MaherSaleem/stay-focused-chrome-extension"
+      <a target="_blank" href="https://github.com/MaherSaleem/stay-focused-chrome-extension"
         >Github Repository</a
       >.
     </NCard>

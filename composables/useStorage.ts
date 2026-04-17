@@ -15,13 +15,17 @@ export function useStorage<T>(key: string, fallback: T): Ref<T> {
       // Key not in storage — use fallback (first-run scenario)
     });
 
-  watch(data, (newValue) => {
-    if (skipNextWatch) {
-      skipNextWatch = false;
-      return;
-    }
-    storage.set(key, newValue);
-  }, { deep: true });
+  watch(
+    data,
+    (newValue) => {
+      if (skipNextWatch) {
+        skipNextWatch = false;
+        return;
+      }
+      storage.set(key, newValue);
+    },
+    { deep: true },
+  );
 
   return data;
 }

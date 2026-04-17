@@ -9,8 +9,8 @@ import BlockItemBaseTab from "./BlockItemBaseTab.vue";
     :allow-delete-groups="false"
   >
     <template #note>
-      Note: Avoid using single letters or short words (e.g., 'a'), as this will
-      block all websites containing the letter 'a'.
+      Note: Avoid using single letters or short words (e.g., 'a'), as this will block all websites
+      containing the letter 'a'.
     </template>
   </BlockItemBaseTab>
 </template>

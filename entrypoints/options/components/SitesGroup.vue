@@ -23,14 +23,19 @@ function truncateSiteUrl(siteUrl: string): string {
 
 <template>
   <div :class="['site-group', sitesGroup.groupEnabled ? '' : 'disabled']">
-    <NCard style="width: 320px; margin: 4px; display: inline-block; vertical-align: top;">
+    <NCard style="width: 320px; margin: 4px; display: inline-block; vertical-align: top">
       <template #header>
         <div class="card-header">
           <div class="group-title">{{ sitesGroup.groupName }}</div>
           <NSwitch
             class="enable-group-switch"
             :value="sitesGroup.groupEnabled"
-            @update:value="(val: boolean) => { sitesGroup.groupEnabled = val; emit('store-websites'); }"
+            @update:value="
+              (val: boolean) => {
+                sitesGroup.groupEnabled = val;
+                emit('store-websites');
+              }
+            "
           />
         </div>
       </template>
@@ -41,14 +46,15 @@ function truncateSiteUrl(siteUrl: string): string {
       />
 
       <div class="sites-list">
-        <div
-          v-for="(site, siteIndex) in sitesGroup.sitesList"
-          :key="siteIndex"
-          class="site-item"
-        >
+        <div v-for="(site, siteIndex) in sitesGroup.sitesList" :key="siteIndex" class="site-item">
           <NSwitch
             :value="site.enabled"
-            @update:value="(val: boolean) => { site.enabled = val; emit('store-websites'); }"
+            @update:value="
+              (val: boolean) => {
+                site.enabled = val;
+                emit('store-websites');
+              }
+            "
             size="small"
           />
           <NTooltip>
@@ -72,10 +78,8 @@ function truncateSiteUrl(siteUrl: string): string {
       </div>
 
       <template #action v-if="allowDelete !== false">
-        <div style="text-align: right;">
-          <NButton @click="emit('delete-sites-group')">
-            Remove Group
-          </NButton>
+        <div style="text-align: right">
+          <NButton @click="emit('delete-sites-group')"> Remove Group </NButton>
         </div>
       </template>
     </NCard>

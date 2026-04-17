@@ -1,27 +1,15 @@
 <template>
   <div class="page-container">
-    <n-spin
-      v-if="loading"
-      :size="80"
-      class="loader"
-    />
+    <n-spin v-if="loading" :size="80" class="loader" />
 
     <UnlockPage v-else-if="isLocked" @unlock="handleUnlock" />
 
     <n-layout v-else has-sider class="main-layout">
-      <n-layout-sider
-        bordered
-        :width="240"
-        content-style="display: flex; flex-direction: column;"
-      >
+      <n-layout-sider bordered :width="240" content-style="display: flex; flex-direction: column;">
         <div class="sider-logo">
           <img src="/images/logo-red.png" alt="Stay Focused" class="logo-img" />
         </div>
-        <n-menu
-          :value="selectedTab"
-          :options="menuOptions"
-          @update:value="selectTab"
-        />
+        <n-menu :value="selectedTab" :options="menuOptions" @update:value="selectTab" />
       </n-layout-sider>
 
       <n-layout>
@@ -62,12 +50,7 @@ const selectedTab = ref("block-by-website");
 function renderIcon(iconName: string) {
   return () =>
     h(NIcon, null, {
-      default: () =>
-        h(
-          "span",
-          { class: "material-icons", style: "font-size: 20px" },
-          iconName,
-        ),
+      default: () => h("span", { class: "material-icons", style: "font-size: 20px" }, iconName),
     });
 }
 
@@ -128,8 +111,7 @@ async function loadData() {
   try {
     const settings = await storage.get<Settings>("settings");
     const lockType = settings.lock.type;
-    isLocked.value =
-      lockType !== "none" && (active.value === true || lockType === "password");
+    isLocked.value = lockType !== "none" && (active.value === true || lockType === "password");
   } catch {
     // key missing — first run, not locked
   }

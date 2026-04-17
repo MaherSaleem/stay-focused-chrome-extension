@@ -14,9 +14,7 @@ function handleUnlock() {
     emit("unlock");
     return;
   }
-  if (
-    password.value.toLowerCase() === props.lockSettings.password.toLowerCase()
-  ) {
+  if (password.value.toLowerCase() === props.lockSettings.password.toLowerCase()) {
     emit("unlock");
   } else {
     message.error("Wrong Password!");

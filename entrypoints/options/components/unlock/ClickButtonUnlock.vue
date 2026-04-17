@@ -26,12 +26,7 @@ function handleClick() {
 <template>
   <div class="click-unlock">
     <div class="button-area" :style="{ textAlign: buttonAlign }">
-      <n-button
-        type="primary"
-        @click="handleClick"
-        @keydown.enter.prevent
-        @keydown.space.prevent
-      >
+      <n-button type="primary" @click="handleClick" @keydown.enter.prevent @keydown.space.prevent>
         {{ clicksLeft }} clicks to unlock
       </n-button>
     </div>

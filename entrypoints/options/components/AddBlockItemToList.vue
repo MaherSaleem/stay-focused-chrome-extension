@@ -36,9 +36,7 @@ function handleEnterWebsite() {
       @keyup.enter="handleEnterWebsite"
       :status="siteUrl !== '' && !isValidBlockItem ? 'error' : undefined"
     />
-    <span class="error-text" v-if="siteUrl !== '' && !isValidBlockItem">
-      Invalid Website
-    </span>
+    <span class="error-text" v-if="siteUrl !== '' && !isValidBlockItem"> Invalid Website </span>
   </div>
 </template>
 

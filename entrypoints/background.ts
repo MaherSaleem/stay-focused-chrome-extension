@@ -8,11 +8,7 @@ import {
   regexMatch,
   setIcon,
 } from "~/utils/helpers";
-import {
-  settingsDefault,
-  websitesListDefault,
-  activeDefault,
-} from "~/utils/defaults";
+import { settingsDefault, websitesListDefault, activeDefault } from "~/utils/defaults";
 import { handle103To104Upgrade } from "~/utils/migration";
 import type { Settings, SiteGroup } from "~/utils/types";
 
@@ -27,10 +23,7 @@ export default defineBackground({
       }
     };
 
-    const checkIfMatch = (
-      blockItem: { blockType: string; url: string },
-      url: string,
-    ): boolean => {
+    const checkIfMatch = (blockItem: { blockType: string; url: string }, url: string): boolean => {
       if (skippedUrls.some((skippedUrl) => url.includes(skippedUrl))) {
         return false;
       }
@@ -76,9 +69,7 @@ export default defineBackground({
       try {
         const sitesGroups = await storage.get<SiteGroup[]>("sitesGroups");
         const blockedWebsites = getFlatEnabledListOfWebsites(sitesGroups);
-        const isBlocked = blockedWebsites.some((website) =>
-          checkIfMatch(website, info.url),
-        );
+        const isBlocked = blockedWebsites.some((website) => checkIfMatch(website, info.url));
         if (isBlocked) {
           await chrome.tabs.update(info.tabId, { url: "/goback/index.html" });
         }
@@ -103,9 +94,7 @@ export default defineBackground({
           console.log("Installed Successfully");
           break;
         case "update":
-          console.log(
-            `prev version: ${previousVersion}, current version: ${currentVersion}`,
-          );
+          console.log(`prev version: ${previousVersion}, current version: ${currentVersion}`);
           if (previousVersion) {
             await handle103To104Upgrade(previousVersion, currentVersion);
           }

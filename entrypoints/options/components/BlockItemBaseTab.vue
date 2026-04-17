@@ -62,10 +62,7 @@ function addNewSite(groupUid: string, siteData: { siteUrl: string; blockType: st
 
 function addNewGroup() {
   if (!newGroupName.value) return;
-  sitesGroups.value = [
-    makeSiteGroup(newGroupName.value, true),
-    ...sitesGroups.value,
-  ];
+  sitesGroups.value = [makeSiteGroup(newGroupName.value, true), ...sitesGroups.value];
   newGroupName.value = "";
   storeWebsites();
 }
@@ -102,7 +99,7 @@ onMounted(() => {
         v-model:value="newGroupName"
         placeholder="Enter a name for the new website group (ex: E-Commerce)"
         @keyup.enter="addNewGroup"
-        style="max-width: 50%;"
+        style="max-width: 50%"
       />
     </div>
 

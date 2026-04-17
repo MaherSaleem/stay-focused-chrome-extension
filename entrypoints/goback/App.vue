@@ -67,17 +67,9 @@ onMounted(async () => {
 <template>
   <div class="goback-container">
     <div class="goback-card">
-      <img
-        class="logo"
-        src="~/assets/images/logo-red.png"
-        alt="Stay Focused"
-      />
+      <img class="logo" src="~/assets/images/logo-red.png" alt="Stay Focused" />
       <h2 v-if="randomImage.text">{{ randomImage.text }}</h2>
-      <img
-        class="goback-image"
-        :src="randomImage.path"
-        alt="Go back to work"
-      />
+      <img class="goback-image" :src="randomImage.path" alt="Go back to work" />
     </div>
   </div>
 </template>

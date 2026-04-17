@@ -9,8 +9,7 @@ import BlockItemBaseTab from "./BlockItemBaseTab.vue";
     :allow-delete-groups="false"
   >
     <template #note>
-      Note: If you're unfamiliar with Regex (Regular Expressions), you can skip
-      this page.
+      Note: If you're unfamiliar with Regex (Regular Expressions), you can skip this page.
     </template>
   </BlockItemBaseTab>
 </template>

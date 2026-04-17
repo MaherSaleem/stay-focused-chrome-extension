@@ -3,8 +3,5 @@ import BlockItemBaseTab from "./BlockItemBaseTab.vue";
 </script>
 
 <template>
-  <BlockItemBaseTab
-    :allow-create-new-groups="true"
-    block-type-to-show="website"
-  />
+  <BlockItemBaseTab :allow-create-new-groups="true" block-type-to-show="website" />
 </template>

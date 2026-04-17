@@ -53,9 +53,7 @@ const questions = [
 const randomQuestion = computed(() => questions[selectedQuestionIndex.value]);
 
 function handleUnlock() {
-  if (
-    answer.value.toLowerCase().includes(randomQuestion.value.answer.toLowerCase())
-  ) {
+  if (answer.value.toLowerCase().includes(randomQuestion.value.answer.toLowerCase())) {
     emit("unlock");
   } else {
     numberOfTries.value++;
@@ -75,17 +73,10 @@ onMounted(() => {
 <template>
   <div class="question-unlock">
     <h3>{{ randomQuestion.text }}</h3>
-    <n-input
-      v-model:value="answer"
-      placeholder="Answer"
-      @keyup.enter="handleUnlock"
-    />
+    <n-input v-model:value="answer" placeholder="Answer" @keyup.enter="handleUnlock" />
     <div class="actions">
       <n-button type="primary" @click="handleUnlock">Submit</n-button>
-      <n-button
-        v-if="numberOfTries >= lockSettings.questionNumberOfTries"
-        @click="showAnswer"
-      >
+      <n-button v-if="numberOfTries >= lockSettings.questionNumberOfTries" @click="showAnswer">
         Show Answer
       </n-button>
     </div>

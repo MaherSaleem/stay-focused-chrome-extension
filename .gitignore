@@ -1,7 +1,6 @@
-/node_modules
-/*.log
-/dist
-/dist-zip
-/.idea/
-/.wxt/
-/.output/
+node_modules
+*.log
+.wxt
+.output
+dist/
+dist-zip/

@@ -32,10 +32,7 @@ export function isTodayOneOfTheseDays(days: string[]): boolean {
   return days.includes(dayIndex.toString());
 }
 
-export function isCurrentTimeBetweenTwoTimes(
-  startTime: string,
-  endTime: string,
-): boolean {
+export function isCurrentTimeBetweenTwoTimes(startTime: string, endTime: string): boolean {
   const currentDate = new Date();
   const convertTimeToDate = (timeString: string): Date => {
     const timeAsDate = new Date(currentDate.getTime());
@@ -54,18 +51,14 @@ export function isCurrentTimeBetweenTwoTimes(
 }
 
 export function setIcon(isActive: boolean): void {
-  const iconPath = isActive
-    ? "/icons/icon_48_active.ico"
-    : "/icons/icon_48_inactive.ico";
+  const iconPath = isActive ? "/icons/icon_48_active.ico" : "/icons/icon_48_inactive.ico";
   setExtensionIcon(iconPath);
 }
 
 export function getFlatEnabledListOfWebsites(
   groupsList: SiteGroup[],
 ): Array<Site & { groupEnabled: boolean; blockType: string }> {
-  return getFlatListOfWebsites(groupsList).filter(
-    (site) => site.groupEnabled && site.enabled,
-  );
+  return getFlatListOfWebsites(groupsList).filter((site) => site.groupEnabled && site.enabled);
 }
 
 export function getFlatListOfWebsites(
@@ -94,9 +87,7 @@ export function getUniqueId(numberOfChars = 6): string {
 }
 
 export function truncateText(value: string, charsLength = 30): string {
-  return value.length <= charsLength
-    ? value
-    : value.substring(0, charsLength) + "...";
+  return value.length <= charsLength ? value : value.substring(0, charsLength) + "...";
 }
 
 export function regexMatch(stringToTest: string, regexString: string): boolean {

@@ -85,8 +85,7 @@ function onEndTimeChange(ms: number | null) {
 function handleResetData() {
   dialog.warning({
     title: "Are you sure you want to reset the data?",
-    content:
-      "This will make all your settings and websites return to their initial values.",
+    content: "This will make all your settings and websites return to their initial values.",
     positiveText: "Yes",
     negativeText: "No",
     onPositiveClick: async () => {
@@ -117,8 +116,8 @@ watch(
   <div class="settings-tab">
     <NCard class="settings-card" title="Deactivation Settings">
       <p class="note-block">
-        Note: This feature is designed to make deactivation take some effort,
-        encouraging you to stay focused and keep working
+        Note: This feature is designed to make deactivation take some effort, encouraging you to
+        stay focused and keep working
       </p>
       <NRadioGroup
         :value="settings.lock.type"
@@ -173,8 +172,7 @@ watch(
         <NSwitch v-model:value="settings.workHours.enableWorkHours" />
       </template>
       <p class="note-block warning">
-        Note: To enable this setting, activate the tool and set your preferred
-        working hours/days.
+        Note: To enable this setting, activate the tool and set your preferred working hours/days.
       </p>
       <div class="work-hours-row">
         <span>From:</span>

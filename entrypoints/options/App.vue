@@ -164,16 +164,22 @@ onMounted(async () => {
 </style>
 
 <style>
-/* Active menu item left accent border */
+/* Active menu item — bold text + red left bar */
+.n-menu-item-content--selected {
+  position: relative;
+  font-weight: 600 !important;
+  color: #d32f2f !important;
+}
+
 .n-menu-item-content--selected::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 4px;
-  bottom: 4px;
+  top: 6px;
+  bottom: 6px;
   width: 3px;
   background-color: #d32f2f;
-  border-radius: 0 2px 2px 0;
+  border-radius: 0 3px 3px 0;
 }
 
 .n-menu-item-content {

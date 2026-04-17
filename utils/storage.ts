@@ -12,7 +12,10 @@ export const chromeStorage = {
   },
 
   async set(key: string, value: unknown): Promise<void> {
-    await chrome.storage.local.set({ [key]: value });
+    // Deep clone to strip Vue 3 reactive Proxy wrappers before saving.
+    // chrome.storage.local.set() cannot serialize Proxy objects.
+    const raw = JSON.parse(JSON.stringify(value));
+    await chrome.storage.local.set({ [key]: raw });
   },
 };
 
